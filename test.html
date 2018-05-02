@@ -10,21 +10,22 @@
 			position='0 0.5 0'
 			obj-model="obj: url(models/bb8/BB-8.obj); mtl: url(models/bb8/BB-8.mtl)"
 			scale="2 2 2"
+			onmousedown="clickHandler()"
 		>
 			<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
 			<a-animation attribute="rotation" begin="mousedown" dur="500" fill="backwards" to="0 0 360"></a-animation>
 		</a-entity>
   	</a-marker>
 
-  	<a-marker preset="kanji">
-		<a-entity
+  	<a-marker preset="kanji" class="prova" id="kanji">
+		<!--<a-entity
 			position='0 0.5 0'
 			obj-model="obj: url(models/body/body.obj); mtl: url(models/body/body.mtl)"
 			scale="2 2 2"
 		>
 			<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
 			<a-animation attribute="rotation" begin="mousedown" dur="500" fill="backwards" to="0 0 360"></a-animation>
-		</a-entity>
+	</a-entity>-->
   	</a-marker>
 
 
@@ -45,6 +46,13 @@
 			<a-cursor fuse="true" color="yellow"></a-cursor>
 		</a-entity>
 	</a-entity> -->
+
+	<script>
+	function clickHandler() {
+		document.getElementById("kanji").innerHTML = "<a-entity position='0 0.5 0' obj-model='obj: url(models/body/body.obj); mtl: url(models/body/body.mtl)' scale='2 2 2'> <a-animation attribute='rotation' begin='click' dur='500' fill='backwards' to='0 360 0'></a-animation><a-animation attribute='rotation' begin='mousedown' dur='500' fill='backwards' to='0 0 360'> </a-animation> </a-entity >";
+		console.log('AAAAAAAAAAA');
+	}
+	</script>
 
     </a-scene>
   </body>
