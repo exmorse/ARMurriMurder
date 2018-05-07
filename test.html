@@ -1,59 +1,76 @@
 <!doctype HTML>
 <html>
-<link rel="stylesheet" type="text/css" href="./css/scene.css">
-<script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
-<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"> </script>
-  <body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs='debugUIEnabled: false' >
-  	<a-marker preset="hiro">
-		<a-entity
-			position='0 0.5 0'
-			obj-model="obj: url(models/bb8/BB-8.obj); mtl: url(models/bb8/BB-8.mtl)"
-			scale="2 2 2"
-			onmousedown="clickHandler()"
-		>
-			<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
-			<a-animation attribute="rotation" begin="mousedown" dur="500" fill="backwards" to="0 0 360"></a-animation>
-		</a-entity>
-  	</a-marker>
-
-  	<a-marker preset="kanji" class="prova" id="kanji">
-		<!--<a-entity
-			position='0 0.5 0'
-			obj-model="obj: url(models/body/body.obj); mtl: url(models/body/body.mtl)"
-			scale="2 2 2"
-		>
-			<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
-			<a-animation attribute="rotation" begin="mousedown" dur="500" fill="backwards" to="0 0 360"></a-animation>
-	</a-entity>-->
-  	</a-marker>
-
-
-	<a-entity camera></a-entity>
-		<a-entity cursor="fuse: true; fuseTimeout: 3000"
-                         position="0 0 -1"
-                         scale="0.01 0.01 0.01"
-                         geometry="primitive: ring"
-                         material="color: black; shader: flat">
-                   <a-animation begin="click" easing="ease-in" attribute="scale" dur="300"
-                                fill="forwards" from="0.005 0.005 0.005" to="0.01 0.01 0.01"></a-animation>
-                   <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="3000"
-                                fill="backwards" from="0.01 0.01 0.01" to="0.005 0.005 0.005"></a-animation>
-               </a-entity>
-
-	<!-- <a-entity position="0 1.8 4">
-		<a-entity camera look-controls mouse-cursor>
-			<a-cursor fuse="true" color="yellow"></a-cursor>
-		</a-entity>
-	</a-entity> -->
-
+	<link rel="stylesheet" type="text/css" href="./css/scene.css">
+	<script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+	<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"> </script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+	<script src="jquery.ui.touch-punch.min.js"></script>
 	<script>
-	function clickHandler() {
-		document.getElementById("kanji").innerHTML = "<a-entity position='0 0.5 0' obj-model='obj: url(models/body/body.obj); mtl: url(models/body/body.mtl)' scale='2 2 2'> <a-animation attribute='rotation' begin='click' dur='500' fill='backwards' to='0 360 0'></a-animation><a-animation attribute='rotation' begin='mousedown' dur='500' fill='backwards' to='0 0 360'> </a-animation> </a-entity >";
-		console.log('AAAAAAAAAAA');
+		$('document').ready(function () {
+			$('#widget').draggable();
+		});
+		
+		
+	function prova() {
+		$('#backpack').removeClass("bottom");
+		$('#camera-div').removeClass("top");
+		$('#backpack').addClass("top");
+		$('#backpack *').addClass("top");
+		$('#camera-div').addClass("bottom");
+		console.log("ciao");
+		console.log("aAAAAAAAAAAAA");
 	}
 	</script>
 
-    </a-scene>
-  </body>
+<body style='margin : 0px; overflow: hidden;'>
+	<button id="btn" class="overlay" onclick="prova()"> prova</button>
+	<a-scene id="camera-div" embedded arjs='debugUIEnabled: false'>
+		<a-marker preset="hiro">
+			<a-entity position='0 0.5 0' obj-model="obj: url(models/bb8/BB-8.obj); mtl: url(models/bb8/BB-8.mtl)" scale="2 2 2" onmousedown="clickHandler()">
+				<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
+				<a-animation attribute="rotation" begin="mousedown" dur="500" fill="backwards" to="0 0 360"></a-animation>
+			</a-entity>
+		</a-marker>
+		
+		<a-marker preset="kanji" class="prova" id="kanji">
+			<!--<a-entity
+				position='0 0.5 0'
+				obj-model="obj: url(models/body/body.obj); mtl: url(models/body/body.mtl)"
+				scale="2 2 2"
+				>
+				<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
+				<a-animation attribute="rotation" begin="mousedown" dur="500" fill="backwards" to="0 0 360"></a-animation>
+			</a-entity>-->
+		</a-marker>
+		
+		<a-entity camera></a-entity>
+			<a-entity cursor="fuse: true; fuseTimeout: 3000" position="0 0 -1" scale="0.01 0.01 0.01" geometry="primitive: ring" material="color: black; shader: flat">
+				<a-animation begin="click" easing="ease-in" attribute="scale" dur="300" fill="forwards" from="0.005 0.005 0.005" to="0.01 0.01 0.01"></a-animation>
+				<a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="3000" fill="backwards" from="0.01 0.01 0.01" to="0.005 0.005 0.005"></a-animation>
+			</a-entity>
+			
+			<!-- <a-entity position="0 1.8 4">
+				<a-entity camera look-controls mouse-cursor>
+					<a-cursor fuse="true" color="yellow"></a-cursor>
+				</a-entity>
+			</a-entity> -->
+			
+			<script>
+				function clickHandler() {
+					document.getElementById("kanji").innerHTML = "<a-entity position='0 0.5 0' obj-model='obj: url(models/body/body.obj); mtl: url(models/body/body.mtl)' scale='2 2 2'> <a-animation attribute='rotation' begin='click' dur='500' fill='backwards' to='0 360 0'></a-animation><a-animation attribute='rotation' begin='mousedown' dur='500' fill='backwards' to='0 0 360'> </a-animation> </a-entity >";
+						console.log('AAAAAAAAAAA');
+					}
+					
+					
+			</script>
+
+</a-scene>
+
+<div id="backpack" class="bottom">
+	<p>askjdna kjhiaosu hfosiuh g sduhfa oisudhf aisduhf aiusdhf iausdhf iuasdhfiau sdhfiua sdhf</p>
+	<div id="widget"> ciao aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaassdaksjd aksaskj daskjdh ak </div>
+</div>
+</body>
+
 </html>
