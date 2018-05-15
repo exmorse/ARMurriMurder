@@ -1,0 +1,417 @@
+<!doctype HTML>
+<html>
+<script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"> </script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/interactjs@1.3.3/dist/interact.min.js"></script> -->
+<script src="interact.js"></script>
+<script src="tingle.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/clues.css">
+<link rel="stylesheet" type="text/css" href="./css/scene.css">
+<link rel="stylesheet" type="text/css" href="./css/tingle.css">
+
+  <body style='margin : 0px; overflow: hidden;'>
+    <a-scene embedded arjs="debugUIEnabled: false;">
+  	<a-marker preset="hiro">
+		<a-entity
+			position='0 0.5 0'
+			obj-model="obj: url(models/bb8/BB-8.obj); mtl: url(models/bb8/BB-8.mtl)"
+			scale="2 2 2"
+			onclick="alert('clicked')"
+		>
+			<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
+		</a-entity>
+  	</a-marker>
+  	<a-marker preset="kanji">
+		<a-entity
+			obj-model="obj: url(models/tiefighter/TieFighter.obj); mtl: url(models/tiefighter/TieFighter.mtl)"
+			scale="1 1 1"
+		>
+		</a-entity>
+  	</a-marker>
+  	
+	<a-marker preset='custom' type='pattern' url='https://raw.githubusercontent.com/mattGraphics/randomfiles/master/big-m.patt'>
+            <a-box position='0 0.5 0' material='color: green; opacity: 0.5'></a-box>
+  	</a-marker>
+
+
+	<a-entity camera></a-entity>
+		<a-entity cursor="fuse: true;"
+                         position="0 0 -1"
+                         scale="0.015 0.015 0.015"
+                         geometry="primitive: ring"
+                         material="color: black; shader: flat">
+                   <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
+                                fill="forwards" from="0.02 0.02 0.02" to="0.03 0.03 0.3"></a-animation>
+                   <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
+                                fill="backwards" from="0.03 0.03 0.03" to="0.02 0.02 0.02"></a-animation>
+               </a-entity>
+
+    </a-scene>
+    
+    <button id="btn-clues" class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
+ 
+    <div id="app">
+      <div id="clues"></div>
+      <br>
+      <div id="revelations"></div>
+    </div>
+
+
+    <script src="gamedata.json"></script>
+    <script>
+
+	/* Toggles the Clues/Revelation interface visibility */	
+	function toggleClues() {
+		if(!cluesVisible) {
+			document.getElementById('app').style.visibility="visible";
+		}
+		else {
+			document.getElementById('app').style.visibility="hidden";
+		}
+		cluesVisible = !cluesVisible;
+	}
+
+
+	/* Add the HTML code related to a clue */
+	function addClue(id) {
+		document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" dropped="false"> <p>' + id + '</p> </div>';  
+	}
+
+	
+	/* Add the HTML code related to a revelation */
+	function addRevelation(name, id, clueIdList) {
+		revCode = '<div id="' + id +  '"class="revelation">';
+		revCode += '<h4>' + name + '</h4>';
+		revCode += '<div class="dropzones">';
+		for (i = 0; i < clueIdList.length; i++) {
+			revCode += '<div id="' + id + '-' + i + '" class="dropzone outer-dropzone"></div>'
+		}
+		revCode += '</div>';
+		revCode += '</div>';
+		document.getElementById('revelations').innerHTML += revCode;
+	}
+
+
+	/* Interact.js code to make the clues div draggable */
+	function activateDraggableClues() {
+
+		// target elements with the "draggable-clue" class
+		interact('.draggable-clue')
+		.draggable({
+			snap: {
+				targets: [startPos],
+				range: Infinity,
+				relativePoints: [{x:0.5, y:0.5}],
+				endOnly: true
+			},
+			inertia: true,
+			restrict: {
+				restriction: "#app",
+				endOnly: false,
+				elementRect: { top: 0.1, left: 0.1, bottom: 0.9, right: 0.9 }
+			},
+			autoScroll: false,
+
+			onstart: function (event) {
+				var rect = interact.getElementRect(event.target);
+				startPos.x = rect.left + rect.width / 2;
+				startPos.y = rect.top + + rect.height / 2;
+		
+				if (event.target.getAttribute('data-start-x') == null) {	
+					event.target.setAttribute('data-start-x', rect.left + rect.width  / 2);
+					event.target.setAttribute('data-start-y', rect.top  + rect.height / 2);
+				}	
+			
+				event.interactable.draggable({
+					snap: {
+						targets: [startPos]
+					}
+				});
+			},
+
+			onmove: dragMoveListener,
+			
+			onend: function (event) {
+				console.log("Should snap to ");
+				console.log(startPos);
+				// snap to the start position
+				event.interactable.draggable({
+					snap: {
+						targets: [startPos]
+					}
+				});
+			}
+		});
+
+	}
+	
+	
+	/* Listener for moving objects */
+	function dragMoveListener (event) {
+		//console.log('dragMoveListener');
+		var target = event.target,
+		// keep the dragged position in the data-x/data-y attributes
+	    	x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+	    	y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+		// translate the element
+		target.style.webkitTransform =
+			target.style.transform =
+			'translate(' + x + 'px, ' + y + 'px)';
+
+		// update the position attributes
+		target.setAttribute('data-x', x);
+		target.setAttribute('data-y', y);
+	}
+
+	
+	function activateDropzones() {
+		// enable draggables to be dropped into this
+		interact('.dropzone').dropzone({
+			accept: '.draggable-clue',
+			// Require a 75% element overlap for a drop to be possible
+			overlap: 0.75,
+
+			// listen for drop related events:
+			ondropactivate: function (event) {
+				// add active dropzone feedback
+				event.target.classList.add('drop-active');
+			},
+			ondragenter: function (event) {
+				var draggableElement = event.relatedTarget,
+				dropzoneElement = event.target;
+
+				
+   				if(dropzoneElement.getAttribute('content') == null) {
+					dropzoneElement.setAttribute('content', draggableElement.id);
+					// feedback the possibility of a drop
+					dropzoneElement.classList.add('drop-target');
+					draggableElement.classList.add('can-drop');
+					//draggableElement.textContent = 'Dragged in';
+				
+					var draggableElement = event.relatedTarget,
+					dropzoneElement  = event.target,
+					dropRect         = interact.getElementRect(dropzoneElement),
+					dropCenter       = {
+						x: dropRect.left + dropRect.width  / 2,
+						y: dropRect.top  + dropRect.height / 2
+					};
+
+					event.draggable.draggable({
+						snap: {
+							targets: [dropCenter]
+						}
+					});
+				}
+			},
+			ondragleave: function (event) {
+			     	event.relatedTarget.classList.remove('can-drop');
+
+				if (event.relatedTarget.id == event.target.getAttribute('content')) {
+					event.target.removeAttribute('content');
+				
+					// remove the drop feedback style
+			     		event.target.classList.remove('drop-target');
+					event.target.classList.remove('drop-content');
+					
+					// on exit set snap to original position
+					event.draggable.draggable({
+						snap: {
+							targets: [
+								{
+									x: parseFloat(event.relatedTarget.getAttribute('data-start-x')),
+									y: parseFloat(event.relatedTarget.getAttribute('data-start-y'))
+								}
+							]
+						}
+					});
+				}
+				
+
+				
+	     		},
+			ondrop: function (event) {
+				//event.relatedTarget.textContent = 'Dropped';
+				event.target.classList.add('drop-content');
+				//event.target.appendChild(event.relatedTarget);
+				console.log("Shouldcheck");
+				
+				/* TODO Get all childNodes of parent of event dropzone */
+				/* Get the corresponding revelation element in gameData */
+				/* Check if every childNodes of parent has 'content' attribute set to an id from the cluelist */
+				
+				var parentEl = event.target.parentNode;
+				var nodes = parentEl.childNodes;
+				var content;
+				var completed = true;
+				var revelation = null;
+
+				for (i = 0; i < gameData.revelations.length; i++) {
+					if (gameData.revelations[i].id == parentEl.parentNode.id) {
+						revelation = gameData.revelations[i];
+					}
+				}
+
+				if (revelation == null) return;
+
+				for (i = 0; i < nodes.length; i++) {
+					content = nodes[i].getAttribute('content');
+					if (revelation.clueList.indexOf(content) < 0) {
+						completed = false;
+						break;
+					}
+				}
+			
+				if (completed) {
+					toggleClues();
+					createTutorialEndModal();
+				}
+			},
+			ondropdeactivate: function (event) {
+				// remove active dropzone feedback
+				event.target.classList.remove('drop-active');
+				event.target.classList.remove('drop-target');
+			}
+		});
+	}
+
+
+	/* Create initial modal */
+	function createInitialModal() {
+		// instanciate new modal
+		var modal = new tingle.modal({
+			footer: true,
+			stickyFooter: false,
+			//closeMethods: ['overlay', 'button', 'escape'],
+			//closeLabel: "Close",
+			cssClass: [],
+			onOpen: function() {
+				console.log('modal open');
+			},
+			onClose: function() {
+				console.log('modal closed');
+			},
+			beforeClose: function() {
+				// here's goes some logic
+				// e.g. save content before closing the modal
+				return true; // close the modal
+			}
+		});
+
+		// set content
+		modal.setContent('<h1>Augmented Murri Murder Case</h1>');
+
+		// add a button
+		modal.addFooterBtn('Start', 'tingle-btn tingle-btn--primary', function() {
+			modal.close();
+			modal.destroy();
+			createTutorialModal();
+		});
+
+		// open modal
+		modal.open();
+
+		return modal;
+	}
+
+	
+	/* Create the tutorial modal */
+	function createTutorialModal() {
+		// instanciate new modal
+		var modal = new tingle.modal({
+			footer: true,
+			stickyFooter: false,
+			//closeMethods: ['overlay', 'button', 'escape'],
+			//closeLabel: "Close",
+			cssClass: [],
+			onOpen: function() {
+				console.log('modal open');
+			},
+			onClose: function() {
+				console.log('modal closed');
+			},
+			beforeClose: function() {
+				// here's goes some logic
+				// e.g. save content before closing the modal
+				return true; // close the modal
+			}
+		});
+
+		// set content
+		modal.setContent('<h2>Chapter 0 - The Tutorial</h2> <p>Some very important info.</p>');
+
+		// add a button
+		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
+			modal.close();
+			modal.destroy();
+		});
+
+		// open modal
+		modal.open();
+
+		return modal;
+	}
+
+	/* Create the tutorial modal */
+	function createTutorialEndModal() {
+		// instanciate new modal
+		var modal = new tingle.modal({
+			footer: true,
+			stickyFooter: false,
+			//closeMethods: ['overlay', 'button', 'escape'],
+			//closeLabel: "Close",
+			cssClass: [],
+			onOpen: function() {
+				console.log('modal open');
+			},
+			onClose: function() {
+				console.log('modal closed');
+			},
+			beforeClose: function() {
+				// here's goes some logic
+				// e.g. save content before closing the modal
+				return true; // close the modal
+			}
+		});
+
+		// set content
+		modal.setContent('<h2>Chapter 0 - The Tutorial</h2> <h2>Completed!</h2>');
+
+		// add a button
+		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
+			modal.close();
+		});
+
+		// open modal
+		modal.open();
+
+		return modal;
+	}
+
+	/* Init variables */
+	var cluesVisible = false;
+	var startPos = {x: 0, y: 0};
+
+	/* Insert clues */
+	for (i = 0; i < gameData.clues.length; i++) {
+		addClue(gameData.clues[i].id);
+	}
+
+	/* Insert revelations/dropzones */
+	for (i = 0; i < gameData.revelations.length; i++) {
+		addRevelation(
+			gameData.revelations[i].name,
+			gameData.revelations[i].id,
+			gameData.revelations[i].clueList
+		);
+	}
+
+	/* Activate drag and drop */
+	activateDropzones();
+	activateDraggableClues();
+
+	createInitialModal();
+	</script>	
+
+	</body>
+</html>

@@ -1,0 +1,24 @@
+var gameData = {
+	'clues' : [
+		{
+			'id': 'sofa',
+			'img': 'sofa.png'
+		},
+		{
+			'id': 'lock',
+			'img': 'lock.png'
+		},
+	],
+	
+	'revelations' : [
+		{
+			'name': 'Tutorial',
+			'id': 'tutorial-rev',
+			'clueList': 
+				[
+					'sofa',
+					'lock'
+				]
+		}
+	] 
+}
