@@ -1,7 +1,7 @@
 var gameData = {
 	'clues' : [
 		{
-			'id': 'sofa',
+			'id': 'bed',
 			'img': 'sofa.png'
 		},
 		{
@@ -16,7 +16,7 @@ var gameData = {
 			'id': 'tutorial-rev',
 			'clueList': 
 				[
-					'sofa',
+					'bed',
 					'lock'
 				]
 		}

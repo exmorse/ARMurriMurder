@@ -8,7 +8,9 @@
 <link rel="stylesheet" type="text/css" href="./css/clues.css">
 <link rel="stylesheet" type="text/css" href="./css/scene.css">
 <link rel="stylesheet" type="text/css" href="./css/tingle.css">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <body style='margin : 0px; overflow: hidden;'>
     <a-scene embedded arjs="debugUIEnabled: false;">
   	<a-marker preset="hiro">
@@ -16,16 +18,18 @@
 			position='0 0.5 0'
 			obj-model="obj: url(models/bb8/BB-8.obj); mtl: url(models/bb8/BB-8.mtl)"
 			scale="2 2 2"
-			onclick="alert('clicked')"
+			onclick="addClue('lock')"
 		>
 			<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
 		</a-entity>
   	</a-marker>
   	<a-marker preset="kanji">
 		<a-entity
-			obj-model="obj: url(models/tiefighter/TieFighter.obj); mtl: url(models/tiefighter/TieFighter.mtl)"
-			scale="1 1 1"
+			obj-model="obj: url(models/body/body.obj); mtl: url(models/body/body.mtl)" 
+			scale="2 2 2"
+			onclick="addClue('sofa')"
 		>
+		<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
 		</a-entity>
   	</a-marker>
   	
@@ -60,6 +64,8 @@
     <script src="gamedata.json"></script>
     <script>
 
+	var alreadyAddedClues = [];
+
 	/* Toggles the Clues/Revelation interface visibility */	
 	function toggleClues() {
 		if(!cluesVisible) {
@@ -74,7 +80,12 @@
 
 	/* Add the HTML code related to a clue */
 	function addClue(id) {
-		document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" dropped="false"> <p>' + id + '</p> </div>';  
+		console.log(alreadyAddedClues);
+		console.log(alreadyAddedClues.indexOf(id));
+		if(alreadyAddedClues.indexOf(id) == -1){
+			document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false"> <span class="glyphicon glyphicon-'+id+'"></span> </div>';  
+			alreadyAddedClues.push(id);
+		}
 	}
 
 	
@@ -393,9 +404,9 @@
 	var startPos = {x: 0, y: 0};
 
 	/* Insert clues */
-	for (i = 0; i < gameData.clues.length; i++) {
+	/*for (i = 0; i < gameData.clues.length; i++) {
 		addClue(gameData.clues[i].id);
-	}
+	}*/
 
 	/* Insert revelations/dropzones */
 	for (i = 0; i < gameData.revelations.length; i++) {
