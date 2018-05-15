@@ -40,3 +40,31 @@ a-scene {
 	background-color: white;
 	z-index: 100;
 }
+
+#widget, .overlay{
+    position:relative;
+    z-index : 999;
+    color:red;
+    
+}
+
+.overlay{
+    margin-left: 50%;
+    margin-right: 50%;
+}
+.top{
+    z-index : 998;
+    position:absolute;
+}
+
+.bottom{
+    z-index : 2;
+    position:absolute;
+}
+
+#backpack{
+    background-color: white;
+    height: 100%;
+    left: 0;
+}
+>>>>>>> 917318eb2c72d3244b6e0797ffca181eef1251dc
