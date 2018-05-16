@@ -1,8 +1,12 @@
 var gameData = {
 	'clues' : [
 		{
-			'id': 'bed',
-			'img': 'sofa.png'
+			'id': 'window',
+			'img': 'window.png'
+		},
+		{
+			'id': 'key',
+			'img': 'key.png'
 		},
 		{
 			'id': 'lock',
@@ -12,11 +16,19 @@ var gameData = {
 	
 	'revelations' : [
 		{
-			'name': 'Tutorial',
-			'id': 'tutorial-rev',
+			'name': 'Chapter 0.1 - The Break-In',
+			'id': 'tutorial-rev-1',
 			'clueList': 
 				[
-					'bed',
+					'window'
+				]
+		},
+		{
+			'name': 'Chapter 0.2 - The Main Entrance',
+			'id': 'tutorial-rev-2',
+			'clueList': 
+				[
+					'key',
 					'lock'
 				]
 		}

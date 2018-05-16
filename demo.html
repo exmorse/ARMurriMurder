@@ -8,26 +8,43 @@
 <link rel="stylesheet" type="text/css" href="./css/scene.css">
 <link rel="stylesheet" type="text/css" href="./css/tingle.css">
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
   <body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs="debugUIEnabled: false;">
-  	<a-marker preset="hiro">
+    <a-scene id="ascene" embedded arjs="debugUIEnabled: false;">
+  	<!--<a-marker preset="hiro">
 		<a-entity
 			position='0 0.4 0'
 			obj-model="obj: url(models/key/key.obj); mtl: url(models/key/key.mtl)"
 			scale="2.5 2.5 2.5"
-			onclick="addClue(gameData.clues[0].id)"
+			onclick="addClue('key')"
 		>
 			<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
 		</a-entity>
-  	</a-marker>
-  	<a-marker preset="kanji">
+  	</a-marker> -->
+  	<!-- <a-marker preset="kanji">
 		<a-entity
 			position='0 0.2 0.8'
 			rotation='90 180 0'
 			obj-model="obj: url(models/doorlock/doorlock.obj); mtl: url(models/doorlock/doorlock.mtl)"
 			scale="0.45 0.45 0.45"
+			onclick="addClue('lock')"
 		>
 			<a-animation attribute="scale" begin="click" dur="500" fill="backwards" to="0.23 0.23 0.23"></a-animation>
+		</a-entity>
+  	</a-marker> -->
+  	<a-marker id="marker-window" preset="kanji">
+		<a-entity
+			position='0 0.2 1.4'
+			rotation='90 180 0'
+			obj-model="obj: url(models/window2/window.obj); mtl: url(models/window2/window.mtl)"
+			scale="0.05 0.05 0.05"
+			onmousedown="addClue('window')"
+		>
+			<a-animation attribute="scale" begin="mousedown" dur="500" fill="backwards" to="0.025 0.025 0.025"></a-animation>
 		</a-entity>
   	</a-marker>
   	
@@ -39,8 +56,8 @@
                          material="color: black; shader: flat">
                    <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
                                 fill="forwards" from="0.005 0.005 0.005" to="0.01 0.01 0.1"></a-animation>
-                   <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
-                                fill="backwards" from="0.01 0.01 0.01" to="0.005 0.005 0.005"></a-animation>
+                   <!-- <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
+                                fill="backwards" from="0.01 0.01 0.01" to="0.005 0.005 0.005"></a-animation>-->
                </a-entity>
 
     </a-scene>
@@ -57,6 +74,8 @@
     <script src="gamedata.json"></script>
     <script>
 
+	var alreadyAddedClues = [];
+
 	/* Toggles the Clues/Revelation interface visibility */	
 	function toggleClues() {
 		if(!cluesVisible) {
@@ -71,7 +90,14 @@
 
 	/* Add the HTML code related to a clue */
 	function addClue(id) {
-		document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" dropped="false"> <p>' + id + '</p> </div>';  
+		console.log(alreadyAddedClues);
+		console.log(alreadyAddedClues.indexOf(id));
+		if(alreadyAddedClues.indexOf(id) == -1){
+			//document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false"> <span class="glyphicon glyphicon-'+id+'"></span> </div>';  
+			document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false">' + id + '</div>';  
+			alreadyAddedClues.push(id);
+                }
+
 	}
 
 	
@@ -233,10 +259,6 @@
 				//event.target.appendChild(event.relatedTarget);
 				console.log("Shouldcheck");
 				
-				/* TODO Get all childNodes of parent of event dropzone */
-				/* Get the corresponding revelation element in gameData */
-				/* Check if every childNodes of parent has 'content' attribute set to an id from the cluelist */
-				
 				var parentEl = event.target.parentNode;
 				var nodes = parentEl.childNodes;
 				var content;
@@ -261,7 +283,7 @@
 			
 				if (completed) {
 					toggleClues();
-					createTutorialEndModal();
+					handleRevelationCompleted(revelation.id);
 				}
 			},
 			ondropdeactivate: function (event) {
@@ -296,13 +318,13 @@
 		});
 
 		// set content
-		modal.setContent('<h1>Augmented Murri Murder Case</h1>');
+		modal.setContent('<h1>DEMO: Augmented Murri Murder Case</h1>');
 
 		// add a button
 		modal.addFooterBtn('Start', 'tingle-btn tingle-btn--primary', function() {
 			modal.close();
 			modal.destroy();
-			createTutorialModal();
+			createChapter01Modal();
 		});
 
 		// open modal
@@ -312,8 +334,7 @@
 	}
 
 	
-	/* Create the tutorial modal */
-	function createTutorialModal() {
+	function createChapter01Modal() {
 		// instanciate new modal
 		var modal = new tingle.modal({
 			footer: true,
@@ -335,7 +356,7 @@
 		});
 
 		// set content
-		modal.setContent('<h2>Chapter 0 - The Tutorial</h2> <p>Some very important info.</p>');
+		modal.setContent('<h2>Chapter 0.1 - The Break-In</h2> <p>The victim was found in this room. Lets see if someone got in from the window...</p>');
 
 		// add a button
 		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
@@ -348,7 +369,80 @@
 
 		return modal;
 	}
+	
+	function createChapter01EndModal() {
+		// instanciate new modal
+		var modal = new tingle.modal({
+			footer: true,
+			stickyFooter: false,
+			//closeMethods: ['overlay', 'button', 'escape'],
+			//closeLabel: "Close",
+			cssClass: [],
+			onOpen: function() {
+				console.log('modal open');
+			},
+			onClose: function() {
+				console.log('modal closed');
+			},
+			beforeClose: function() {
+				// here's goes some logic
+				// e.g. save content before closing the modal
+				return true; // close the modal
+			}
+		});
 
+		// set content
+		modal.setContent('<h2>Chapter 0.1 - The Break-In</h2> <h2>Completed!</h2> <p>The window is in perfect conditions, the murderer must have entered from the main door.</p>');
+
+		// add a button
+		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
+			modal.close();
+			modal.destroy();
+			createChapter02Modal();
+		});
+
+		// open modal
+		modal.open();
+
+		return modal;
+	}
+
+	function createChapter02Modal() {
+		// instanciate new modal
+		var modal = new tingle.modal({
+			footer: true,
+			stickyFooter: false,
+			//closeMethods: ['overlay', 'button', 'escape'],
+			//closeLabel: "Close",
+			cssClass: [],
+			onOpen: function() {
+				console.log('modal open');
+			},
+			onClose: function() {
+				console.log('modal closed');
+			},
+			beforeClose: function() {
+				// here's goes some logic
+				// e.g. save content before closing the modal
+				return true; // close the modal
+			}
+		});
+
+		// set content
+		modal.setContent('<h2>Chapter 0.2 - The Main Entrance</h2> <p>We need more informations on how the murder entered this room. Lets check the main door... </p>');
+
+		// add a button
+		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
+			modal.close();
+			modal.destroy();
+		});
+
+		// open modal
+		modal.open();
+
+		return modal;
+	}
+	
 	/* Create the tutorial modal */
 	function createTutorialEndModal() {
 		// instanciate new modal
@@ -372,7 +466,7 @@
 		});
 
 		// set content
-		modal.setContent('<h2>Chapter 0 - The Tutorial</h2> <h2>Completed!</h2>');
+		modal.setContent('<h2>Chapter 0.2 - The Main Entrance</h2> <h2>Completed!</h2> <p>The key is here... The victim knew the person who killed him...<p>');
 
 		// add a button
 		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
@@ -383,6 +477,81 @@
 		modal.open();
 
 		return modal;
+	}
+
+
+	
+	function changeMarkerContent(currentId, newId, posString, rotationString, scaleFactor, onclick, objPath, mtlPath) {
+		var el = document.getElementById(currentId);
+		el.id = newId;
+
+		text = "";
+		text += '<a-entity ';
+		text += 'position="' + posString + '" ';
+		text += 'rotation="' + rotationString + '" ';
+		text += 'obj-model="obj: url(' + objPath + '); mtl: url(' + mtlPath +')" ';
+		text += 'scale="' + scaleFactor + ' ' + scaleFactor + ' ' + scaleFactor + '" ';
+		text += 'onmousedown="' + onclick + '" ';
+		text += '>';
+		text += '<a-animation attribute="scale" begin="mousedown" dur="500" fill="backwards" to="' + scaleFactor/2 + ' ' + scaleFactor/2 + ' ' + scaleFactor/2 + '"></a-animation>';
+		text += '</a-entity>';
+
+		el.innerHTML = text;
+	}
+
+	
+	function insertMarker(id, marker, posString, rotationString, scaleFactor, onclick, objPath, mtlPath) {
+		text = "";
+		text += '<a-marker id="' + id + '" preset="' + marker + '">';
+		text += '<a-entity ';
+		text += 'position="' + posString + '" ';
+		text += 'rotation="' + rotationString + '" ';
+		text += 'obj-model="obj: url(' + objPath + '); mtl: url(' + mtlPath +')" ';
+		text += 'scale="' + scaleFactor + ' ' + scaleFactor + ' ' + scaleFactor + '" ';
+		text += 'onmousedown="' + onclick + '" ';
+		text += '<a-animation attribute="scale" begin="mousedown" dur="500" fill="backwards" to="' + scaleFactor/2 + ' ' + scaleFactor/2 + ' ' + scaleFactor/2 + '"></a-animation>';
+		text += '>';
+		text += '</a-entity>';
+		text += '</a-marker>';
+		
+	
+		var scene = document.getElementById('ascene');
+                scene.insertAdjacentHTML('beforeend', text);
+	}
+
+	
+	function handleRevelationCompleted(id) {
+	
+		if (id == 'tutorial-rev-1') {
+			/* TODO Parametrizzare meglio */
+			/*
+			var elem = document.getElementById('marker-window');
+			elem.parentNode.removeChild(elem);
+			*/
+
+			document.getElementById('revelations').innerHTML = "";
+
+			document.getElementById('clues').innerHTML = ""
+
+			alreadyAddedClues = [];
+			addClue('window');
+
+			addRevelation(
+				gameData.revelations[1].name,
+				gameData.revelations[1].id,
+				gameData.revelations[1].clueList
+			);
+
+			createChapter01EndModal();
+
+			insertMarker('marker-key', 'hiro', '0 0.4 0', '0 0 0', 2.5, "addClue(\'key\')", 'models/key/key.obj', 'models/key/key.mtl');
+			changeMarkerContent('marker-window','marker-doorlock','0 0.2 0.8', '90 180 0', 0.45, "addClue(\'lock\')", 'models/doorlock/doorlock.obj', 'models/doorlock/doorlock.mtl');
+		}
+
+		if (id == 'tutorial-rev-2') {
+			createTutorialEndModal();
+		}
+
 	}
 
 	/* Init variables */
