@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title>Vue Test</title>
+</head>
+<body>
+    <div id="app">
+        <p class="background-text">
+            Vue<br>3D<br>Model<br>Background
+        </p>
+        <div class="background-buttons">
+            <p>Color</p>
+            <button @click="bgColor = '#ff0'">#ff0</button>
+            <button @click="bgColor = '#f00'">#f00</button>
+            <button @click="bgColor = '#13ce66'">#13ce66</button>
+            <p>Alpha</p>
+            <button @click="bgAlpha = 0.5">0.5</button>
+            <button @click="bgAlpha = 1">1</button>
+            <button @click="bgAlpha = 0">0</button>
+        </div>
+        <model-obj style="width: 20%; height:20%;"
+	    id="bb8"
+            :backgroundAlpha="bgAlpha"
+            :backgroundColor="bgColor"
+            src="models/bb8/BB-8.obj"
+	 ></model-obj>
+    </div>
+    <script src="vue.js"></script>
+    <script src="vue-3d-model.min.js"></script>
+    <script>
+        vue = new Vue({
+            el: '#app',
+            data: {
+                bgColor: '#ff0',
+                bgAlpha: 0.5
+            },
+	    scale: {x:0.1, y:0.1, z:0.1}	
+        })
+    </script>
+</body>
+</html>
