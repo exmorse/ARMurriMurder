@@ -166,10 +166,10 @@
 						//	event.target.style.transform = 'translate' + rect.left + rect.width / 2; + 'px, ' + rect.top + rect.height + 2.375 + '0px)'; 
 				}
 	
-				if (event.target.getAttribute('data-start-x') == null) {	
+				//if (event.target.getAttribute('data-start-x') == null) {	
 					event.target.setAttribute('data-start-x', rect.left + rect.width  / 2);
 					event.target.setAttribute('data-start-y', rect.top  + rect.height / 2);
-				}	
+				//}	
 			
 				event.interactable.draggable({
 					snap: {
@@ -307,7 +307,7 @@
 						//activateDraggableClueById(event.relatedTarget.id, cluePositions.size-1);
 						
 						event.relatedTarget.setAttribute('data-start-x', cluePositions.list[cluePositions.size-1].x - 0.0001 * rect.width);
-						event.relatedTarget.setAttribute('data-start-y', cluePositions.list[cluePositions.size-1].y - 0.17*rect.height);
+						event.relatedTarget.setAttribute('data-start-y', cluePositions.list[cluePositions.size-1].y - 0*rect.height);
 
 						event.relatedTarget.setAttribute('data-x', parseFloat(event.relatedTarget.getAttribute('data-x')) + par.left + par.width/2 - cluePositions.list[cluePositions.size-1].x);
 						event.relatedTarget.setAttribute('data-y', parseFloat(event.relatedTarget.getAttribute('data-y')) + par.top + par.height/2 - cluePositions.list[cluePositions.size-1].y);
