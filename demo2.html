@@ -103,7 +103,7 @@
 		console.log(alreadyAddedClues.indexOf(id));
 		if(alreadyAddedClues.indexOf(id) == -1){
 			//document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false"> <span class="glyphicon glyphicon-'+id+'"></span> </div>';  
-			document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false">' + id + '</div>';  
+			document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable draggable-clue" align="center" dropped="false">' + id + '</div>';  
 			alreadyAddedClues.push(id);
 			cluePositions.size++;
 			activateDraggableClueById(id, cluePositions.size-1);
@@ -130,7 +130,7 @@
 	function activateDraggableClues() {
 
 		// target elements with the "draggable-clue" class
-		interact('.draggable-clue')
+		interact('.draggable')
 		.draggable({
 			snap: {
 				targets: [startPos],
@@ -147,6 +147,7 @@
 			autoScroll: false,
 
 			onstart: function (event) {
+			
 				var rect = interact.getElementRect(event.target);
 				startPos.x = rect.left + rect.width / 2;
 				startPos.y = rect.top + + rect.height / 2;
@@ -387,7 +388,10 @@
 					}
 				}
 
-				if (revelation == null) return;
+				if (revelation == null) {
+					console.log("Revelation is null");
+					return;
+				}
 
 				for (i = 0; i < nodes.length; i++) {
 					content = nodes[i].getAttribute('content');
@@ -434,13 +438,13 @@
 		});
 
 		// set content
-		modal.setContent('<h1>DEMO: Augmented Murri Murder Case</h1>');
+		modal.setContent('<h1>' + gameData.initialDialog.title + '</h1>');
 
 		// add a button
 		modal.addFooterBtn('Start', 'tingle-btn tingle-btn--primary', function() {
 			modal.close();
 			modal.destroy();
-			createChapter01Modal();
+			createNewChapterModal();
 		});
 
 		// open modal
@@ -450,7 +454,7 @@
 	}
 
 	
-	function createChapter01Modal() {
+	function createNewChapterModal() {
 		// instanciate new modal
 		var modal = new tingle.modal({
 			footer: true,
@@ -472,7 +476,10 @@
 		});
 
 		// set content
-		modal.setContent('<h2>Chapter 0.1 - The Break-In</h2> <p>The victim was found in this room. Lets see if someone got in from the window...</p>');
+		var content = "";
+		content += '<h2>Chapter ' + gameData.modals[chapterIndex].number + ' - ' +  gameData.modals[chapterIndex].title + '</h2>';
+		content += '<p>' +  gameData.modals[chapterIndex].intro + '</p>'
+		modal.setContent(content);
 
 		// add a button
 		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
@@ -486,7 +493,7 @@
 		return modal;
 	}
 	
-	function createChapter01EndModal() {
+	function createChapterEndModal() {
 		// instanciate new modal
 		var modal = new tingle.modal({
 			footer: true,
@@ -508,59 +515,34 @@
 		});
 
 		// set content
-		modal.setContent('<h2>Chapter 0.1 - The Break-In</h2> <h2>Completed!</h2> <p>The window is in perfect conditions, the murderer must have entered from the main door.</p>');
-
+		var content = "";
+		content += '<h2>Chapter ' + gameData.modals[chapterIndex].number + ' - ' +  gameData.modals[chapterIndex].title + '</h2>';
+		content += '<h2>Completed!</h2>';
+		content += '<p>' +  gameData.modals[chapterIndex].outro + '</p>'
+		modal.setContent(content);
+		
 		// add a button
 		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
 			modal.close();
 			modal.destroy();
-			createChapter02Modal();
-		});
-
-		// open modal
-		modal.open();
-
-		return modal;
-	}
-
-	function createChapter02Modal() {
-		// instanciate new modal
-		var modal = new tingle.modal({
-			footer: true,
-			stickyFooter: false,
-			//closeMethods: ['overlay', 'button', 'escape'],
-			//closeLabel: "Close",
-			cssClass: [],
-			onOpen: function() {
-				console.log('modal open');
-			},
-			onClose: function() {
-				console.log('modal closed');
-			},
-			beforeClose: function() {
-				// here's goes some logic
-				// e.g. save content before closing the modal
-				return true; // close the modal
+			chapterIndex++;
+			if (chapterIndex == gameData.modals.length) {
+				createGameEndModal();
+			}
+			else {
+				createNewChapterModal();
 			}
 		});
 
-		// set content
-		modal.setContent('<h2>Chapter 0.2 - The Main Entrance</h2> <p>We need more informations on how the murder entered this room. Lets check the main door... </p>');
-
-		// add a button
-		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
-			modal.close();
-			modal.destroy();
-		});
-
 		// open modal
 		modal.open();
 
 		return modal;
 	}
+
 	
 	/* Create the tutorial modal */
-	function createTutorialEndModal() {
+	function createGameEndModal() {
 		// instanciate new modal
 		var modal = new tingle.modal({
 			footer: true,
@@ -583,6 +565,7 @@
 
 		// set content
 		modal.setContent('<h2>Chapter 0.2 - The Main Entrance</h2> <h2>Completed!</h2> <p>The key is here... The victim knew the person who killed him...<p>');
+		modal.setContent('<h1>' + gameData.endDialog.title + '</h1> <p>' + gameData.endDialog.text  + '</p>');
 
 		// add a button
 		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
@@ -639,6 +622,8 @@
 	
 	function handleRevelationCompleted(id) {
 	
+		createChapterEndModal();
+
 		if (id == 'tutorial-rev-1') {
 			/* TODO Parametrizzare meglio */
 			/*
@@ -646,12 +631,21 @@
 			elem.parentNode.removeChild(elem);
 			*/
 
-			document.getElementById('revelations').innerHTML = "";
+			//document.getElementById('revelations').innerHTML = "";
 
 			document.getElementById('clues').innerHTML = ""
 
+			/* TODO Parametrizzare meglio */
+			var elem = document.getElementById('window');
+			elem.parentNode.setAttribute('content', 'solved');
+			elem.classList.remove('draggable');
+			elem.id = "solved-window";
+
 			alreadyAddedClues = [];
+			cluePositions.size = 0;
 			addClue('window');
+			addClue('key');
+			addClue('lock');
 
 			addRevelation(
 				gameData.revelations[1].name,
@@ -659,14 +653,14 @@
 				gameData.revelations[1].clueList
 			);
 
-			createChapter01EndModal();
+			//createChapter01EndModal();
 
 			insertMarker('marker-key', 'hiro', '0 0.4 0', '0 0 0', 2.5, "addClue(\'key\')", 'models/key/key.obj', 'models/key/key.mtl');
-			changeMarkerContent('marker-window','marker-doorlock','0 0.2 0.8', '90 180 0', 0.45, "addClue(\'lock\')", 'models/doorlock/doorlock.obj', 'models/doorlock/doorlock.mtl');
+			changeMarkerContent('marker-window','marker-lock','0 0.2 0.8', '90 180 0', 0.45, "addClue(\'lock\')", 'models/doorlock/doorlock.obj', 'models/doorlock/doorlock.mtl');
 		}
 
 		if (id == 'tutorial-rev-2') {
-			createTutorialEndModal();
+			//createTutorialEndModal();
 		}
 
 	}
@@ -674,6 +668,7 @@
 	/* Init variables */
 	var cluesVisible = false;
 	var startPos = {x: 0, y: 0};
+	var chapterIndex = 0;
 
 	var cluePositions = {};
 	cluePositions.size = 0;
@@ -704,10 +699,10 @@
 	activateDropzones();
 	activateDraggableClues();
 
-	//createInitialModal();
-	addClue('key1');
-	addClue('key2');
-	addClue('key3');
+	createInitialModal();
+	addClue('window');
+	addClue('key');
+	addClue('lock');
 	</script>	
 
 	</body>
