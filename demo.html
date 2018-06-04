@@ -89,6 +89,14 @@
 
 
 	/* Add the HTML code related to a clue */
+	function addClueSetup(id) {
+		document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false">' + id + '</div>';  
+		var coords = interact.getElementRect(document.getElementById(id));
+		cluePositions.list.push({x: coords.left + coords.width/2, y: coords.top + coords.height/2})
+	}
+
+
+	/* Add the HTML code related to a clue */
 	function addClue(id) {
 		console.log(alreadyAddedClues);
 		console.log(alreadyAddedClues.indexOf(id));
@@ -96,6 +104,8 @@
 			//document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false"> <span class="glyphicon glyphicon-'+id+'"></span> </div>';  
 			document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false">' + id + '</div>';  
 			alreadyAddedClues.push(id);
+			cluePositions.size++;
+			activateDraggableClueById(id, cluePositions.size-1);
                 }
 
 	}
@@ -139,7 +149,83 @@
 				var rect = interact.getElementRect(event.target);
 				startPos.x = rect.left + rect.width / 2;
 				startPos.y = rect.top + + rect.height / 2;
+	
+				if (event.target.toTransform == false) {        
+					event.target.toTransform = true;
+					//var par = interact.getElementRect(event.target.parentNode);
+					event.target.parentNode.removeChild(event.target);
+                             
+					document.getElementById('clues').appendChild(event.target);
+					//event.target.style.webkitTransform =
+						//	event.target.style.transform = 'translate' + rect.left + rect.width / 2; + 'px, ' + rect.top + rect.height + 2.375 + '0px)'; 
+				}
+	
+				if (event.target.getAttribute('data-start-x') == null) {	
+					event.target.setAttribute('data-start-x', rect.left + rect.width  / 2);
+					event.target.setAttribute('data-start-y', rect.top  + rect.height / 2);
+				}	
+			
+				event.interactable.draggable({
+					snap: {
+						targets: [startPos]
+					}
+				});
+			},
+
+			onmove: dragMoveListener,
+			
+			onend: function (event) {
+				console.log("Should snap to ");
+				console.log(startPos);
+				// snap to the start position
+				event.interactable.draggable({
+					snap: {
+						targets: [startPos]
+					}
+				});
+			}
+		});
+
+	}
+
+	
+	/* Interact.js code to make the clues div draggable */
+	function activateDraggableClueById(id, posIndex) {
+
+		console.log("Reset snap for " + id);
+
+		// target elements with the "draggable-clue" class
+		interact('#' + id)
+		.draggable({
+			snap: {
+				targets: [cluePositions.list[posIndex]],
+				range: Infinity,
+				relativePoints: [{x:0.5, y:0.5}],
+				endOnly: true
+			},
+			inertia: true,
+			restrict: {
+				restriction: "#app",
+				endOnly: false,
+				elementRect: { top: 0.1, left: 0.1, bottom: 0.9, right: 0.9 }
+			},
+			autoScroll: false,
+
+			onstart: function (event) {
+				var rect = interact.getElementRect(event.target);
+				startPos.x = rect.left + rect.width / 2;
+				startPos.y = rect.top + + rect.height / 2;
 		
+				if (event.target.toTransform == false) {        
+					event.target.toTransform = true;
+					//var par = interact.getElementRect(event.target.parentNode);
+					event.target.parentNode.removeChild(event.target);
+                             
+					document.getElementById('clues').appendChild(event.target);
+					event.target.style.webkitTransform =
+							event.target.style.transform = 'translate' + rect.left + rect.width / 2; + 'px, ' + rect.top + rect.height/2 + '0px)'; 
+				}
+	
 				if (event.target.getAttribute('data-start-x') == null) {	
 					event.target.setAttribute('data-start-x', rect.left + rect.width  / 2);
 					event.target.setAttribute('data-start-y', rect.top  + rect.height / 2);
@@ -169,6 +255,7 @@
 	}
 	
 	
+	
 	/* Listener for moving objects */
 	function dragMoveListener (event) {
 		//console.log('dragMoveListener');
@@ -178,9 +265,10 @@
 	    	y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
 		// translate the element
-		target.style.webkitTransform =
-			target.style.transform =
-			'translate(' + x + 'px, ' + y + 'px)';
+		if (target.toTransform != false)
+			target.style.webkitTransform =
+				target.style.transform =
+				'translate(' + x + 'px, ' + y + 'px)';
 
 		// update the position attributes
 		target.setAttribute('data-x', x);
@@ -204,8 +292,9 @@
 				var draggableElement = event.relatedTarget,
 				dropzoneElement = event.target;
 
-				
-   				if(dropzoneElement.getAttribute('content') == null) {
+				cluePositions.size--;
+   				
+				if(dropzoneElement.getAttribute('content') == null) {
 					dropzoneElement.setAttribute('content', draggableElement.id);
 					// feedback the possibility of a drop
 					dropzoneElement.classList.add('drop-target');
@@ -236,7 +325,13 @@
 					// remove the drop feedback style
 			     		event.target.classList.remove('drop-target');
 					event.target.classList.remove('drop-content');
-					
+
+					cluePositions.size++;
+					activateDraggableClueById(event.target.id, cluePositions.size-1);				
+					//event.target.parentNode.removeChild(event.target);
+					//document.getElementById('clues').appendChild(event.target);
+
+	
 					// on exit set snap to original position
 					event.draggable.draggable({
 						snap: {
@@ -256,7 +351,21 @@
 			ondrop: function (event) {
 				//event.relatedTarget.textContent = 'Dropped';
 				event.target.classList.add('drop-content');
-				//event.target.appendChild(event.relatedTarget);
+				event.target.appendChild(event.relatedTarget);
+			
+
+				/* TODO : tutti i rimanenti aggiustati nella posizione */
+				var cluesDiv = document.getElementById('clues');
+				for (var i = 0; i < cluesDiv.children.length; i++) {
+					activateDraggableClueById(cluesDiv.children[i].id);
+				}
+			
+	
+				console.log("Tolgo translate " + event.relatedTarget.id);
+				event.relatedTarget.toTransform = false;
+				event.relatedTarget.style.webkitTransform =
+					event.relatedTarget.style.transform = 'translate(0px, 0px)';
+				
 				console.log("Shouldcheck");
 				
 				var parentEl = event.target.parentNode;
@@ -558,6 +667,17 @@
 	var cluesVisible = false;
 	var startPos = {x: 0, y: 0};
 
+	var cluePositions = {};
+	cluePositions.size = 0;
+	cluePositions.list = [];
+
+	/* Insert clues to fill cluePosition struct */
+	for (i = 0; i < gameData.clues.length; i++) {
+		addClueSetup(gameData.clues[i].id);
+	}
+	/* Empty clues div */
+	document.getElementById('clues').innerHTML = "";
+
 	/* Insert clues */
 	/*for (i = 0; i < gameData.clues.length; i++) {
 		addClue(gameData.clues[i].id);
@@ -574,7 +694,7 @@
 
 	/* Activate drag and drop */
 	activateDropzones();
-	activateDraggableClues();
+	//activateDraggableClues();
 
 	createInitialModal();
 	</script>	
