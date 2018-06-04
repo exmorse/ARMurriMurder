@@ -22,6 +22,7 @@
 	    id="bb8"
             :backgroundAlpha="bgAlpha"
             :backgroundColor="bgColor"
+            :lights="lights"
             src="models/bb8/BB-8.obj"
             mtl="models/bb8/BB-8.mtl"
 	 ></model-obj>
@@ -38,17 +39,31 @@
     <script src="vue-3d-model.min.js"></script>
     <script>
 	window.onload = function() {
-		vue = new Vue({
-        	    el: '#app',
-	            data: {
-        	        bgColor: '#ff0',
-	                bgAlpha: 0.5
-       	     	    },
-	    	    scale: {x:0.1, y:0.1, z:0.1}	
-        	});
-		
-		window.loading_screen.finish();
-    	}
-     </script>
+        vue = new Vue({
+            el: '#app',
+            data: {
+                bgColor: '#ff0',
+                bgAlpha: 0.5,
+                lights:[{
+                    type : "directional",
+                    name : "directional" ,
+                    castShadow: true,
+                    matrix: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, 10, 3, 1],
+                    intensity: 0.75
+                },
+                {
+                        type: "ambient",
+                        name: "ambient",
+                        castShadow: true,
+                        matrix: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, 10, 3, 1],
+                        intensity: 3
+                    }
+            ]},
+	    scale: {x:0.1, y:0.1, z:0.1}	
+        })
+	
+	window.loading_screen.finish();
+	}
+    </script>
 </body>
 </html>
