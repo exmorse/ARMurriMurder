@@ -24,24 +24,12 @@ var gameData = {
 		'text': 'Thanks'
 	},
 	
-	'modals' : [
+	'revelations' : [
 		{
 			'number': '0.1',
 			'title': 'The Break-In',
 			'intro': 'The victim was found in this room. Lets see if someone got in from the window...',
-			'outro': 'The window is in perfect conditions, the murderer must have entered from the door.'
-		},
-		{
-			'number': '0.2',
-			'title': 'The Main Entrance',
-			'intro': 'We need more informations on how the murder entered this room. Lets check the main door...',
-			'outro': 'The key is here... The victim knew the person who killed him...'
-		}
-	],
-
-	'revelations' : [
-		{
-			'name': 'Chapter 0.1 - The Break-In',
+			'outro': 'The window is in perfect conditions, the murderer must have entered from the door.',
 			'id': 'tutorial-rev-1',
 			'clueList': 
 				[
@@ -49,7 +37,10 @@ var gameData = {
 				]
 		},
 		{
-			'name': 'Chapter 0.2 - The Main Entrance',
+			'number': '0.2',
+			'title': 'The Main Entrance',
+			'intro': 'We need more informations on how the murder entered this room. Lets check the main door...',
+			'outro': 'The key is here... The victim knew the person who killed him...',
 			'id': 'tutorial-rev-2',
 			'clueList': 
 				[

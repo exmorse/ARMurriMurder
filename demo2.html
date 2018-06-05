@@ -111,13 +111,23 @@
 
 	}
 
+
+	/* Create next chapter revelation */
+	function addChapterRevelation() {
+		addRevelation(
+			"Chapter " + gameData.revelations[chapterIndex].number + " - " + gameData.revelations[chapterIndex].title,
+			gameData.revelations[chapterIndex].id,
+			gameData.revelations[chapterIndex].clueList
+		);
+	}	
+
 	
 	/* Add the HTML code related to a revelation */
 	function addRevelation(name, id, clueIdList) {
 		revCode = '<div id="' + id +  '"class="revelation">';
 		revCode += '<h4>' + name + '</h4>';
 		revCode += '<div class="dropzones">';
-		for (i = 0; i < clueIdList.length; i++) {
+		for (var i = 0; i < clueIdList.length; i++) {
 			revCode += '<div id="' + id + '-' + i + '" class="dropzone outer-dropzone"></div>'
 		}
 		revCode += '</div>';
@@ -157,20 +167,11 @@
 					startPos.x = par.left + par.width / 2;
 					startPos.y = par.top + + par.height / 2;
 					
-					//console.log("REMOVE AND APPEND TO CLUES"); 
 					event.target.toTransform = true;
-					//var par = interact.getElementRect(event.target.parentNode);
-					//event.target.parentNode.removeChild(event.target);
-                             
-					//document.getElementById('clues').appendChild(event.target);
-					//event.target.style.webkitTransform =
-						//	event.target.style.transform = 'translate' + rect.left + rect.width / 2; + 'px, ' + rect.top + rect.height + 2.375 + '0px)'; 
 				}
 	
-				//if (event.target.getAttribute('data-start-x') == null) {	
-					event.target.setAttribute('data-start-x', rect.left + rect.width  / 2);
-					event.target.setAttribute('data-start-y', rect.top  + rect.height / 2);
-				//}	
+				event.target.setAttribute('data-start-x', rect.left + rect.width  / 2);
+				event.target.setAttribute('data-start-y', rect.top  + rect.height / 2);
 			
 				event.interactable.draggable({
 					snap: {
@@ -262,7 +263,6 @@
 					// feedback the possibility of a drop
 					dropzoneElement.classList.add('drop-target');
 					draggableElement.classList.add('can-drop');
-					//draggableElement.textContent = 'Dragged in';
 				
 					var draggableElement = event.relatedTarget,
 					dropzoneElement  = event.target,
@@ -306,8 +306,6 @@
 					
 						var rect = interact.getElementRect(event.relatedTarget);
 
-						//activateDraggableClueById(event.relatedTarget.id, cluePositions.size-1);
-						
 						event.relatedTarget.setAttribute('data-start-x', cluePositions.list[cluePositions.size-1].x - 0*rect.width);
 						event.relatedTarget.setAttribute('data-start-y', cluePositions.list[cluePositions.size-1].y - 0*rect.height);
 
@@ -334,7 +332,6 @@
 				
 	     		},
 			ondrop: function (event) {
-				//event.relatedTarget.textContent = 'Dropped';
 				event.target.classList.add('drop-content');
 				event.target.appendChild(event.relatedTarget);
 			
@@ -343,32 +340,12 @@
 				event.relatedTarget.setAttribute('dropped', true);
 				event.relatedTarget.classList.add('dropped');
 				
-				/* TODO : tutti i rimanenti aggiustati nella posizione */
+				/* tutti i rimanenti aggiustati nella posizione */
 				var cluesDiv = document.getElementById('clues');
 				for (var i = 0; i < cluesDiv.children.length; i++) {
 					activateDraggableClueById(cluesDiv.children[i].id, i);
 				}
 			
-
-				/* FOUND ONLINE */
-				/*var target = event.relatedTarget;
-				var dropzoneRect = interact.getElementRect(event.target);
-
-				// subtract the dropzone's offset (probably needs some adjustment)
-				x = (parseFloat(target.getAttribute('data-x')) || 0) - dropzoneRect.left,
-				y = (parseFloat(target.getAttribute('data-y')) || 0) - dropzoneRect.right;
-
-				// translate the element
-				target.style.webkitTransform =
-					target.style.transform =
-						'translate(' + x + 'px, ' + y + 'px)';
-
-				// update the position attributes
-				target.setAttribute('data-x', x);
-				target.setAttribute('data-y', y);*/
-				/* END */	
-
-
 				console.log("Tolgo translate " + event.relatedTarget.id);
 				event.relatedTarget.toTransform = false;
 				event.relatedTarget.style.webkitTransform =
@@ -431,8 +408,6 @@
 				console.log('modal closed');
 			},
 			beforeClose: function() {
-				// here's goes some logic
-				// e.g. save content before closing the modal
 				return true; // close the modal
 			}
 		});
@@ -469,16 +444,14 @@
 				console.log('modal closed');
 			},
 			beforeClose: function() {
-				// here's goes some logic
-				// e.g. save content before closing the modal
 				return true; // close the modal
 			}
 		});
 
 		// set content
 		var content = "";
-		content += '<h2>Chapter ' + gameData.modals[chapterIndex].number + ' - ' +  gameData.modals[chapterIndex].title + '</h2>';
-		content += '<p>' +  gameData.modals[chapterIndex].intro + '</p>'
+		content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' +  gameData.revelations[chapterIndex].title + '</h2>';
+		content += '<p>' +  gameData.revelations[chapterIndex].intro + '</p>'
 		modal.setContent(content);
 
 		// add a button
@@ -508,25 +481,25 @@
 				console.log('modal closed');
 			},
 			beforeClose: function() {
-				// here's goes some logic
-				// e.g. save content before closing the modal
 				return true; // close the modal
 			}
 		});
 
 		// set content
 		var content = "";
-		content += '<h2>Chapter ' + gameData.modals[chapterIndex].number + ' - ' +  gameData.modals[chapterIndex].title + '</h2>';
+		content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' +  gameData.revelations[chapterIndex].title + '</h2>';
 		content += '<h2>Completed!</h2>';
-		content += '<p>' +  gameData.modals[chapterIndex].outro + '</p>'
+		content += '<p>' +  gameData.revelations[chapterIndex].outro + '</p>'
 		modal.setContent(content);
 		
 		// add a button
 		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
 			modal.close();
 			modal.destroy();
-			chapterIndex++;
-			if (chapterIndex == gameData.modals.length) {
+
+			/* Chapter index is incremented in the handleRevelation function */
+
+			if (chapterIndex  == gameData.revelations.length) {
 				createGameEndModal();
 			}
 			else {
@@ -541,7 +514,6 @@
 	}
 
 	
-	/* Create the tutorial modal */
 	function createGameEndModal() {
 		// instanciate new modal
 		var modal = new tingle.modal({
@@ -557,14 +529,11 @@
 				console.log('modal closed');
 			},
 			beforeClose: function() {
-				// here's goes some logic
-				// e.g. save content before closing the modal
 				return true; // close the modal
 			}
 		});
 
 		// set content
-		modal.setContent('<h2>Chapter 0.2 - The Main Entrance</h2> <h2>Completed!</h2> <p>The key is here... The victim knew the person who killed him...<p>');
 		modal.setContent('<h1>' + gameData.endDialog.title + '</h1> <p>' + gameData.endDialog.text  + '</p>');
 
 		// add a button
@@ -624,6 +593,8 @@
 	
 		createChapterEndModal();
 
+		chapterIndex++;
+
 		if (id == 'tutorial-rev-1') {
 			/* TODO Parametrizzare meglio */
 			/*
@@ -647,20 +618,13 @@
 			addClue('key');
 			addClue('lock');
 
-			addRevelation(
-				gameData.revelations[1].name,
-				gameData.revelations[1].id,
-				gameData.revelations[1].clueList
-			);
-
-			//createChapter01EndModal();
+			addChapterRevelation();
 
 			insertMarker('marker-key', 'hiro', '0 0.4 0', '0 0 0', 2.5, "addClue(\'key\')", 'models/key/key.obj', 'models/key/key.mtl');
 			changeMarkerContent('marker-window','marker-lock','0 0.2 0.8', '90 180 0', 0.45, "addClue(\'lock\')", 'models/doorlock/doorlock.obj', 'models/doorlock/doorlock.mtl');
 		}
 
 		if (id == 'tutorial-rev-2') {
-			//createTutorialEndModal();
 		}
 
 	}
@@ -687,13 +651,7 @@
 	}*/
 
 	/* Insert revelations/dropzones */
-	for (i = 0; i < gameData.revelations.length; i++) {
-		addRevelation(
-			gameData.revelations[i].name,
-			gameData.revelations[i].id,
-			gameData.revelations[i].clueList
-		);
-	}
+	addChapterRevelation();
 
 	/* Activate drag and drop */
 	activateDropzones();
