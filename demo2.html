@@ -564,35 +564,32 @@
 
 		chapterIndex++;
 
-		if (id == 'tutorial-rev-1') {
-			/* TODO Parametrizzare meglio */
-			/*
-			var elem = document.getElementById('marker-window');
-			elem.parentNode.removeChild(elem);
-			*/
+		document.getElementById('clues').innerHTML = ""
 
-			document.getElementById('clues').innerHTML = ""
-
-			/* TODO Parametrizzare meglio */
-			var elem = document.getElementById('window');
-			elem.parentNode.setAttribute('content', 'solved');
-			elem.classList.remove('draggable');
-			elem.id = "solved-window";
-
-			alreadyAddedClues = [];
-			cluePositions.size = 0;
-			//addClue('window');
-			//addClue('key');
-			//addClue('lock');
-
-			addChapterRevelation();
-
-			//insertMarker('marker-key', 'hiro', '0 0.4 0', '0 0 0', 2.5, "addClue(\'key\')", 'models/key/key.obj', 'models/key/key.mtl');
-			//changeMarkerContent('marker-window','marker-lock','0 0.2 0.8', '90 180 0', 0.45, "addClue(\'lock\')", 'models/doorlock/doorlock.obj', 'models/doorlock/doorlock.mtl');
+		/* Fix every clue used to solve this chapter */
+		var revel = document.getElementById(id).childNodes[1];
+		console.log(revel);
+		for (var i = 0; i < revel.childNodes.length; i++) {
+			console.log(revel.childNodes[i].classList);
+			if (revel.childNodes[i].classList.contains('dropzone')) {
+				console.log("In");
+				revel.childNodes[i].setAttribute('content', 'solved');
+				revel.childNodes[i].childNodes[0].classList.remove('draggable');
+				revel.childNodes[i].childNodes[0].id += '-solved-' + id;
+			}
 		}
 
-		if (id == 'tutorial-rev-2') {
+		/* Reset clues icons */
+		var oldClues = alreadyAddedClues;
+		alreadyAddedClues = [];
+		cluePositions.size = 0;
+
+		for (var i = 0; i < oldClues.length; i++) {
+			addClue(oldClues[i]);
 		}
+		
+		/* Create new chapter revelation elements */	
+		addChapterRevelation();
 
 	}
 
