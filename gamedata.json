@@ -2,14 +2,23 @@ var gameData = {
 	'clues' : [
 		{
 			'id': 'window',
+			'marker': 'kanji',
+			'obj': 'models/window2/window.obj',
+			'mtl': 'models/window2/window.mtl',
 			'img': 'window.png'
 		},
 		{
 			'id': 'key',
+			'marker': 'hiro',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
 			'img': 'key.png'
 		},
 		{
 			'id': 'lock',
+			'marker': 'hiro',
+			'obj': 'models/doorlock/doorlock.obj',
+			'mtl': 'models/doorlock/doorlock.mtl',
 			'img': 'lock.png'
 		},
 	],
@@ -31,6 +40,10 @@ var gameData = {
 			'intro': 'The victim was found in this room. Lets see if someone got in from the window...',
 			'outro': 'The window is in perfect conditions, the murderer must have entered from the door.',
 			'id': 'tutorial-rev-1',
+			'activeClues' : 
+				[
+					'window'
+				],
 			'clueList': 
 				[
 					'window'
@@ -42,6 +55,11 @@ var gameData = {
 			'intro': 'We need more informations on how the murder entered this room. Lets check the main door...',
 			'outro': 'The key is here... The victim knew the person who killed him...',
 			'id': 'tutorial-rev-2',
+			'activeClues': 
+				[
+					'key',
+					'lock'
+				]
 			'clueList': 
 				[
 					'key',
