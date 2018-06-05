@@ -20,7 +20,7 @@ var gameData = {
 			'obj': 'models/doorlock/doorlock.obj',
 			'mtl': 'models/doorlock/doorlock.mtl',
 			'img': 'lock.png'
-		},
+		}
 	],
 
 	'initialDialog' : {
@@ -59,7 +59,7 @@ var gameData = {
 				[
 					'key',
 					'lock'
-				]
+				],
 			'clueList': 
 				[
 					'key',
