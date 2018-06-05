@@ -13,66 +13,33 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-  <body style='margin : 0px; overflow: hidden;'>
-    <a-scene id="ascene" embedded arjs="debugUIEnabled: false;">
-  	<!--<a-marker preset="hiro">
-		<a-entity
-			position='0 0.4 0'
-			obj-model="obj: url(models/key/key.obj); mtl: url(models/key/key.mtl)"
-			scale="2.5 2.5 2.5"
-			onclick="addClue('key')"
-		>
-			<a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="0 360 0"></a-animation>
-		</a-entity>
-  	</a-marker> -->
-  	<!-- <a-marker preset="kanji">
-		<a-entity
-			position='0 0.2 0.8'
-			rotation='90 180 0'
-			obj-model="obj: url(models/doorlock/doorlock.obj); mtl: url(models/doorlock/doorlock.mtl)"
-			scale="0.45 0.45 0.45"
-			onclick="addClue('lock')"
-		>
-			<a-animation attribute="scale" begin="click" dur="500" fill="backwards" to="0.23 0.23 0.23"></a-animation>
-		</a-entity>
-  	</a-marker> -->
-  	<a-marker id="marker-window" preset="kanji">
-		<a-entity
-			position='0 0.2 1.4'
-			rotation='90 180 0'
-			obj-model="obj: url(models/window2/window.obj); mtl: url(models/window2/window.mtl)"
-			scale="0.05 0.05 0.05"
-			onmousedown="addClue('window')"
-		>
-			<a-animation attribute="scale" begin="mousedown" dur="500" fill="backwards" to="0.025 0.025 0.025"></a-animation>
-		</a-entity>
-  	</a-marker>
-  	
-	<a-entity camera></a-entity>
-		<a-entity cursor="fuse: true; fuseTimout: 3000"
-                         position="0 0 -1"
-                         scale="0.01 0.01 0.01"
-                         geometry="primitive: ring"
-                         material="color: black; shader: flat">
-                   <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
-                                fill="forwards" from="0.005 0.005 0.005" to="0.01 0.01 0.1"></a-animation>
-                   <!-- <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
-                                fill="backwards" from="0.01 0.01 0.01" to="0.005 0.005 0.005"></a-animation>-->
-               </a-entity>
+	<body style='margin : 0px; overflow: hidden;'>
+		<a-scene id="ascene" embedded arjs="debugUIEnabled: false;">
+			<a-entity camera></a-entity>
+			<a-entity cursor="fuse: true; fuseTimout: 3000"
+				position="0 0 -1"
+				scale="0.01 0.01 0.01"
+				geometry="primitive: ring"
+				material="color: black; shader: flat">
+				<!-- <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
+					fill="forwards" from="0.005 0.005 0.005" to="0.01 0.01 0.1"></a-animation> -->
+				<!-- <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
+				fill="backwards" from="0.01 0.01 0.01" to="0.005 0.005 0.005"></a-animation>-->
+			</a-entity>
 
-    </a-scene>
+		</a-scene>
     
-    <button id="btn-clues" class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
+		<button id="btn-clues" class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
  
-    <div id="app">
-      <div id="clues"></div>
-      <br>
-      <div id="revelations"></div>
-    </div>
+		<div id="app">
+			<div id="clues"></div>
+			<br>
+			<div id="revelations"></div>
+		</div>
 
 
-    <script src="gamedata.json"></script>
-    <script>
+	<script src="gamedata.json"></script>
+	<script>
 
 	var alreadyAddedClues = [];
 
@@ -458,6 +425,9 @@
 		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
 			modal.close();
 			modal.destroy();
+
+			/* TODO Test */
+			setupChapterMarkers(chapterIndex);
 		});
 
 		// open modal
@@ -579,7 +549,6 @@
 		text += 'onmousedown="' + onclick + '" ';
 		text += '>';
 		text += '<a-animation attribute="scale" begin="mousedown" dur="500" fill="backwards" to="' + scaleFactor/2 + ' ' + scaleFactor/2 + ' ' + scaleFactor/2 + '"></a-animation>';
-		text += '>';
 		text += '</a-entity>';
 		text += '</a-marker>';
 		
@@ -602,8 +571,6 @@
 			elem.parentNode.removeChild(elem);
 			*/
 
-			//document.getElementById('revelations').innerHTML = "";
-
 			document.getElementById('clues').innerHTML = ""
 
 			/* TODO Parametrizzare meglio */
@@ -614,20 +581,80 @@
 
 			alreadyAddedClues = [];
 			cluePositions.size = 0;
-			addClue('window');
-			addClue('key');
-			addClue('lock');
+			//addClue('window');
+			//addClue('key');
+			//addClue('lock');
 
 			addChapterRevelation();
 
-			insertMarker('marker-key', 'hiro', '0 0.4 0', '0 0 0', 2.5, "addClue(\'key\')", 'models/key/key.obj', 'models/key/key.mtl');
-			changeMarkerContent('marker-window','marker-lock','0 0.2 0.8', '90 180 0', 0.45, "addClue(\'lock\')", 'models/doorlock/doorlock.obj', 'models/doorlock/doorlock.mtl');
+			//insertMarker('marker-key', 'hiro', '0 0.4 0', '0 0 0', 2.5, "addClue(\'key\')", 'models/key/key.obj', 'models/key/key.mtl');
+			//changeMarkerContent('marker-window','marker-lock','0 0.2 0.8', '90 180 0', 0.45, "addClue(\'lock\')", 'models/doorlock/doorlock.obj', 'models/doorlock/doorlock.mtl');
 		}
 
 		if (id == 'tutorial-rev-2') {
 		}
 
 	}
+
+
+	function setupChapterMarkers(chapter) {
+		var markers = document.getElementsByTagName('a-marker');
+		for (var j = 0; j < markers.length; j++) {
+			markers[j].innerHTML = "";
+		}
+
+		for (var i = 0; i < gameData.revelations[chapter].activeClues.length; i++) {
+			insertMarkerFromId(gameData.revelations[chapter].activeClues[i]);
+		}
+	}
+
+
+	function insertMarkerFromId(id) {
+		for (var i = 0; i < gameData.clues.length; i++) {
+			if (gameData.clues[i].id == id) {
+
+				var clue = gameData.clues[i];
+				var markerIsUsed = false;
+		
+				var markers = document.getElementsByTagName('a-marker');
+				for (var j = 0; j < markers.length; j++) {
+					if (markers[j].getAttribute('preset') == clue.marker) {
+						markerIsUsed = true;
+						oldId = markers[j].id;
+					}
+				}
+
+				if (!markerIsUsed) {
+					insertMarker(
+						'marker-' + clue.id,
+						clue.marker,
+						clue.posString,
+						clue.rotationString,
+						clue.scaleFactor,
+						"addClue(\'" + clue.id + "\')",
+						clue.obj,
+						clue.mtl
+					);
+				}
+				else {
+					changeMarkerContent(
+						oldId,
+						'marker-' + clue.id,
+						clue.posString,
+						clue.rotationString,
+						clue.scaleFactor,
+						"addClue(\'" + clue.id + "\')",
+						clue.obj,
+						clue.mtl
+					);
+				}
+			}
+		}
+	};
+	
+
+
+
 
 	/* Init variables */
 	var cluesVisible = false;
@@ -657,10 +684,11 @@
 	activateDropzones();
 	activateDraggableClues();
 
+	
 	createInitialModal();
-	addClue('window');
-	addClue('key');
-	addClue('lock');
+	//addClue('window');
+	//addClue('key');
+	//addClue('lock');
 	</script>	
 
 	</body>

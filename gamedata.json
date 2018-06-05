@@ -5,6 +5,9 @@ var gameData = {
 			'marker': 'kanji',
 			'obj': 'models/window2/window.obj',
 			'mtl': 'models/window2/window.mtl',
+			'posString': '0 0.2 1.4',
+			'rotationString': '90 180 0',
+			'scaleFactor': 0.05,
 			'img': 'window.png'
 		},
 		{
@@ -12,13 +15,19 @@ var gameData = {
 			'marker': 'hiro',
 			'obj': 'models/key/key.obj',
 			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
 			'img': 'key.png'
 		},
 		{
 			'id': 'lock',
-			'marker': 'hiro',
+			'marker': 'kanji',
 			'obj': 'models/doorlock/doorlock.obj',
 			'mtl': 'models/doorlock/doorlock.mtl',
+			'posString': '0 0.2 0.8',
+			'rotationString': '90 180 0',
+			'scaleFactor': 0.45,
 			'img': 'lock.png'
 		}
 	],
