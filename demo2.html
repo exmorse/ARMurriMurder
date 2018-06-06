@@ -1,9 +1,11 @@
 <!doctype HTML>
 <html>
 <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
-<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.5/aframe/build/aframe-ar.js"> </script>
-<script src="interact.js"></script>
-<script src="tingle.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"> </script>
+<script src="js/interact.js"></script>
+<script src="js/tingle.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/vue-3d-model.min.js"></script>
 <link rel="stylesheet" type="text/css" href="./css/clues.css">
 <link rel="stylesheet" type="text/css" href="./css/scene.css">
 <link rel="stylesheet" type="text/css" href="./css/tingle.css">
@@ -15,26 +17,28 @@
 
 	<body style='margin : 0px; overflow: hidden;'>
 		<a-scene id="ascene" embedded arjs="debugUIEnabled: false;">
+
 			<a-entity camera></a-entity>
 			<a-entity cursor="fuse: true; fuseTimout: 3000"
 				position="0 0 -1"
 				scale="0.01 0.01 0.01"
 				geometry="primitive: ring"
 				material="color: black; shader: flat">
-				<!-- <a-animation begin="click" easing="ease-in" attribute="scale" dur="150"
-					fill="forwards" from="0.005 0.005 0.005" to="0.01 0.01 0.1"></a-animation> -->
-				<!-- <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" dur="1500"
-				fill="backwards" from="0.01 0.01 0.01" to="0.005 0.005 0.005"></a-animation>-->
 			</a-entity>
 
 		</a-scene>
     
 		<button id="btn-clues" class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
+		<button id="btn-models" class="overlay tingle-btn tingle-btn--primary" onclick="toggleModels()">Models</button>
  
 		<div id="app">
 			<div id="clues"></div>
 			<br>
 			<div id="revelations"></div>
+		</div>
+
+		<div id="models">
+			<iframe src="models.html" id="modelsframe"></iframe>
 		</div>
 
 
@@ -46,6 +50,10 @@
 	/* Toggles the Clues/Revelation interface visibility */	
 	function toggleClues() {
 		if(!cluesVisible) {
+			if(modelsVisible) {
+				document.getElementById('models').style.visibility="hidden";
+				modelsVisible = false;
+			}
 			document.getElementById('app').style.visibility="visible";
 		}
 		else {
@@ -54,20 +62,32 @@
 		cluesVisible = !cluesVisible;
 	}
 
+	/* Toggles the Models interface visibility */	
+	function toggleModels() {
+		if(!modelsVisible) {
+			if(cluesVisible) {
+				document.getElementById('app').style.visibility="hidden";
+				cluesVisible = false;
+			}
+			document.getElementById('models').style.visibility="visible";
+		}
+		else {
+			document.getElementById('models').style.visibility="hidden";
+		}
+		modelsVisible = !modelsVisible;
+	}
+
 
 	/* Add the HTML code related to a clue */
 	function addClueSetup(id) {
 		document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false">' + id + '</div>';  
 		var coords = interact.getElementRect(document.getElementById(id));
-		console.log(coords);
 		cluePositions.list.push({x: coords.left + coords.width/2, y: coords.top + coords.height/2})
 	}
 
 
 	/* Add the HTML code related to a clue */
 	function addClue(id) {
-		console.log(alreadyAddedClues);
-		console.log(alreadyAddedClues.indexOf(id));
 		if(alreadyAddedClues.indexOf(id) == -1){
 			//document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false"> <span class="glyphicon glyphicon-'+id+'"></span> </div>';  
 			document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable draggable-clue" align="center" dropped="false">' + id + '</div>';  
@@ -150,8 +170,7 @@
 			onmove: dragMoveListener,
 			
 			onend: function (event) {
-				/*console.log("Should snap to ");
-				console.log(startPos);
+				/*console.log(startPos);
 				// snap to the start position
 				event.interactable.draggable({
 					snap: {
@@ -166,8 +185,6 @@
 	
 	/* Interact.js code to make the clues div draggable */
 	function activateDraggableClueById(id, posIndex) {
-
-		console.log("Reset snap for " + id + " --- POS: " + posIndex);
 
 		// target elements with the "draggable-clue" class
 		interact('#' + id)
@@ -187,7 +204,6 @@
 	
 	/* Listener for moving objects */
 	function dragMoveListener (event) {
-		//console.log('dragMoveListener');
 		var target = event.target,
 		// keep the dragged position in the data-x/data-y attributes
 	    	x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -247,7 +263,6 @@
 				}
 			},
 			ondragleave: function (event) {
-				console.log("ONDRAGLEAVE");
 			     	event.relatedTarget.classList.remove('can-drop');
 
 				if (event.relatedTarget.id == event.target.getAttribute('content')) {
@@ -261,12 +276,9 @@
 
 					cluePositions.size++;
 			
-					console.log("Dropped: " + event.relatedTarget.getAttribute('dropped'));
 	
 					if (event.relatedTarget.getAttribute('dropped') == "true") {
 						
-						console.log("Rimuovo elemento droppato");
-								
 			     			event.relatedTarget.classList.remove('dropped');
 						event.relatedTarget.parentNode.removeChild(event.relatedTarget);
 						document.getElementById('clues').appendChild(event.relatedTarget);
@@ -313,12 +325,9 @@
 					activateDraggableClueById(cluesDiv.children[i].id, i);
 				}
 			
-				console.log("Tolgo translate " + event.relatedTarget.id);
 				event.relatedTarget.toTransform = false;
 				event.relatedTarget.style.webkitTransform =
 					event.relatedTarget.style.transform = 'translate(0px, 0px)';
-				
-				console.log("Shouldcheck");
 				
 				var parentEl = event.target.parentNode;
 				var nodes = parentEl.childNodes;
@@ -333,7 +342,6 @@
 				}
 
 				if (revelation == null) {
-					console.log("Revelation is null");
 					return;
 				}
 
@@ -369,10 +377,8 @@
 			//closeLabel: "Close",
 			cssClass: [],
 			onOpen: function() {
-				console.log('modal open');
 			},
 			onClose: function() {
-				console.log('modal closed');
 			},
 			beforeClose: function() {
 				return true; // close the modal
@@ -405,10 +411,8 @@
 			//closeLabel: "Close",
 			cssClass: [],
 			onOpen: function() {
-				console.log('modal open');
 			},
 			onClose: function() {
-				console.log('modal closed');
 			},
 			beforeClose: function() {
 				return true; // close the modal
@@ -445,10 +449,8 @@
 			//closeLabel: "Close",
 			cssClass: [],
 			onOpen: function() {
-				console.log('modal open');
 			},
 			onClose: function() {
-				console.log('modal closed');
 			},
 			beforeClose: function() {
 				return true; // close the modal
@@ -493,10 +495,8 @@
 			//closeLabel: "Close",
 			cssClass: [],
 			onOpen: function() {
-				console.log('modal open');
 			},
 			onClose: function() {
-				console.log('modal closed');
 			},
 			beforeClose: function() {
 				return true; // close the modal
@@ -540,7 +540,12 @@
 	
 	function insertMarker(id, marker, posString, rotationString, scaleFactor, onclick, objPath, mtlPath) {
 		text = "";
-		text += '<a-marker id="' + id + '" preset="' + marker + '">';
+		if (marker == "hiro" || marker == "kanji") {
+			text += '<a-marker id="' + id + '" preset="' + marker + '" markername="' + marker  + '">';
+		}
+		else {
+			text += '<a-marker id="' + id + '" preset="custom" type="pattern" url="' + marker + '" markername="' + marker  + '">';
+		}
 		text += '<a-entity ';
 		text += 'position="' + posString + '" ';
 		text += 'rotation="' + rotationString + '" ';
@@ -568,11 +573,8 @@
 
 		/* Fix every clue used to solve this chapter */
 		var revel = document.getElementById(id).childNodes[1];
-		console.log(revel);
 		for (var i = 0; i < revel.childNodes.length; i++) {
-			console.log(revel.childNodes[i].classList);
 			if (revel.childNodes[i].classList.contains('dropzone')) {
-				console.log("In");
 				revel.childNodes[i].setAttribute('content', 'solved');
 				revel.childNodes[i].childNodes[0].classList.remove('draggable');
 				revel.childNodes[i].childNodes[0].id += '-solved-' + id;
@@ -615,7 +617,7 @@
 		
 				var markers = document.getElementsByTagName('a-marker');
 				for (var j = 0; j < markers.length; j++) {
-					if (markers[j].getAttribute('preset') == clue.marker) {
+					if (markers[j].getAttribute('markername') == clue.marker) {
 						markerIsUsed = true;
 						oldId = markers[j].id;
 					}
@@ -652,9 +654,9 @@
 
 
 
-
 	/* Init variables */
 	var cluesVisible = false;
+	var modelsVisible = false;
 	var startPos = {x: 0, y: 0};
 	var chapterIndex = 0;
 

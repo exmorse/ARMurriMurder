@@ -1,0 +1,42 @@
+<html>
+<head>
+</head>
+<body>
+    <div id="modapp">
+        <model-obj style="width: 60%; height:60%; margin: auto;"
+	    id="3dmodel"
+            :lights="lights"
+            src="models/bb8/BB-8.obj"
+            mtl="models/bb8/BB-8.mtl"
+	 ></model-obj>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-3d-model.min.js"></script>
+    <script>
+	window.onload = function() {
+        vue = new Vue({
+            el: '#modapp',
+            data: {
+                bgColor: '#ff0',
+                bgAlpha: 0.5,
+                lights:[{
+                    type : "directional",
+                    name : "directional" ,
+                    castShadow: true,
+                    matrix: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, 10, 3, 1],
+                    intensity: 0.75
+                },
+                {
+                        type: "ambient",
+                        name: "ambient",
+                        castShadow: true,
+                        matrix: [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, 10, 3, 1],
+                        intensity: 3
+                    }
+            ]},
+	    scale: {x:0.1, y:0.1, z:0.1}	
+        })
+	}
+    </script>
+</body>
+</html>

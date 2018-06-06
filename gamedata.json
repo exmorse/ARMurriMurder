@@ -29,6 +29,16 @@ var gameData = {
 			'rotationString': '90 180 0',
 			'scaleFactor': 0.45,
 			'img': 'lock.png'
+		},
+		{
+			'id': 'extrakey',
+			'marker': 'markers/arjs.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png'
 		}
 	],
 
@@ -51,7 +61,8 @@ var gameData = {
 			'id': 'tutorial-rev-1',
 			'activeClues' : 
 				[
-					'window'
+					'window',
+					'extrakey'
 				],
 			'clueList': 
 				[

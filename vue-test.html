@@ -4,7 +4,7 @@
 	 <link href="css/please-wait.css" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="modapp">
         <p class="background-text">
             Vue<br>3D<br>Model<br>Background
         </p>
@@ -27,7 +27,7 @@
             mtl="models/bb8/BB-8.mtl"
 	 ></model-obj>
     </div>
-    <script type="text/javascript" src="please-wait.js"></script>
+    <script type="text/javascript" src="js/please-wait.js"></script>
     <script type="text/javascript">
       window.loading_screen = window.pleaseWait({
         logo: "images/hiro.png",
@@ -35,12 +35,12 @@
         loadingHtml: "<p class='loading-message'>A good day to you fine user!</p>"
       });
     </script>
-    <script src="vue.js"></script>
-    <script src="vue-3d-model.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-3d-model.min.js"></script>
     <script>
 	window.onload = function() {
         vue = new Vue({
-            el: '#app',
+            el: '#modapp',
             data: {
                 bgColor: '#ff0',
                 bgAlpha: 0.5,
