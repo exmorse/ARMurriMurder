@@ -24,6 +24,7 @@ a-scene {
 
 #btn-models {
 	position: absolute;
+	visibility: hidden;
 	width: 15vw;
 	padding: 2%;
 	bottom: 2vh;

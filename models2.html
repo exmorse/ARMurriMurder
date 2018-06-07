@@ -4,28 +4,9 @@
 </head>
 <body>
 	<select id="model-select" onchange="selectModel(this.value);">
-		<option value="key"> Key </option>
-		<option value="lock"> Lock </option>
 	</select>
 
 	<div id="models-container">
-		<div id="model-lock" class="model">
-        		<model-obj style="width: 90%; height:90%; margin: auto;"
-				id="in-model-lock"
-        			:lights="lights"
-				src="models/doorlock/doorlock.obj"
-				mtl="models/doorlock/doorlock.mtl"
-			 ></model-obj>
-   	 	</div>
-
-		<div id="model-key" class="model">
-       		 	<model-obj style="width: 90%; height:90%; margin: auto;"
-				id="in-model-key"
-        			:lights="lights"
-				src="models/key/key.obj"
-				mtl="models/key/key.mtl"
-		 	></model-obj>
-    		</div>
 	</div>
 
 	<script src="js/vue.js"></script>
@@ -59,43 +40,51 @@
 
 		function selectModel(model) {
 			console.log("Selected " + model);
-			document.getElementById('model-' + currentModel).style.visibility = "hidden";
-			document.getElementById('model-' + model).style.visibility = "visible";
-			currentModel = model;
+
+			createModelById(model);
+
+			selected = model;
+		}
+
+		
+		function createModelById(model) {
+			if (model == 'key') createModel('key', '/models/key/key.obj', 'models/key/key.mtl');
+			if (model == 'window') createModel('window', '/models/window2/window.obj', 'models/window2/window.mtl');
+			if (model == 'lock') createModel('lock', '/models/doorlock/doorlock.obj', 'models/doorlock/doorlock.mtl');
 		}
 
 
-		function addModel(id, obj, mtl) {
+		function createModel(id, obj, mtl) {
 			/* Add model HTML */
 			content = '';
-			content += '<div id="model-' + id +'" class="model" style="visibility: hidden;">';
-			content += '<model-obj style="width: 90%; height:90%; margin: auto;"';
+			content += '<div id="model-' + id +'" class="model">';
+			content += '<model-obj style="width: 98%; height:98%; margin: auto;"';
 			content += 'id="in-model-' + id + '"';
 			content += ':lights="lights"';
 			content += 'src="' + obj + '"';
 			content += 'mtl="' + mtl + '"';
                         content += '></model-obj></div>';
-			document.getElementById('models-container').innerHTML += content;
+			document.getElementById('models-container').innerHTML = content;
 
 			/* Enable Vue 3d model */
-			//startVue('model-' + id);
+			startVue('model-' + id);
+		}
 
+
+		function addModel(id) {
 			/* Add option to select element */
 			option = '';
 			option += '<option value="' + id + '">' + id + '</option>';
 			document.getElementById('model-select').innerHTML += option;
 
-			//document.getElementById('model-' + currentModel).style.visibility = "hidden";
-			//currentModel = id;
+			if(selected == null) {
+				selectModel(id);
+			}
+
 		}
 
-
 		/* Variables */
-		//startVue('model-key');
-		//startVue('model-lock');
-		
-		currentModel = 'key';
-		selectModel(currentModel);
+		selected = null;
 </script>
 </body>
 </html>

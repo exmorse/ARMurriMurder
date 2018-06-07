@@ -38,7 +38,7 @@
 		</div>
 
 		<div id="models">
-			<iframe src="models.html" id="modelsframe"></iframe>
+			<iframe src="models-viewer.html" id="modelsframe"></iframe>
 		</div>
 
 
@@ -94,6 +94,12 @@
 			alreadyAddedClues.push(id);
 			cluePositions.size++;
 			activateDraggableClueById(id, cluePositions.size-1);
+
+			/* Models */
+			if (discovered[id] == null) {
+				discovered[id] = true;
+				addModel(id);
+			} 
                 }
 
 	}
@@ -650,7 +656,32 @@
 			}
 		}
 	};
+
+
+
 	
+
+	/* Models Functions */
+	
+	function addModel(id) {
+		/* Add option to select element */
+		option = '';
+		option += '<option value="' + id + '">' + id.charAt(0).toUpperCase() + id.slice(1); + '</option>';
+		modelsframe.getElementById('model-select').innerHTML += option;
+
+		if (Object.keys(discovered).length == 1) {
+			forceSelectModel(id);
+		}
+	}
+
+	function forceSelectModel(model) {
+		console.log("Forcing select model " + model);
+		document.getElementById('btn-models').style.visibility = "visible";
+		modelsframe.getElementById('model-' + model).style.visibility = "visible";
+		document.getElementById("modelsframe").contentWindow.currentModel = model;
+	}
+
+
 
 
 
@@ -659,6 +690,11 @@
 	var modelsVisible = false;
 	var startPos = {x: 0, y: 0};
 	var chapterIndex = 0;
+	var discovered = {}
+
+	window.onload = function() {
+		modelsframe = document.getElementById('modelsframe').contentWindow.document;
+	}
 
 	var cluePositions = {};
 	cluePositions.size = 0;

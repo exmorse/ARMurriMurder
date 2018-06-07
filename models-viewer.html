@@ -4,29 +4,13 @@
 </head>
 <body>
 	<select id="model-select" onchange="selectModel(this.value);">
-		<option value="key"> Key </option>
-		<option value="lock"> Lock </option>
 	</select>
 
 	<div id="models-container">
-		<div id="model-lock" class="model">
-        		<model-obj style="width: 90%; height:90%; margin: auto;"
-				id="in-model-lock"
-        			:lights="lights"
-				src="models/doorlock/doorlock.obj"
-				mtl="models/doorlock/doorlock.mtl"
-			 ></model-obj>
-   	 	</div>
-
-		<div id="model-key" class="model">
-       		 	<model-obj style="width: 90%; height:90%; margin: auto;"
-				id="in-model-key"
-        			:lights="lights"
-				src="models/key/key.obj"
-				mtl="models/key/key.mtl"
-		 	></model-obj>
-    		</div>
 	</div>
+
+
+	<script src="gamedata.json"></script>
 
 	<script src="js/vue.js"></script>
 	<script src="js/vue-3d-model.min.js"></script>
@@ -69,7 +53,7 @@
 			/* Add model HTML */
 			content = '';
 			content += '<div id="model-' + id +'" class="model" style="visibility: hidden;">';
-			content += '<model-obj style="width: 90%; height:90%; margin: auto;"';
+			content += '<model-obj style="width: 100%; height:100%; margin: auto;"';
 			content += 'id="in-model-' + id + '"';
 			content += ':lights="lights"';
 			content += 'src="' + obj + '"';
@@ -77,25 +61,36 @@
                         content += '></model-obj></div>';
 			document.getElementById('models-container').innerHTML += content;
 
-			/* Enable Vue 3d model */
-			//startVue('model-' + id);
-
 			/* Add option to select element */
+			/*
 			option = '';
 			option += '<option value="' + id + '">' + id + '</option>';
 			document.getElementById('model-select').innerHTML += option;
-
+			*/
+	
 			//document.getElementById('model-' + currentModel).style.visibility = "hidden";
 			//currentModel = id;
 		}
 
 
 		/* Variables */
-		//startVue('model-key');
-		//startVue('model-lock');
-		
-		currentModel = 'key';
-		selectModel(currentModel);
+		 
+		for (var i = 0; i < gameData.clues.length; i++) {
+			addModel(
+				gameData.clues[i].id,
+				gameData.clues[i].obj,
+				gameData.clues[i].mtl
+			);
+		}
+
+
+		currentModel = null;
+
+		window.onload = function () {
+			for (var i = 0; i < gameData.clues.length; i++) {
+				startVue('model-' + gameData.clues[i].id);
+			}
+		}
 </script>
 </body>
 </html>
