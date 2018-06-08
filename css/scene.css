@@ -21,6 +21,13 @@ a-scene {
 	bottom: 2vh;
 	right: 5vw;
 }
+#btn-characters {
+	position: absolute;
+	width: 15vw;
+	padding: 2%;
+	bottom: 2vh;
+	right: 21vw;
+}
 
 #btn-models {
 	position: absolute;
@@ -31,6 +38,15 @@ a-scene {
 	left: 5vw;
 }
 
+.pngBtn {
+	width:10vw;
+	height: 10vw;
+}
+
+.charImg {
+	width:20vw;
+	height: 20vh;
+}
 #app, #models {
 	border-style: solid;
 	border-radius: 2em;

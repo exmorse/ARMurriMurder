@@ -30,7 +30,7 @@
     
 		<button id="btn-clues" class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
 		<button id="btn-models" class="overlay tingle-btn tingle-btn--primary" onclick="toggleModels()">Models</button>
- 
+		<button id="btn-characters" class="overlay tingle-btn tingle-btn--primary" data-toggle="modal" data-target="#characterModal">Characters</button>
 		<div id="app">
 			<div id="clues"></div>
 			<br>
@@ -42,10 +42,39 @@
 		</div>
 
 
+		<!-- Modal -->
+		<div id="characterModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+		
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">The faces behind the story</h4>
+					</div>
+					<div id="characterModalBody" class="modal-body">
+						<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
+					</div>
+					<div id="characterModalFooter" class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+		
+			</div>
+		</div>
+
 	<script src="gamedata.json"></script>
+	<script src="characters.json"></script>
 	<script>
 
 	var alreadyAddedClues = [];
+
+	function initCharacters(){
+		for (i=0; i<characters.length; i++){
+			$('#characterModalBody').append("<input id='"+characters[i].id+"' class='pngBtn' type='image' src='" + characters[i].image +"' onclick='addCharacter(\"" + characters[i].id +"\")' />");
+		}
+		console.log("added")
+	}
 
 	/* Toggles the Clues/Revelation interface visibility */	
 	function toggleClues() {
@@ -103,8 +132,16 @@
                 }
 
 	}
-
-
+	/* Add character description */
+	function addCharacter(id){
+		for( i = 0 ; i<characters.length ; i++){
+			if (characters[i].id == id ){
+				break;
+			}
+		}
+		console.log(id);
+		$('#characterModalFooter').html('<h3>'+characters[i].name+'<h3> <p>'+characters[i].description+'</p><image class="charImg" src="'+characters[i].image+'">');
+	}
 	/* Create next chapter revelation */
 	function addChapterRevelation() {
 		addRevelation(
@@ -694,6 +731,7 @@
 
 	window.onload = function() {
 		modelsframe = document.getElementById('modelsframe').contentWindow.document;
+		initCharacters();
 	}
 
 	var cluePositions = {};

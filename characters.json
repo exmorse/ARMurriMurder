@@ -1,0 +1,15 @@
+var characters = 
+[
+	{
+		'id':'lindamurri',
+		'name': 'Linda Murri',
+		'image': './img/lm.svg',
+		'description': 'akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+	},
+	{
+		'id':'stom',
+		'name': 'carlo stomeo',
+		'image': './img/stom.png',
+		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+	},
+]
