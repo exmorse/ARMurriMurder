@@ -31,32 +31,31 @@
 		<button id="btn-clues" class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
 		<button id="btn-models" class="overlay tingle-btn tingle-btn--primary" onclick="toggleModels()">Models</button>
 		<button id="btn-characters" class="overlay tingle-btn tingle-btn--primary" data-toggle="modal" data-target="#characterModal">Characters</button>
-		<div id="app">
-			<div id="clues"></div>
+		<div id="app" class="grayBg">
+			<div id="clues" class="grayBg"></div>
 			<br>
-			<div id="revelations"></div>
+			<div id="revelations" class="grayBg"></div>
 		</div>
 
-		<div id="models">
+		<div id="models" class='grayBg'>
 			<iframe src="models-viewer.html" id="modelsframe"></iframe>
 		</div>
 
 
 		<!-- Modal -->
 		<div id="characterModal" class="modal fade" role="dialog">
-			<div class="modal-dialog">
+			<div class="modal-dialog grayBg">
 		
 				<!-- Modal content-->
-				<div class="modal-content">
+				<div class="modal-content grayBg">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">The faces behind the story</h4>
+						<h2 class="modal-title">The faces behind the story</h2>
 					</div>
 					<div id="characterModalBody" class="modal-body">
 						<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
 					</div>
 					<div id="characterModalFooter" class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					</div>
 				</div>
 		
@@ -140,7 +139,7 @@
 			}
 		}
 		console.log(id);
-		$('#characterModalFooter').html('<h3>'+characters[i].name+'<h3> <p>'+characters[i].description+'</p><image class="charImg" src="'+characters[i].image+'">');
+		$('#characterModalFooter').html('<h2>'+characters[i].name+'</h2> <h3>'+characters[i].description+'</h3><image class="charImg" src="'+characters[i].image+'">');
 	}
 	/* Create next chapter revelation */
 	function addChapterRevelation() {

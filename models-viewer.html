@@ -1,8 +1,10 @@
 <html>
 <head>
 	<link href="css/models.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="./css/scene.css">
+
 </head>
-<body>
+<body class='grayBg'>
 	<select id="model-select" onchange="selectModel(this.value);">
 	</select>
 
@@ -75,7 +77,7 @@
 			content += 'id="in-model-' + id + '"';
 			content += ':lights="lights"';
 			content += 'src="' + obj + '"';
-			content += 'mtl="' + mtl + '"';
+			//content += 'mtl="' + mtl + '"';
                         content += '></model-obj></div>';
 			document.getElementById('models-container').innerHTML += content;
 

@@ -14,6 +14,16 @@ a-scene {
 	left: 0; 
 }
 
+.grayBg{
+	background-color: darkslategray !important;
+	color:white;
+	opacity: 0.82;
+}
+
+.modal-title{
+	color:white;
+}
+
 #btn-clues {
 	position: absolute;
 	width: 15vw;
