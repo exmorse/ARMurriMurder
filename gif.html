@@ -1,0 +1,78 @@
+<!doctype HTML>
+<html>
+
+<head>
+<script src="js/aframe.min.js"></script>
+<script src="js/aframe-ar.js"> </script>
+<script src="js/aframe-gif-shader.js"></script>
+<script src="js/aframe-text-geometry-component.min.js"></script>
+
+</head>
+
+<body style='margin : 0px; overflow: hidden;'>
+
+	
+
+	<a-scene id="ascene" embedded arjs="debugUIEnabled: false;">
+		
+		<a-marker id="testmarker" preset="kanji">
+			<a-entity rotation="-90 0 0" geometry="primitive:plane" material="shader:gif;src:url(img/load.gif);" gif="" transparent="false"></a-entity>
+			<a-entity rotation="-90 0 0" position="-0.5 0 0.5" text-geometry="value: Searching...; size: 0.15;"></a-entity>
+		</a-marker>
+	
+
+		<a-entity camera></a-entity>
+		
+		<a-entity cursor="fuse: true; fuseTimout: 3000"
+			position="0 0 -1"
+			scale="0.01 0.01 0.01"
+			geometry="primitive: ring"
+			material="color: black; shader: flat">
+		</a-entity>
+
+	</a-scene>
+   
+
+	<script>
+
+		function boom() {
+			console.log("BOOM");
+			changeMarkerContent('testmarker', 'testmarker', '0 0.4 0', '0 0 0', 2.5, "", "models/key/key.obj", "models/key/key.mtl");
+		}
+
+		function changeMarkerContent(currentId, newId, posString, rotationString, scaleFactor, onclick, objPath, mtlPath) {
+	                var el = document.getElementById(currentId);
+        	        el.id = newId;
+
+                	text = "";
+                	text += '<a-entity ';
+                	text += 'position="' + posString + '" ';
+                	text += 'rotation="' + rotationString + '" ';
+                	text += 'obj-model="obj: url(' + objPath + '); mtl: url(' + mtlPath +')" ';
+                	text += 'scale="' + scaleFactor + ' ' + scaleFactor + ' ' + scaleFactor + '" ';
+                	text += 'onmousedown="' + onclick + '" ';
+                	text += '>';
+                	text += '<a-animation attribute="scale" begin="mousedown" dur="500" fill="backwards" to="' + scaleFactor/2 + ' ' + scaleFactor/2 + ' ' + scaleFactor/2 + '"></a-animation>';
+                	text += '</a-entity>';
+
+                	el.innerHTML = text;
+        }
+
+		
+		document.getElementById('testmarker').addEventListener(
+							'visible', 
+							function(e) {
+								console.log("I'm visible");
+								this.timer = setTimeout(boom, 3000);
+							}
+		);
+		document.getElementById('testmarker').addEventListener(
+							'invisible', 
+							function(e) {
+								console.log("I'm not visible");
+								clearTimeout(this.timer);
+							}
+		);
+	</script>
+</body>
+</html>
