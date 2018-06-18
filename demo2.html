@@ -41,6 +41,8 @@
 			<iframe src="models-viewer.html" id="modelsframe"></iframe>
 		</div>
 
+		
+
 
 		<!-- Modal -->
 		<div id="characterModal" class="modal fade" role="dialog">
@@ -49,7 +51,7 @@
 				<!-- Modal content-->
 				<div class="modal-content grayBg">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
 						<h2 class="modal-title">The faces behind the story</h2>
 					</div>
 					<div id="characterModalBody" class="modal-body">
@@ -70,7 +72,7 @@
 
 	function initCharacters(){
 		for (i=0; i<characters.length; i++){
-			$('#characterModalBody').append("<input id='"+characters[i].id+"' class='pngBtn' type='image' src='" + characters[i].image +"' onclick='addCharacter(\"" + characters[i].id +"\")' />");
+			$('#characterModalBody').append("<input id='"+characters[i].id+"' class='pngBtn modalContents' type='image' src='" + characters[i].image +"' onclick='addCharacter(\"" + characters[i].id +"\")' />");
 		}
 		console.log("added")
 	}
@@ -139,7 +141,7 @@
 			}
 		}
 		console.log(id);
-		$('#characterModalFooter').html('<h2>'+characters[i].name+'</h2> <h3>'+characters[i].description+'</h3><image class="charImg" src="'+characters[i].image+'">');
+		$('#characterModalFooter').html('<h2 class="modalContents">'+characters[i].name+'</h2> <h3 class="modalContents">'+characters[i].description+'</h3><image class="charImg modelContens" src="'+characters[i].image+'">');
 	}
 	/* Create next chapter revelation */
 	function addChapterRevelation() {

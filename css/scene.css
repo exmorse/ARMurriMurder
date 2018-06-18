@@ -20,6 +20,12 @@ a-scene {
 	opacity: 0.82;
 }
 
+.modalContents{
+	color: white !important;
+	opacity: 1 !important;
+}
+
+
 .modal-title{
 	color:white;
 }
