@@ -8,7 +8,8 @@ var gameData = {
 			'posString': '0 0.2 1.4',
 			'rotationString': '90 180 0',
 			'scaleFactor': 0.05,
-			'img': 'window.png'
+			'img': 'window.png',
+			'function' : 'otherF'
 		},
 		{
 			'id': 'key',
@@ -18,7 +19,8 @@ var gameData = {
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
-			'img': 'key.png'
+			'img': 'key.png',
+			'function': 'addClue'
 		},
 		{
 			'id': 'lock',
@@ -28,7 +30,8 @@ var gameData = {
 			'posString': '0 0.2 0.8',
 			'rotationString': '90 180 0',
 			'scaleFactor': 0.45,
-			'img': 'lock.png'
+			'img': 'lock.png',
+			'function': 'addClue'
 		},
 		{
 			'id': 'extrakey',
@@ -38,7 +41,8 @@ var gameData = {
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
-			'img': 'key.png'
+			'img': 'key.png',
+			'function': 'addClue'
 		}
 	],
 

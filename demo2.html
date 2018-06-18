@@ -674,7 +674,7 @@
 						clue.posString,
 						clue.rotationString,
 						clue.scaleFactor,
-						"addClue(\'" + clue.id + "\')",
+						clue.function+"(\'" + clue.id + "\')",
 						clue.obj,
 						clue.mtl
 					);
@@ -686,7 +686,7 @@
 						clue.posString,
 						clue.rotationString,
 						clue.scaleFactor,
-						"addClue(\'" + clue.id + "\')",
+						clue.function + "(\'" + clue.id + "\')",
 						clue.obj,
 						clue.mtl
 					);
@@ -720,7 +720,9 @@
 	}
 
 
-
+	function otherF(id){
+		console.log("aAAAAAAAAAA " + id);
+	}
 
 
 	/* Init variables */
