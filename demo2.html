@@ -69,6 +69,7 @@
 	<script>
 
 	var alreadyAddedClues = [];
+	var scrollToY = 0;
 
 	function initCharacters(){
 		for (i=0; i<characters.length; i++){
@@ -85,6 +86,7 @@
 				modelsVisible = false;
 			}
 			document.getElementById('app').style.visibility="visible";
+			$('#revelations').scrollTop(scrollToY);
 		}
 		else {
 			document.getElementById('app').style.visibility="hidden";
@@ -150,6 +152,8 @@
 			gameData.revelations[chapterIndex].id,
 			gameData.revelations[chapterIndex].clueList
 		);
+		scrollToY += $('.revelation:last').height();
+		console.log('---' + scrollToY)
 	}	
 
 	
