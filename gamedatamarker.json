@@ -1,0 +1,116 @@
+var gameData = {
+	'clues' : [
+		{
+			'id': 'baule',
+			'marker': 'markers/BAULEVERO/baule.patt',
+			'obj': 'models/Baulechiuso/Baulechiusocontexturefinal2.obj',
+			'mtl': 'models/Baulechiuso/Baulechiusocontexturefinal2.mtl',
+			'posString': '0 0.8 0',
+			'rotationString': '90 180 0',
+			'scaleFactor': 0.4,
+			'img': 'baule.png',
+			'function': 'addClue'
+		},
+		{
+			'id': 'cestino',
+			'marker': 'markers/cestinomarker/cestino.patt',
+			'obj': 'models/Capello/CAPELLOblend4.obj',
+			'mtl': 'models/Capello/CAPELLOblend4.mtl',
+			'posString': '0 0 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 1,
+			'img': 'cestino.png',
+			'function': 'addClue'
+		},
+		{
+			'id': 'cuscino2',
+			'marker': 'markers/clato50.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
+			'function': 'addClue'
+		},
+		{
+			'id': 'porta',
+			'marker': 'markers/porta/pattern-marker.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
+			'function': 'addClue'
+		},
+		{
+			'id': 'extrakey',
+			'marker': 'markers/arjs.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
+			'function': 'addClue'
+		},
+		{
+			'id': 'test',
+			'marker': 'markers/bauleprova2/baule.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
+			'function': 'addClue'
+		},
+	],
+
+	'initialDialog' : {
+		'title': 'DEMO: Augmented Murri Murder',
+		'text': 'Initial text is here'
+	},
+	
+	'endDialog' : {
+		'title': 'DEMO: Augmented Murri Murder - Completed',
+		'text': 'Thanks'
+	},
+	
+	'revelations' : [
+		{
+			'number': '0.1',
+			'title': 'The Break-In',
+			'intro': 'The victim was found in this room. Lets see if someone got in from the window...',
+			'outro': 'The window is in perfect conditions, the murderer must have entered from the door.',
+			'id': 'tutorial-rev-1',
+			'activeClues' : 
+				[
+					'test',
+					'cestino'
+				],
+			'clueList': 
+				[
+					'window'
+				]
+		},
+		{
+			'number': '0.2',
+			'title': 'The Main Entrance',
+			'intro': 'We need more informations on how the murder entered this room. Lets check the main door...',
+			'outro': 'The key is here... The victim knew the person who killed him...',
+			'id': 'tutorial-rev-2',
+			'activeClues': 
+				[
+					'key',
+					'lock'
+				],
+			'clueList': 
+				[
+					'key',
+					'lock'
+				]
+		}
+	] 
+}

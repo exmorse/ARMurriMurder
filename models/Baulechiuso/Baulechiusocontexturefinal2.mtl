@@ -1,0 +1,46 @@
+# Blender MTL File: 'Baulechiusocontexturefinal.blend'
+# Material Count: 4
+
+newmtl Material.001
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.320000 0.320000 0.320000
+Ks 0.115789 0.115789 0.115789
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd TexturesCom_WoodPlanksBare0467_2_seamless_S.jpg
+
+newmtl Material.002
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.320000 0.320000 0.320000
+Ks 0.115789 0.115789 0.115789
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd TexturesCom_WoodPlanksBare0467_2_seamless_S.jpg
+
+newmtl Material.003
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.250000 0.250000 0.250000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd TexturesCom_CorrodedMetal_512_albedo_(2).jpg
+
+newmtl Material.004
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.250000 0.250000 0.250000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd TexturesCom_CorrodedMetal_512_albedo_(1).jpg

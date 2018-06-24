@@ -1,0 +1,12 @@
+# Blender MTL File: 'CAPELLOblend.blend'
+# Material Count: 1
+
+newmtl Material.001
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.058342 0.028684 0.009563
+Ks 0.133380 0.016274 0.014186
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2

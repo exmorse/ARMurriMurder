@@ -1,0 +1,775 @@
+<!doctype HTML>
+<html>
+<script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"> </script>
+<script src="js/interact.js"></script>
+<script src="js/tingle.js"></script>
+<script src="js/vue.js"></script>
+<script src="js/vue-3d-model.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/clues.css">
+<link rel="stylesheet" type="text/css" href="./css/scene.css">
+<link rel="stylesheet" type="text/css" href="./css/tingle.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+	<body style='margin : 0px; overflow: hidden;'>
+		<a-scene id="ascene" embedded arjs="debugUIEnabled: false; patternRatio: 0.8">
+
+			<a-entity camera></a-entity>
+			<a-entity cursor="fuse: true; fuseTimout: 3000"
+				position="0 0 -1"
+				scale="0.01 0.01 0.01"
+				geometry="primitive: ring"
+				material="color: black; shader: flat">
+			</a-entity>
+
+		</a-scene>
+    
+		<button id="btn-clues" class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
+		<button id="btn-models" class="overlay tingle-btn tingle-btn--primary" onclick="toggleModels()">Models</button>
+		<button id="btn-characters" class="overlay tingle-btn tingle-btn--primary" data-toggle="modal" data-target="#characterModal">Characters</button>
+		<div id="app" class="grayBg">
+			<div id="clues" class="grayBg"></div>
+			<br>
+			<div id="revelations" class="grayBg"></div>
+		</div>
+
+		<div id="models" class='grayBg'>
+			<iframe src="models-viewer.html" id="modelsframe"></iframe>
+		</div>
+
+		
+
+
+		<!-- Modal -->
+		<div id="characterModal" class="modal fade" role="dialog">
+			<div class="modal-dialog grayBg">
+		
+				<!-- Modal content-->
+				<div class="modal-content grayBg">
+					<div class="modal-header">
+						<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
+						<h2 class="modal-title">The faces behind the story</h2>
+					</div>
+					<div id="characterModalBody" class="modal-body">
+						<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
+					</div>
+					<div id="characterModalFooter" class="modal-footer">
+					</div>
+				</div>
+		
+			</div>
+		</div>
+
+	<script src="gamedatamarker.json"></script>
+	<script src="characters.json"></script>
+	<script>
+
+	var alreadyAddedClues = [];
+	var scrollToY = 0;
+
+	function initCharacters(){
+		for (i=0; i<characters.length; i++){
+			$('#characterModalBody').append("<input id='"+characters[i].id+"' class='pngBtn modalContents' type='image' src='" + characters[i].image +"' onclick='addCharacter(\"" + characters[i].id +"\")' />");
+		}
+		console.log("added")
+	}
+
+	/* Toggles the Clues/Revelation interface visibility */	
+	function toggleClues() {
+		if(!cluesVisible) {
+			if(modelsVisible) {
+				document.getElementById('models').style.visibility="hidden";
+				modelsVisible = false;
+			}
+			document.getElementById('app').style.visibility="visible";
+			$('#revelations').scrollTop(scrollToY);
+		}
+		else {
+			document.getElementById('app').style.visibility="hidden";
+		}
+		cluesVisible = !cluesVisible;
+	}
+
+	/* Toggles the Models interface visibility */	
+	function toggleModels() {
+		if(!modelsVisible) {
+			if(cluesVisible) {
+				document.getElementById('app').style.visibility="hidden";
+				cluesVisible = false;
+			}
+			document.getElementById('models').style.visibility="visible";
+		}
+		else {
+			document.getElementById('models').style.visibility="hidden";
+		}
+		modelsVisible = !modelsVisible;
+	}
+
+
+	/* Add the HTML code related to a clue */
+	function addClueSetup(id) {
+		document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false">' + id + '</div>';  
+		var coords = interact.getElementRect(document.getElementById(id));
+		cluePositions.list.push({x: coords.left + coords.width/2, y: coords.top + coords.height/2})
+	}
+
+
+	/* Add the HTML code related to a clue */
+	function addClue(id) {
+		if(alreadyAddedClues.indexOf(id) == -1){
+			//document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false"> <span class="glyphicon glyphicon-'+id+'"></span> </div>';  
+			document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable draggable-clue" align="center" dropped="false">' + id + '</div>';  
+			alreadyAddedClues.push(id);
+			cluePositions.size++;
+			activateDraggableClueById(id, cluePositions.size-1);
+
+			/* Models */
+			if (discovered[id] == null) {
+				discovered[id] = true;
+				addModel(id);
+			} 
+                }
+
+	}
+	/* Add character description */
+	function addCharacter(id){
+		for( i = 0 ; i<characters.length ; i++){
+			if (characters[i].id == id ){
+				break;
+			}
+		}
+		console.log(id);
+		$('#characterModalFooter').html('<h2 class="modalContents">'+characters[i].name+'</h2> <h3 class="modalContents">'+characters[i].description+'</h3><image class="charImg modelContens" src="'+characters[i].image+'">');
+	}
+	/* Create next chapter revelation */
+	function addChapterRevelation() {
+		addRevelation(
+			"Chapter " + gameData.revelations[chapterIndex].number + " - " + gameData.revelations[chapterIndex].title,
+			gameData.revelations[chapterIndex].id,
+			gameData.revelations[chapterIndex].clueList
+		);
+		scrollToY += $('.revelation:last').height();
+		console.log('---' + scrollToY)
+	}	
+
+	
+	/* Add the HTML code related to a revelation */
+	function addRevelation(name, id, clueIdList) {
+		revCode = '<div id="' + id +  '"class="revelation">';
+		revCode += '<h4>' + name + '</h4>';
+		revCode += '<div class="dropzones">';
+		for (var i = 0; i < clueIdList.length; i++) {
+			revCode += '<div id="' + id + '-' + i + '" class="dropzone outer-dropzone"></div>'
+		}
+		revCode += '</div>';
+		revCode += '</div>';
+		document.getElementById('revelations').innerHTML += revCode;
+	}
+
+
+	/* Interact.js code to make the clues div draggable */
+	function activateDraggableClues() {
+
+		// target elements with the "draggable-clue" class
+		interact('.draggable')
+		.draggable({
+			snap: {
+				targets: [startPos],
+				range: Infinity,
+				relativePoints: [{x:0.5, y:0.5}],
+				endOnly: true
+			},
+			inertia: true,
+			restrict: {
+				restriction: "#app",
+				endOnly: false,
+				elementRect: { top: 0.1, left: 0.1, bottom: 0.9, right: 0.9 }
+			},
+			autoScroll: false,
+
+			onstart: function (event) {
+			
+				var rect = interact.getElementRect(event.target);
+				startPos.x = rect.left + rect.width / 2;
+				startPos.y = rect.top + + rect.height / 2;
+	
+				if (event.target.toTransform == false) {
+					var par = interact.getElementRect(event.target.parentNode);
+					startPos.x = par.left + par.width / 2;
+					startPos.y = par.top + + par.height / 2;
+					
+					event.target.toTransform = true;
+				}
+	
+				event.target.setAttribute('data-start-x', rect.left + rect.width  / 2);
+				event.target.setAttribute('data-start-y', rect.top  + rect.height / 2);
+			
+				event.interactable.draggable({
+					snap: {
+						targets: [startPos]
+					}
+				});
+			},
+
+			onmove: dragMoveListener,
+			
+			onend: function (event) {
+				/*console.log(startPos);
+				// snap to the start position
+				event.interactable.draggable({
+					snap: {
+						targets: [startPos]
+					}
+				});*/
+			}
+		});
+
+	}
+
+	
+	/* Interact.js code to make the clues div draggable */
+	function activateDraggableClueById(id, posIndex) {
+
+		// target elements with the "draggable-clue" class
+		interact('#' + id)
+		.draggable({
+			snap: {
+				targets: [cluePositions.list[posIndex]],
+				range: Infinity,
+				relativePoints: [{x:0.5, y:0.5}],
+				endOnly: true
+			},
+			
+		});
+
+	}
+	
+	
+	
+	/* Listener for moving objects */
+	function dragMoveListener (event) {
+		var target = event.target,
+		// keep the dragged position in the data-x/data-y attributes
+	    	x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+	    	y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+		// translate the element
+		if (target.toTransform != false)
+			target.style.webkitTransform =
+				target.style.transform =
+				'translate(' + x + 'px, ' + y + 'px)';
+
+		// update the position attributes
+		target.setAttribute('data-x', x);
+		target.setAttribute('data-y', y);
+	}
+
+	
+	function activateDropzones() {
+		// enable draggables to be dropped into this
+		interact('.dropzone').dropzone({
+			accept: '.draggable-clue',
+			// Require a 75% element overlap for a drop to be possible
+			overlap: 0.75,
+
+			// listen for drop related events:
+			ondropactivate: function (event) {
+				// add active dropzone feedback
+				event.target.classList.add('drop-active');
+			},
+			ondragenter: function (event) {
+				var draggableElement = event.relatedTarget,
+				dropzoneElement = event.target;
+
+   				
+				if(dropzoneElement.getAttribute('content') == null) {
+				
+					cluePositions.size--;
+					
+					dropzoneElement.setAttribute('content', draggableElement.id);
+					// feedback the possibility of a drop
+					dropzoneElement.classList.add('drop-target');
+					draggableElement.classList.add('can-drop');
+				
+					var draggableElement = event.relatedTarget,
+					dropzoneElement  = event.target,
+					dropRect         = interact.getElementRect(dropzoneElement),
+					dropCenter       = {
+						x: dropRect.left + dropRect.width  / 2,
+						y: dropRect.top  + dropRect.height / 2
+					};
+
+					event.draggable.draggable({
+						snap: {
+							targets: [dropCenter]
+						}
+					});
+				}
+			},
+			ondragleave: function (event) {
+			     	event.relatedTarget.classList.remove('can-drop');
+
+				if (event.relatedTarget.id == event.target.getAttribute('content')) {
+					event.target.removeAttribute('content');
+				
+					var par = interact.getElementRect(event.target);
+					
+					// remove the drop feedback style
+			     		event.target.classList.remove('drop-target');
+					event.target.classList.remove('drop-content');
+
+					cluePositions.size++;
+			
+	
+					if (event.relatedTarget.getAttribute('dropped') == "true") {
+						
+			     			event.relatedTarget.classList.remove('dropped');
+						event.relatedTarget.parentNode.removeChild(event.relatedTarget);
+						document.getElementById('clues').appendChild(event.relatedTarget);
+					
+						var rect = interact.getElementRect(event.relatedTarget);
+
+						event.relatedTarget.setAttribute('data-start-x', cluePositions.list[cluePositions.size-1].x - 0*rect.width);
+						event.relatedTarget.setAttribute('data-start-y', cluePositions.list[cluePositions.size-1].y - 0*rect.height);
+
+						event.relatedTarget.setAttribute('data-x', parseFloat(event.relatedTarget.getAttribute('data-x')) + par.left + par.width/2 - cluePositions.list[cluePositions.size-1].x);
+						event.relatedTarget.setAttribute('data-y', parseFloat(event.relatedTarget.getAttribute('data-y')) + par.top + par.height/2 - cluePositions.list[cluePositions.size-1].y);
+
+						console.log("Setting snap to : " + cluePositions.list[cluePositions.size-1].x + " " + cluePositions.list[cluePositions.size-1].y);
+						event.relatedTarget.setAttribute('dropped', false);
+					}
+
+					event.draggable.draggable({
+						snap: {
+							targets: [
+								{
+									x: parseFloat(event.relatedTarget.getAttribute('data-start-x')),
+									y: parseFloat(event.relatedTarget.getAttribute('data-start-y'))
+								}
+							]
+						}
+					});
+				}
+				
+
+				
+	     		},
+			ondrop: function (event) {
+				event.target.classList.add('drop-content');
+				event.target.appendChild(event.relatedTarget);
+			
+				event.relatedTarget.setAttribute('data-x', 0);
+				event.relatedTarget.setAttribute('data-y', 0);
+				event.relatedTarget.setAttribute('dropped', true);
+				event.relatedTarget.classList.add('dropped');
+				
+				/* tutti i rimanenti aggiustati nella posizione */
+				var cluesDiv = document.getElementById('clues');
+				for (var i = 0; i < cluesDiv.children.length; i++) {
+					activateDraggableClueById(cluesDiv.children[i].id, i);
+				}
+			
+				event.relatedTarget.toTransform = false;
+				event.relatedTarget.style.webkitTransform =
+					event.relatedTarget.style.transform = 'translate(0px, 0px)';
+				
+				var parentEl = event.target.parentNode;
+				var nodes = parentEl.childNodes;
+				var content;
+				var completed = true;
+				var revelation = null;
+
+				for (i = 0; i < gameData.revelations.length; i++) {
+					if (gameData.revelations[i].id == parentEl.parentNode.id) {
+						revelation = gameData.revelations[i];
+					}
+				}
+
+				if (revelation == null) {
+					return;
+				}
+
+				for (i = 0; i < nodes.length; i++) {
+					content = nodes[i].getAttribute('content');
+					if (revelation.clueList.indexOf(content) < 0) {
+						completed = false;
+						break;
+					}
+				}
+			
+				if (completed) {
+					toggleClues();
+					handleRevelationCompleted(revelation.id);
+				}
+			},
+			ondropdeactivate: function (event) {
+				// remove active dropzone feedback
+				event.target.classList.remove('drop-active');
+				event.target.classList.remove('drop-target');
+			}
+		});
+	}
+
+
+	/* Create initial modal */
+	function createInitialModal() {
+		// instanciate new modal
+		var modal = new tingle.modal({
+			footer: true,
+			stickyFooter: false,
+			//closeMethods: ['overlay', 'button', 'escape'],
+			//closeLabel: "Close",
+			cssClass: [],
+			onOpen: function() {
+			},
+			onClose: function() {
+			},
+			beforeClose: function() {
+				return true; // close the modal
+			}
+		});
+
+		// set content
+		modal.setContent('<h1>' + gameData.initialDialog.title + '</h1>');
+
+		// add a button
+		modal.addFooterBtn('Start', 'tingle-btn tingle-btn--primary', function() {
+			modal.close();
+			modal.destroy();
+			createNewChapterModal();
+		});
+
+		// open modal
+		modal.open();
+
+		return modal;
+	}
+
+	
+	function createNewChapterModal() {
+		// instanciate new modal
+		var modal = new tingle.modal({
+			footer: true,
+			stickyFooter: false,
+			//closeMethods: ['overlay', 'button', 'escape'],
+			//closeLabel: "Close",
+			cssClass: [],
+			onOpen: function() {
+			},
+			onClose: function() {
+			},
+			beforeClose: function() {
+				return true; // close the modal
+			}
+		});
+
+		// set content
+		var content = "";
+		content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' +  gameData.revelations[chapterIndex].title + '</h2>';
+		content += '<p>' +  gameData.revelations[chapterIndex].intro + '</p>'
+		modal.setContent(content);
+
+		// add a button
+		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
+			modal.close();
+			modal.destroy();
+
+			/* TODO Test */
+			setupChapterMarkers(chapterIndex);
+		});
+
+		// open modal
+		modal.open();
+
+		return modal;
+	}
+	
+	function createChapterEndModal() {
+		// instanciate new modal
+		var modal = new tingle.modal({
+			footer: true,
+			stickyFooter: false,
+			//closeMethods: ['overlay', 'button', 'escape'],
+			//closeLabel: "Close",
+			cssClass: [],
+			onOpen: function() {
+			},
+			onClose: function() {
+			},
+			beforeClose: function() {
+				return true; // close the modal
+			}
+		});
+
+		// set content
+		var content = "";
+		content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' +  gameData.revelations[chapterIndex].title + '</h2>';
+		content += '<h2>Completed!</h2>';
+		content += '<p>' +  gameData.revelations[chapterIndex].outro + '</p>'
+		modal.setContent(content);
+		
+		// add a button
+		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
+			modal.close();
+			modal.destroy();
+
+			/* Chapter index is incremented in the handleRevelation function */
+
+			if (chapterIndex  == gameData.revelations.length) {
+				createGameEndModal();
+			}
+			else {
+				createNewChapterModal();
+			}
+		});
+
+		// open modal
+		modal.open();
+
+		return modal;
+	}
+
+	
+	function createGameEndModal() {
+		// instanciate new modal
+		var modal = new tingle.modal({
+			footer: true,
+			stickyFooter: false,
+			//closeMethods: ['overlay', 'button', 'escape'],
+			//closeLabel: "Close",
+			cssClass: [],
+			onOpen: function() {
+			},
+			onClose: function() {
+			},
+			beforeClose: function() {
+				return true; // close the modal
+			}
+		});
+
+		// set content
+		modal.setContent('<h1>' + gameData.endDialog.title + '</h1> <p>' + gameData.endDialog.text  + '</p>');
+
+		// add a button
+		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
+			modal.close();
+		});
+
+		// open modal
+		modal.open();
+
+		return modal;
+	}
+
+
+	
+	function changeMarkerContent(currentId, newId, posString, rotationString, scaleFactor, onclick, objPath, mtlPath) {
+		var el = document.getElementById(currentId);
+		el.id = newId;
+
+		text = "";
+		text += '<a-entity ';
+		text += 'position="' + posString + '" ';
+		text += 'rotation="' + rotationString + '" ';
+		text += 'obj-model="obj: url(' + objPath + '); mtl: url(' + mtlPath +')" ';
+		text += 'scale="' + scaleFactor + ' ' + scaleFactor + ' ' + scaleFactor + '" ';
+		text += 'onmousedown="' + onclick + '" ';
+		text += '>';
+		text += '<a-animation attribute="scale" begin="mousedown" dur="500" fill="backwards" to="' + scaleFactor/2 + ' ' + scaleFactor/2 + ' ' + scaleFactor/2 + '"></a-animation>';
+		text += '</a-entity>';
+
+		el.innerHTML = text;
+	}
+
+	
+	function insertMarker(id, marker, posString, rotationString, scaleFactor, onclick, objPath, mtlPath) {
+		text = "";
+		if (marker == "hiro" || marker == "kanji") {
+			text += '<a-marker id="' + id + '" preset="' + marker + '" markername="' + marker  + '">';
+		}
+		else {
+			text += '<a-marker id="' + id + '" preset="custom" type="pattern" url="' + marker + '" markername="' + marker  + '">';
+		}
+		text += '<a-entity ';
+		text += 'position="' + posString + '" ';
+		text += 'rotation="' + rotationString + '" ';
+		text += 'obj-model="obj: url(' + objPath + '); mtl: url(' + mtlPath +')" ';
+		text += 'scale="' + scaleFactor + ' ' + scaleFactor + ' ' + scaleFactor + '" ';
+		text += 'onmousedown="' + onclick + '" ';
+		text += '>';
+		text += '<a-animation attribute="scale" begin="mousedown" dur="500" fill="backwards" to="' + scaleFactor/2 + ' ' + scaleFactor/2 + ' ' + scaleFactor/2 + '"></a-animation>';
+		text += '</a-entity>';
+		text += '</a-marker>';
+		
+	
+		var scene = document.getElementById('ascene');
+                scene.insertAdjacentHTML('beforeend', text);
+	}
+
+	
+	function handleRevelationCompleted(id) {
+	
+		createChapterEndModal();
+
+		chapterIndex++;
+
+		document.getElementById('clues').innerHTML = ""
+
+		/* Fix every clue used to solve this chapter */
+		var revel = document.getElementById(id).childNodes[1];
+		for (var i = 0; i < revel.childNodes.length; i++) {
+			if (revel.childNodes[i].classList.contains('dropzone')) {
+				revel.childNodes[i].setAttribute('content', 'solved');
+				revel.childNodes[i].childNodes[0].classList.remove('draggable');
+				revel.childNodes[i].childNodes[0].id += '-solved-' + id;
+			}
+		}
+
+		/* Reset clues icons */
+		var oldClues = alreadyAddedClues;
+		alreadyAddedClues = [];
+		cluePositions.size = 0;
+
+		for (var i = 0; i < oldClues.length; i++) {
+			addClue(oldClues[i]);
+		}
+		
+		/* Create new chapter revelation elements */	
+		addChapterRevelation();
+
+	}
+
+
+	function setupChapterMarkers(chapter) {
+		var markers = document.getElementsByTagName('a-marker');
+		for (var j = 0; j < markers.length; j++) {
+			markers[j].innerHTML = "";
+		}
+
+		for (var i = 0; i < gameData.revelations[chapter].activeClues.length; i++) {
+			insertMarkerFromId(gameData.revelations[chapter].activeClues[i]);
+		}
+	}
+
+
+	function insertMarkerFromId(id) {
+		for (var i = 0; i < gameData.clues.length; i++) {
+			if (gameData.clues[i].id == id) {
+
+				var clue = gameData.clues[i];
+				var markerIsUsed = false;
+		
+				var markers = document.getElementsByTagName('a-marker');
+				for (var j = 0; j < markers.length; j++) {
+					if (markers[j].getAttribute('markername') == clue.marker) {
+						markerIsUsed = true;
+						oldId = markers[j].id;
+					}
+				}
+
+				if (!markerIsUsed) {
+					insertMarker(
+						'marker-' + clue.id,
+						clue.marker,
+						clue.posString,
+						clue.rotationString,
+						clue.scaleFactor,
+						clue.function+"(\'" + clue.id + "\')",
+						clue.obj,
+						clue.mtl
+					);
+				}
+				else {
+					changeMarkerContent(
+						oldId,
+						'marker-' + clue.id,
+						clue.posString,
+						clue.rotationString,
+						clue.scaleFactor,
+						clue.function + "(\'" + clue.id + "\')",
+						clue.obj,
+						clue.mtl
+					);
+				}
+			}
+		}
+	};
+
+
+
+	
+
+	/* Models Functions */
+	
+	function addModel(id) {
+		/* Add option to select element */
+		option = '';
+		option += '<option value="' + id + '">' + id.charAt(0).toUpperCase() + id.slice(1); + '</option>';
+		modelsframe.getElementById('model-select').innerHTML += option;
+
+		if (Object.keys(discovered).length == 1) {
+			forceSelectModel(id);
+		}
+	}
+
+	function forceSelectModel(model) {
+		console.log("Forcing select model " + model);
+		document.getElementById('btn-models').style.visibility = "visible";
+		modelsframe.getElementById('model-' + model).style.visibility = "visible";
+		document.getElementById("modelsframe").contentWindow.currentModel = model;
+	}
+
+
+	function otherF(id){
+		console.log("aAAAAAAAAAA " + id);
+	}
+
+
+	/* Init variables */
+	var cluesVisible = false;
+	var modelsVisible = false;
+	var startPos = {x: 0, y: 0};
+	var chapterIndex = 0;
+	var discovered = {}
+
+	window.onload = function() {
+		modelsframe = document.getElementById('modelsframe').contentWindow.document;
+		initCharacters();
+	}
+
+	var cluePositions = {};
+	cluePositions.size = 0;
+	cluePositions.list = [];
+
+	/* Insert clues to fill cluePosition struct */
+	for (i = 0; i < gameData.clues.length; i++) {
+		addClueSetup(gameData.clues[i].id);
+	}
+	/* Empty clues div */
+	document.getElementById('clues').innerHTML = "";
+
+	/* Insert clues */
+	/*for (i = 0; i < gameData.clues.length; i++) {
+		addClue(gameData.clues[i].id);
+	}*/
+
+	/* Insert revelations/dropzones */
+	addChapterRevelation();
+
+	/* Activate drag and drop */
+	activateDropzones();
+	activateDraggableClues();
+
+	
+	createInitialModal();
+	//addClue('window');
+	//addClue('key');
+	//addClue('lock');
+	</script>	
+
+	</body>
+</html>
