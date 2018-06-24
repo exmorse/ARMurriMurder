@@ -32,14 +32,12 @@ a-scene {
 
 #btn-clues {
 	position: absolute;
-	width: 15vw;
 	padding: 2%;
 	bottom: 2vh;
 	right: 5vw;
 }
 #btn-characters {
 	position: absolute;
-	width: 22vw;
 	padding: 2%;
 	bottom: 2vh;
 	right: 21vw;
@@ -48,7 +46,6 @@ a-scene {
 #btn-models {
 	position: absolute;
 	visibility: hidden;
-	width: 15vw;
 	padding: 2%;
 	bottom: 2vh;
 	left: 5vw;

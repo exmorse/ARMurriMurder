@@ -1,26 +1,30 @@
 <html>
-<head>
-	<link href="css/models.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="./css/scene.css">
-
-</head>
-<body class='grayBg'>
-	<select id="model-select" onchange="selectModel(this.value);">
-	</select>
-
-	<div id="models-container">
-	</div>
-
-
-	<script src="gamedata.json"></script>
-
-	<script src="js/vue.js"></script>
-	<script src="js/vue-3d-model.min.js"></script>
-	<script>
-		function startVue(id) {
-			vue = new Vue({
-				el: '#' + id,
-				data: {
+	<head>
+		<link href="css/models.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="./css/scene.css">
+		<link rel="stylesheet" type="text/css" href="iconselect/css/lib/control/iconselect.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="iconselect/lib/control/iconselect.js"></script>
+		<script type="text/javascript" src="iconselect/lib/iscroll.js"></script>
+	</head>
+	<body class='grayBg'>
+		<div id="pippo"></div>
+		
+		<div id="models-container">
+		</div>
+		
+		
+		<script src="gamedata.json"></script>
+		
+		<script src="js/vue.js"></script>
+		<script src="js/vue-3d-model.min.js"></script>
+		<script>
+			var icons = [];
+			var iconSelect;
+			function startVue(id) {
+				vue = new Vue({
+					el: '#' + id,
+					data: {
 					bgColor: '#ff0',
 					bgAlpha: 0.5,
 					lights:[{
@@ -68,6 +72,29 @@
 			currentModel = model;
 		}
 
+		function addIcon(icon){
+			icons.push(icon);
+			$('#pippo').remove();
+			$('body').prepend('<div id="pippo"></div>');
+			iconSelect = new IconSelect("pippo",
+				{
+					'selectedIconWidth': 48,
+					'selectedIconHeight': 48,
+					'selectedBoxPadding': 1,
+					'iconsWidth': 48,
+					'iconsHeight': 48,
+					'boxIconSpace': 1,
+					'vectoralIconNumber': 2,
+					'horizontalIconNumber': 1
+				});
+			//iconSelect.refresh([]);
+			iconSelect.refresh(icons);
+			document.getElementById('pippo').addEventListener('changed', function (e) {
+				console.log('-----------' + iconSelect.getSelectedValue());
+				selectModel(iconSelect.getSelectedValue())
+			});
+			
+		}
 
 		function addModel(id, obj, mtl) {
 			/* Add model HTML */
@@ -106,11 +133,28 @@
 
 		currentModel = null;
 
+
 		window.onload = function () {
+
+			iconSelect = new IconSelect("pippo",
+				{
+					'selectedIconWidth': 48,
+					'selectedIconHeight': 48,
+					'selectedBoxPadding': 1,
+					'iconsWidth': 48,
+					'iconsHeight': 48,
+					'boxIconSpace': 1,
+					'vectoralIconNumber': 1,
+					'horizontalIconNumber': 3
+				});
+			
+			iconSelect.refresh(icons);
 			for (var i = 0; i < gameData.clues.length; i++) {
 				startVue('model-' + gameData.clues[i].id);
 			}
-		}
+
+		};
+
 </script>
 </body>
 </html>
