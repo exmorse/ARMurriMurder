@@ -42,7 +42,6 @@
 	</div>
 
 
-<<<<<<< HEAD
 		<div id="mobileTrig" style="visibility: hidden;">
 		</div>
 
@@ -62,24 +61,6 @@
 					</div>
 					<div id="characterModalFooter" class="modal-footer">
 					</div>
-=======
-
-
-	<!-- Modal -->
-	<div id="characterModal" class="modal fade" role="dialog">
-		<div class="modal-dialog grayBg">
-
-			<!-- Modal content-->
-			<div class="modal-content grayBg">
-				<div class="modal-header">
-					<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
-					<h2 class="modal-title">The faces behind the story</h2>
-				</div>
-				<div id="characterModalBody" class="modal-body">
-					<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
-				</div>
-				<div id="characterModalFooter" class="modal-footer">
->>>>>>> dafda4f4143f55274f9c1caa1f7194945817dd08
 				</div>
 			</div>
 
@@ -148,6 +129,11 @@
 				alreadyAddedClues.push(id);
 				cluePositions.size++;
 				activateDraggableClueById(id, cluePositions.size - 1);
+				
+				$('#btn-clues').addClass('active');
+				setTimeout(function () {
+					$('body, button').removeClass('active');
+				}, 1200);
 
 				/* Models */
 				if (discovered[id] == null) {

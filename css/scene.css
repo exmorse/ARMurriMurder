@@ -30,6 +30,10 @@ a-scene {
 	color:white;
 }
 
+.active {
+  animation: shake 200ms 2 linear;
+}
+
 #btn-clues {
 	position: absolute;
 	padding: 2%;
@@ -110,4 +114,16 @@ a-scene {
     background-color: white;
     height: 100%;
     left: 0;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(6px, 0);
+  }
+  50% {
+    transform: translate(-6px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
 }
