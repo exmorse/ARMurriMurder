@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Typewriter Test</title>
+        <script src="js/typewriter.js"></script>
+
+    </head>
+
+    <body>
+        <div id="app"></div>
+
+        <script>
+            var app = document.getElementById('app');
+
+            var typewriter = new Typewriter(app, {
+                loop: false
+            });
+
+            typewriter.typeString('Hello World!')
+                .pauseFor(2500)
+                //.deleteAll()
+                //.typeString('Strings can be removed')
+                //.pauseFor(2500)
+                //.deleteChars(7)
+                //.typeString('altered!')
+                .start();
+        </script>
+    </body>
+</html>

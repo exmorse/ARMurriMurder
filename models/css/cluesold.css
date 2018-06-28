@@ -1,0 +1,90 @@
+#app {
+	width: 100vw;
+	height: 90vh
+	margin: auto;
+}
+
+#clues {
+	border-style: solid;
+	border-radius: 2em;
+	border-width: 0.2em;
+	border-color: black;
+	
+	width: 94vw;
+	height: 40vh;
+	margin: auto;
+}
+
+.draggable {
+	touch-action: none;
+
+	display: inline-block;
+	width: 10vh;
+	height: 10vh;
+	min-height: 6.5em;
+	margin: 2% 6%;
+
+	background-color: #29e;
+	color: white;
+
+	border-style: solid;
+	border-width: 0.4em;
+	border-color: black;
+       	border-radius: 2.5em;
+	padding: 2%;
+
+	-webkit-transform: translate(0px, 0px);
+	transform: translate(0px, 0px);
+}
+
+#outer-dropzone1, #outer-dropzone2 {
+	height: 65%;
+	width: 35%;
+	float: left;
+	margin: 5% 2%;
+}
+
+#inner-dropzone1, #inner-dropzone2 {
+	height: 80%;
+	width: 80%;
+	margin: auto;
+	display: inherit;
+}
+
+#dropzones {
+	border-style: solid;
+	border-radius: 2em;
+	border-width: 0.2em;
+	border-color: black;
+
+	width: 94vw;
+	height: 40vh;
+	overflow: auto;
+	margin: auto;
+}
+
+.dropzone {
+	display: inline-block;
+	background-color: #ccc;
+	border: dashed 4px transparent;
+	border-radius: 4px;
+	margin: 1vh 1vh 3vh;
+	padding: 3vh;
+	width: 80vh;
+	transition: background-color 0.3s;
+}
+
+.drop-active {
+	border-color: #aaa;
+}
+
+.drop-target {
+	background-color: #29e;
+	border-color: #fff;
+	border-style: solid;
+}
+
+.can-drop {
+	color: #000;
+	background-color: #4e4;
+}

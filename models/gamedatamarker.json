@@ -14,12 +14,12 @@ var gameData = {
 		{
 			'id': 'cestino',
 			'marker': 'markers/cestinomarker/cestino.patt',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.mtl',
-			'posString': '0 0.4 0',
+			'obj': 'models/Capello/CAPELLOblend4.obj',
+			'mtl': 'models/Capello/CAPELLOblend4.mtl',
+			'posString': '0 0 0',
 			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
-			'img': 'key.png',
+			'scaleFactor': 1,
+			'img': 'cestino.png',
 			'function': 'addClue'
 		},
 		{
@@ -65,7 +65,7 @@ var gameData = {
 			'scaleFactor': 2.5,
 			'img': 'key.png',
 			'function': 'addClue'
-		}
+		},
 	],
 
 	'initialDialog' : {

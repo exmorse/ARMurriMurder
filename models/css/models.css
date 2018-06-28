@@ -1,0 +1,37 @@
+#model-select {
+	position: fixed;
+	top: 5%;
+	margin: 5% auto;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 40%;
+	height: 10%;
+	padding: 2%;
+}
+
+.model {
+	border-style: solid;
+	border-radius: 2em;
+	border-width: 0.4em;
+	border-color: black;
+	/*visibility: hidden;*/
+	position: fixed;
+	top: 20%;
+	margin: 5% auto;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 80%;
+	height: 65%;
+	padding: 2%;
+	background-color: white;
+	z-index: 100;
+}
+
+/*.model {
+
+	margin: 5% auto;
+	width: 95%;
+	height: 95%;
+}*/

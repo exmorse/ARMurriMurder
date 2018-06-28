@@ -10,8 +10,6 @@
 <link rel="stylesheet" type="text/css" href="./css/scene.css">
 <link rel="stylesheet" type="text/css" href="./css/tingle.css">
 
-<script src="js/typewriter.js"></script>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -439,7 +437,7 @@
 		modal.setContent('<h1>' + gameData.initialDialog.title + '</h1>');
 
 		// add a button
-		modal.addFooterBtn('Start', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function() {
+		modal.addFooterBtn('Start', 'tingle-btn tingle-btn--primary', function() {
 			modal.close();
 			modal.destroy();
 			createNewChapterModal();
@@ -472,12 +470,11 @@
 		// set content
 		var content = "";
 		content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' +  gameData.revelations[chapterIndex].title + '</h2>';
-		content += '<img style="width: 30%; height: 40%; margin: auto;" src="img/dhdtective.png"/>';
-		content += '<p id="typewriter-text" class="dialog-text">' +  gameData.revelations[chapterIndex].intro + '</p>'
+		content += '<p>' +  gameData.revelations[chapterIndex].intro + '</p>'
 		modal.setContent(content);
 
 		// add a button
-		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function() {
+		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
 			modal.close();
 			modal.destroy();
 
@@ -487,18 +484,6 @@
 
 		// open modal
 		modal.open();
-
-		var app = document.getElementById('typewriter-text');
-
-		var typewriter = new Typewriter(app, {
-			loop: false,
-			typingSpeed: 40
-		});
-
-		typewriter.pauseFor(500)
-			.typeString(gameData.revelations[chapterIndex].intro)
-			.pauseFor(500)
-			.start();
 
 		return modal;
 	}
@@ -528,7 +513,7 @@
 		modal.setContent(content);
 		
 		// add a button
-		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function() {
+		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
 			modal.close();
 			modal.destroy();
 
@@ -570,7 +555,7 @@
 		modal.setContent('<h1>' + gameData.endDialog.title + '</h1> <p>' + gameData.endDialog.text  + '</p>');
 
 		// add a button
-		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function() {
+		modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function() {
 			modal.close();
 		});
 

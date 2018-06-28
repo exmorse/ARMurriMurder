@@ -127,10 +127,3 @@ a-scene {
     transform: translate(0, 0);
   }
 }
-
-.dialog-text {
-	border-style: double;
-	border-width: thick;
-	border-radius: 2%;
-	padding: 3.5%;
-}
