@@ -153,3 +153,11 @@ a-scene {
 .dialog-text {
 	font-size: 135%;
 }
+
+#cursorTutorial {
+	position: fixed;
+	width: 8vw;
+	height: 6vh;
+	left: 47vw;
+	top: 43vh;
+}

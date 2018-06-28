@@ -11,6 +11,8 @@
 <link rel="stylesheet" type="text/css" href="./css/tingle.css">
 
 <script src="js/typewriter.js"></script>
+<script src="js/intro.js"> </script>
+<link rel="stylesheet" type="text/css" href="./css/introjs.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -30,14 +32,17 @@
 
 	</a-scene>
 
-	<button id="btn-clues" class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
+	<button id="btn-clues" data-step="2" data-intro="This button opens the clues section, where you can make your hypothesis." class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
 	<button id="btn-models" class="overlay tingle-btn tingle-btn--primary" onclick="toggleModels()">Models</button>
-	<button id="btn-characters" class="overlay tingle-btn tingle-btn--primary" data-toggle="modal" data-target="#characterModal">Characters</button>
+	<button id="btn-characters" data-step="3" data-intro="This button opens the characters section, where you can read info on the suspects." class="overlay tingle-btn tingle-btn--primary" data-toggle="modal" data-target="#characterModal">Characters</button>
+	
 	<div id="app" class="grayBg">
 		<div id="clues" class="grayBg"></div>
 		<br>
 		<div id="revelations" class="grayBg"></div>
 	</div>
+
+	<div id="cursorTutorial" data-step="1" data-intro="This is the cursor. Use it to aim markers and click to interact with clues."></div>
 
 	<div id="models" class='grayBg'>
 		<iframe src="models-viewer.html" id="modelsframe"></iframe>
@@ -513,6 +518,10 @@
 					modal.close();
 					modal.destroy();
 					setupChapterMarkers(chapterIndex);
+
+					if (chapterIndex == 0) {
+						introJs().start();
+					}
 				}
 
 
