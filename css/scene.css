@@ -17,12 +17,11 @@ a-scene {
 .grayBg{
 	background-color: darkslategray !important;
 	color:white;
-	opacity: 0.82;
+	opacity: 0.90;
 }
 
 .modalContents{
 	color: white !important;
-	opacity: 1 !important;
 }
 
 
@@ -61,8 +60,10 @@ a-scene {
 }
 
 .charImg {
-	width:20vw;
-	height: 20vh;
+	width:30vw;
+	height: 30vh;
+	align:center;
+	opacity: 1 !important;
 }
 #app, #models {
 	border-style: solid;

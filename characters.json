@@ -3,13 +3,38 @@ var characters =
 	{
 		'id':'lindamurri',
 		'name': 'Linda Murri',
-		'image': './img/lm.svg',
+		'image': 'LindaMurri.png',
 		'description': 'akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
 	},
 	{
-		'id':'stom',
-		'name': 'carlo stomeo',
-		'image': './img/stom.png',
+		'id':'carlosecchi',
+		'name': 'Carlo Secchi',
+		'image': 'CarloSecchi.png',
 		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
 	},
+	{
+		'id':'augustomurri',
+		'name': 'Augusto Murri',
+		'image': 'AugustoMurri.png',
+		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+	},
+	{
+		'id':'FrancescoBonmartini',
+		'name': 'Francesco Bonmartini',
+		'image': 'FrancescoBonmartini.png',
+		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+	},
+	{
+		'id':'TisaBorghi',
+		'name': 'Tisa Borghi',
+		'image': 'TisaBorghi.png',
+		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+	},
+	{
+		'id':'TullioMurri',
+		'name': 'Tullio Murri',
+		'image': 'TullioMurri.png',
+		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+	},
+
 ]
