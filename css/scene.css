@@ -24,9 +24,16 @@ a-scene {
 	color: white !important;
 }
 
+.modal-body{
+	text-align: center;
+}
 
 .modal-title{
 	color:white;
+}
+
+.modal-footer{
+	text-align: left !important;
 }
 
 .active {

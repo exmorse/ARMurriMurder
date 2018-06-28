@@ -4,37 +4,75 @@ var characters =
 		'id':'lindamurri',
 		'name': 'Linda Murri',
 		'image': 'LindaMurri.png',
-		'description': 'akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+		'description':
+			[
+				"The Count Francesco Bonmartini was found dead in his house on September 2, 1902.",
+				"Before his death, he tried to become an assistant of his father-in-law Augusto, clinician and professor.",
+				"Augusto refused. Bonmartini declared that he would leave Bologna to move to Padova with his children."
+			],
+		'intro':"Bonmartini's wife and Augusto's daughter"
 	},
 	{
 		'id':'carlosecchi',
 		'name': 'Carlo Secchi',
 		'image': 'CarloSecchi.png',
-		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+		'description': 
+			[
+				"Prominent otolaryngologist and Augusto's pupil, Secchi was the man who had been denied to Linda by her family because of his age, 20 years older, before her marriage to Bonmartini.", 
+				" After the death of Bonmartini, he was accused of being  Linda's lover.",
+				" The accusation was grounded."
+			],
+		intro: "Augusto's pupil and Linda's lover",
 	},
 	{
 		'id':'augustomurri',
 		'name': 'Augusto Murri',
 		'image': 'AugustoMurri.png',
-		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+		'description':
+			[ 
+				"Well-known clinician and professor, exponent of positivist culture.",
+				"Shorly before Bonmartini's death, he did not accept him as assistant: ",
+				" \"For personal reasons between him and me \" he said.",
+				"In fact he did not tolerate that the relationship between Linda and Bonmartini had long since cracked."
+			],
+		'intro': "Linda and Tullio's Father",
 	},
 	{
 		'id':'FrancescoBonmartini',
 		'name': 'Francesco Bonmartini',
 		'image': 'FrancescoBonmartini.png',
-		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+		'description':
+			[
+				"Prominent otolaryngologist and Augusto's pupil, Secchi was the man who had been denied to Linda by her family because of his age,20 years older, before her marriage to Bonmartini.", 
+				"After the death of Bonmartini, he was accused of being  Linda's lover.",
+				"The accusation was grounded."
+			],
+		'intro' : "Linda's husband",
 	},
 	{
 		'id':'TisaBorghi',
 		'name': 'Tisa Borghi',
 		'image': 'TisaBorghi.png',
-		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+		'description':
+			[
+			"Already a nurse at Istituto Rizzoli, where Carlo Secchi had known her, Tisa Borghi had become his assistant and servant, after being his lover.",
+			"She was a cold woman, used to keeping herself locked in her own secrets.",
+			"But she was not reluctant to declare her hatred towards Linda.",
+			"Without ever revealing the true reasons of the hatred. "	
+			],
+		'intro': "Carlo Secchi's nurse",
 	},
 	{
 		'id':'TullioMurri',
 		'name': 'Tullio Murri',
 		'image': 'TullioMurri.png',
-		'description': 'ammazza che figo akjsdhf aodf adhfaiuefh asdf asuifh efladsufh ajf aeiu fjdasf uaief adshbfeaybf aljshdbfeya fadfbkhasdvf asvf ajdsvf kadsv fkads vf',
+		'description': 
+			[
+				"Tullio Murri, a lawyer, was a pleasure-loving man, who spent his life between women, cards and politics.",
+				"Smilar to a d'Annunzio character, his nature was impetuous.",
+				"He believed that Bonmarini was psychologically insensitive and for this reason his sister was threatened and had to be defended against everything.",
+			],
+		'intro': "Bonmartini's brother-in-law and Linda's brother"
 	},
 
 ]
