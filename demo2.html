@@ -32,9 +32,9 @@
 
 	</a-scene>
 
-	<button id="btn-clues" data-step="2" data-intro="This button opens the clues section, where you can make your hypothesis." class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
-	<button id="btn-models" class="overlay tingle-btn tingle-btn--primary" onclick="toggleModels()">Models</button>
-	<button id="btn-characters" data-step="3" data-intro="This button opens the characters section, where you can read info on the suspects." class="overlay tingle-btn tingle-btn--primary" data-toggle="modal" data-target="#characterModal">Characters</button>
+	<button id="btn-clues" class="overlay tingle-btn tingle-btn--primary tutorial-click" onclick="toggleClues()">Clues</button>
+	<button id="btn-models" class="overlay tingle-btn tingle-btn--primary tutorial-click" onclick="toggleModels()">Models</button>
+	<button id="btn-characters" class="overlay tingle-btn tingle-btn--primary tutorial-click" data-toggle="modal" data-target="#characterModal">Characters</button>
 	
 	<div id="app" class="grayBg">
 		<div id="clues" class="grayBg"></div>
@@ -51,6 +51,10 @@
 
 	<div id="mobileTrig" style="visibility: hidden;">
 	</div>
+
+	<div id="preload">
+			<img src="img/dhdtective.png" width="1" height="1" alt="Image 01" />
+		 </div>
 
 
 		<!-- Modal -->
@@ -97,8 +101,30 @@
 					document.getElementById('models').style.visibility = "hidden";
 					modelsVisible = false;
 				}
+
 				document.getElementById('app').style.visibility = "visible";
 				$('#revelations').scrollTop(scrollToY);
+
+				if (tutorialClues) {	
+					document.getElementById('clues').setAttribute('data-step', "1");
+					document.getElementById('clues').setAttribute('data-intro', "Here you can find all the discovered clues. Drag them to the revelation zone to go on with the investigation.");
+
+					document.getElementById('revelations').setAttribute('data-step', "2");
+					document.getElementById('revelations').setAttribute('data-intro', "This is the revelation zone. Fill the gaps with the right clues...");
+
+					document.getElementById('btn-clues').removeAttribute('data-step');
+					document.getElementById('btn-clues').removeAttribute('data-intro');
+					
+					document.getElementById('btn-models').removeAttribute('data-step');
+					document.getElementById('btn-models').removeAttribute('data-intro');
+
+					document.getElementById('btn-characters').removeAttribute('data-step');
+					document.getElementById('btn-characters').removeAttribute('data-intro');
+
+					tutorialClues = false;
+
+					introJs().start();
+				}
 			}
 			else {
 				document.getElementById('app').style.visibility = "hidden";
@@ -870,6 +896,30 @@
 			console.log("aAAAAAAAAAA " + id);
 		}
 
+		function tutorialClicked(id) {
+
+			if (tutorialClick) {
+
+				tutorialClick = false;
+
+				document.getElementById('cursorTutorial').removeAttribute('data-step');
+				document.getElementById('cursorTutorial').removeAttribute('data-intro');
+
+				document.getElementById('btn-clues').setAttribute('data-step', "1");
+				document.getElementById('btn-clues').setAttribute('data-intro', "This button opens the clues section, where you can make your hypothesis.");
+
+				document.getElementById('btn-models').setAttribute('data-step', "2");
+				document.getElementById('btn-models').setAttribute('data-intro', "This button opens the models section, where you can analyize discovered models.");
+
+				document.getElementById('btn-characters').setAttribute('data-step', "3");
+				document.getElementById('btn-characters').setAttribute('data-intro', "This button opens the characters section, where you can read info on the suspects.");
+
+				addClue(id);
+
+				setTimeout(function(){ introJs().start(); }, 1200);
+			}
+		}
+
 
 		/* Init variables */
 		var cluesVisible = false;
@@ -877,6 +927,8 @@
 		var startPos = { x: 0, y: 0 };
 		var chapterIndex = 0;
 		var discovered = {}
+		var tutorialClues = true;
+		var tutorialClick = true;
 
 		window.onload = function () {
 			modelsframe = document.getElementById('modelsframe').contentWindow.document;

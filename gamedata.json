@@ -9,7 +9,7 @@ var gameData = {
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
 			'img': 'key.png',
-			'function': 'addClue'
+			'function': 'tutorialClicked'
 		},
 		{
 			'id': 'window',
@@ -73,9 +73,9 @@ var gameData = {
 			'title': 'Tutorial',
 			'intro': [
 				'Hello there. Sorry, who are you...?',
-				'Oh, I see... You’re the new detective assistant for this case. Well, welcome to your first crime scene then.',
-				'Oh… Who am i? I am your boss, Detective Mr. Dino Hans Detroit, but you can call me Mr. DHDetective.',
-				'I’m not going to let you get into the crime scene immediately though, you’ll need to learn some tricks first.',
+				'Oh, I see... You\'re the new detective assistant for this case. Well, welcome to your first crime scene then.',
+				'Oh… Who am I? I am your boss, Detective Mr. Dino Hans Detroit, but you can call me Mr. DHDetective.',
+				'I\'m not going to let you get into the crime scene immediately though, you\'ll need to learn some tricks first.',
 				'Can you see that T in front of you? Point your camera to it and click on it! Than follow the instructions...'
 			],
 			'outro': [
