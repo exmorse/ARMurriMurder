@@ -76,7 +76,9 @@
 
 		function initCharacters() {
 			for (i = 0; i < characters.length; i++) {
-				$('#characterModalBody').append("<input id='" + characters[i].id + "' class='pngBtn modalContents' type='image' src='" + characters[i].image + "' onclick='addCharacter(\"" + characters[i].id + "\")' />");
+				$('#characterModalBody').append("<input id='" + characters[i].id + "' class='pngBtn modalContents' type='image' src='./img/StoriaIniziale/" + characters[i].image + "' onclick='addCharacter(\"" + characters[i].id + "\")' />");
+				if(i==2)
+					$('#characterModalBody').append("</br>");
 			}
 			console.log("added")
 		}
@@ -151,7 +153,13 @@
 				}
 			}
 			console.log(id);
-			$('#characterModalFooter').html('<h2 class="modalContents">' + characters[i].name + '</h2> <h3 class="modalContents">' + characters[i].description + '</h3><image class="charImg modelContens" src="' + characters[i].image + '">');
+			cont = '';
+			cont += '<h2 class="modalContents">' + characters[i].name + '</h2><h4><i>'+characters[i].intro+'</i></h4> <h3 class="modalContents">';
+			characters[i].description.forEach(function (el) {
+				cont += el + '</br>';
+			});
+			cont += '</h3><div align="center"><image class="charImg modalContens"  src="./img/Interrogatorio/' + characters[i].image + '"></div>'
+			$('#characterModalFooter').html(cont);
 		}
 		/* Create next chapter revelation */
 		function addChapterRevelation() {
@@ -431,7 +439,7 @@
 				stickyFooter: false,
 				//closeMethods: ['overlay', 'button', 'escape'],
 				//closeLabel: "Close",
-				cssClass: [],
+				cssClass: ['clickableModal'],
 				onOpen: function () {
 				},
 				onClose: function () {
@@ -793,7 +801,12 @@
 		activateDraggableClues();
 
 
-		createInitialModal();
+		modal = createInitialModal();
+		$('.clickableModal').click(function (){
+			modal.close();
+			modal.destroy();
+			createNewChapterModal();
+		})
 	//addClue('window');
 	//addClue('key');
 	//addClue('lock');
