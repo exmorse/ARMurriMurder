@@ -142,3 +142,14 @@ a-scene {
 	border-radius: 2%;
 	padding: 3.5%;
 }
+
+.detective-img {
+	width: 50%;
+	height: 50%;
+	margin: auto;
+	display: block;
+}
+
+.dialog-text {
+	font-size: 135%;
+}

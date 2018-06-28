@@ -1,6 +1,17 @@
 var gameData = {
 	'clues' : [
 		{
+			'id': 'letter-T',
+			'marker': 'markers/t/t.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
+			'function': 'addClue'
+		},
+		{
 			'id': 'window',
 			'marker': 'kanji',
 			'obj': 'models/window2/window.obj',
@@ -58,27 +69,40 @@ var gameData = {
 	
 	'revelations' : [
 		{
-			'number': '0.1',
-			'title': 'The Break-In',
-			'intro': 'The victim was found in this room. Lets see if someone got in from the window...',
-			'outro': 'The window is in perfect conditions, the murderer must have entered from the door.',
-			'id': 'tutorial-rev-1',
+			'number': '0',
+			'title': 'Tutorial',
+			'intro': [
+				'Hello there. Sorry, who are you...?',
+				'Oh, I see... You’re the new detective assistant for this case. Well, welcome to your first crime scene then.',
+				'Oh… Who am i? I am your boss, Detective Mr. Dino Hans Detroit, but you can call me Mr. DHDetective.',
+				'I’m not going to let you get into the crime scene immediately though, you’ll need to learn some tricks first.',
+				'Can you see that T in front of you? Point your camera to it and click on it! Than follow the instructions...'
+			],
+			'outro': [
+				'Congratulations, you are a talented rookie, I can tell you that.',
+				'Beware! Here you only had one possible clue, but during this investigation you may need to put multiple clues together to get the right hypothesis.',
+				'Now it gets serious though, grab the forensic file and step into the room!'
+			],
+			'id': 'tutorial-rev',
 			'activeClues' : 
 				[
-					'window',
-					'extrakey'
+					'letter-T'
 				],
 			'clueList': 
 				[
-					'window'
+					'letter-T'
 				]
 		},
 		{
-			'number': '0.2',
-			'title': 'The Main Entrance',
-			'intro': 'We need more informations on how the murder entered this room. Lets check the main door...',
-			'outro': 'The key is here... The victim knew the person who killed him...',
-			'id': 'tutorial-rev-2',
+			'number': '1',
+			'title': 'The Robbery',
+			'intro': [
+				'Second chapter'
+			],
+			'outro': [
+				'Second chapter end'
+			],
+			'id': 'robbery-rev',
 			'activeClues': 
 				[
 					'key',

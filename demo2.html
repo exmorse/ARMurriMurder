@@ -10,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="./css/scene.css">
 <link rel="stylesheet" type="text/css" href="./css/tingle.css">
 
+<script src="js/typewriter.js"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,7 +22,7 @@
 
 
 <body style='margin : 0px; overflow: hidden;'>
-	<a-scene id="ascene" embedded arjs="debugUIEnabled: false;">
+	<a-scene id="ascene" embedded arjs="debugUIEnabled: false; patternRatio: 0.8">
 
 		<a-entity camera></a-entity>
 		<a-entity cursor="fuse: true; fuseTimout: 3000" position="0 0 -1" scale="0.01 0.01 0.01" geometry="primitive: ring" material="color: black; shader: flat">
@@ -437,7 +439,7 @@
 			var modal = new tingle.modal({
 				footer: true,
 				stickyFooter: false,
-				//closeMethods: ['overlay', 'button', 'escape'],
+				closeMethods: ['button'],
 				//closeLabel: "Close",
 				cssClass: ['clickableModal'],
 				onOpen: function () {
@@ -453,10 +455,10 @@
 			modal.setContent('<h1>' + gameData.initialDialog.title + '</h1>');
 
 			// add a button
-			modal.addFooterBtn('Start', 'tingle-btn tingle-btn--primary', function () {
+			modal.addFooterBtn('Start', 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
 				modal.close();
 				modal.destroy();
-				createNewChapterModal();
+				createNewChapterModal(0);
 			});
 
 			// open modal
@@ -466,12 +468,18 @@
 		}
 
 
+		
 		function createNewChapterModal() {
+
+			/* stepIndex is the dialog line number */
+			var stepIndex = 0;
+			var btnText = '';
+
 			// instanciate new modal
 			var modal = new tingle.modal({
 				footer: true,
 				stickyFooter: false,
-				//closeMethods: ['overlay', 'button', 'escape'],
+				closeMethods: ['button'],
 				//closeLabel: "Close",
 				cssClass: [],
 				onOpen: function () {
@@ -485,31 +493,76 @@
 
 			// set content
 			var content = "";
-			content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' + gameData.revelations[chapterIndex].title + '</h2>';
-			content += '<p>' + gameData.revelations[chapterIndex].intro + '</p>'
+			//content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' + gameData.revelations[chapterIndex].title + '</h2>';
+			content += '<img class="detective-img" src="img/dhdtective.png"/>';
+			content += '<p id="typewriter-text" class="dialog-text"></p>'
 			modal.setContent(content);
 
-			// add a button
-			modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function () {
-				modal.close();
-				modal.destroy();
+			if (stepIndex == gameData.revelations[chapterIndex].intro.length - 1) {
+				btnText = 'Ok';
+			}
+			else {
+				btnText = 'Next';
+			}
 
-				/* TODO Test */
-				setupChapterMarkers(chapterIndex);
+			// add a button
+			modal.addFooterBtn(btnText, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
+				
+				/* Start the chapter */
+				if (stepIndex == gameData.revelations[chapterIndex].intro.length - 1) {
+					modal.close();
+					modal.destroy();
+					setupChapterMarkers(chapterIndex);
+				}
+
+
+				/* Next dialog line */
+				else{
+					stepIndex++;
+
+					typewriter.deleteAll()
+						.pauseFor(500)
+						.typeString(gameData.revelations[chapterIndex].intro[stepIndex])
+						.pauseFor(500)
+						.start();
+
+					if (stepIndex == gameData.revelations[chapterIndex].intro.length - 1) {
+						document.getElementsByClassName('tingle-btn--pull-right')[0].innerHTML = 'Ok';
+					}
+				}
 			});
 
 			// open modal
 			modal.open();
+
+			// Typewriter text animation
+			var app = document.getElementById('typewriter-text');
+
+			var typewriter = new Typewriter(app, {
+				loop: false,
+				typingSpeed: 40,
+				deleteSpeed: 0.01
+			});
+
+			typewriter.pauseFor(500)
+				.typeString(gameData.revelations[chapterIndex].intro[stepIndex])
+				.pauseFor(500)
+				.start();
 
 			return modal;
 		}
 
 		function createChapterEndModal() {
+
+			/* stepIndex is the dialog line number */
+			var stepIndex = 0;
+			var btnText = '';
+
 			// instanciate new modal
 			var modal = new tingle.modal({
 				footer: true,
 				stickyFooter: false,
-				//closeMethods: ['overlay', 'button', 'escape'],
+				closeMethods: ['button'],
 				//closeLabel: "Close",
 				cssClass: [],
 				onOpen: function () {
@@ -521,30 +574,74 @@
 				}
 			});
 
+			if (stepIndex == gameData.revelations[chapterIndex].outro.length - 1) {
+				btnText = 'Ok';
+			}
+			else {
+				btnText = 'Next';
+			}
+
+			// set content
 			// set content
 			var content = "";
-			content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' + gameData.revelations[chapterIndex].title + '</h2>';
-			content += '<h2>Completed!</h2>';
-			content += '<p>' + gameData.revelations[chapterIndex].outro + '</p>'
+			//content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' + gameData.revelations[chapterIndex].title + '</h2>';
+			content += '<img class="detective-img" src="img/dhdtective.png"/>';
+			content += '<p id="typewriter-text" class="dialog-text"></p>'
 			modal.setContent(content);
 
 			// add a button
-			modal.addFooterBtn('Ok', 'tingle-btn tingle-btn--primary', function () {
-				modal.close();
-				modal.destroy();
+			modal.addFooterBtn(btnText, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
 
-				/* Chapter index is incremented in the handleRevelation function */
 
-				if (chapterIndex == gameData.revelations.length) {
-					createGameEndModal();
+				/* Start the chapter */
+				if (stepIndex == gameData.revelations[chapterIndex].outro.length - 1) {
+
+					modal.close();
+					modal.destroy();
+
+					/* Chapter index is incremented in the handleRevelation function */
+
+					if (chapterIndex == gameData.revelations.length) {
+						createGameEndModal();
+					}
+					else {
+						createNewChapterModal(0);
+					}
 				}
-				else {
-					createNewChapterModal();
+
+
+				/* Next dialog line */
+				else{
+					stepIndex++;
+
+					typewriter.deleteAll()
+						.pauseFor(500)
+						.typeString(gameData.revelations[chapterIndex].outro[stepIndex])
+						.pauseFor(500)
+						.start();
+
+					if (stepIndex == gameData.revelations[chapterIndex].outro.length - 1) {
+						document.getElementsByClassName('tingle-btn--pull-right')[0].innerHTML = 'Ok';
+					}
 				}
 			});
 
 			// open modal
 			modal.open();
+
+			// Typewriter text animation
+			var app = document.getElementById('typewriter-text');
+
+			var typewriter = new Typewriter(app, {
+				loop: false,
+				typingSpeed: 40,
+				deleteSpeed: 0.01
+			});
+
+			typewriter.pauseFor(500)
+				.typeString(gameData.revelations[chapterIndex].outro[stepIndex])
+				.pauseFor(500)
+				.start();
 
 			return modal;
 		}
@@ -802,11 +899,11 @@
 
 
 		modal = createInitialModal();
-		$('.clickableModal').click(function (){
+		/*$('.clickableModal').click(function (){
 			modal.close();
 			modal.destroy();
-			createNewChapterModal();
-		})
+			createNewChapterModal(0);
+		})*/
 	//addClue('window');
 	//addClue('key');
 	//addClue('lock');
