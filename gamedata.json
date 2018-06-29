@@ -12,6 +12,17 @@ var gameData = {
 			'function': 'tutorialClicked'
 		},
 		{
+			'id': 'corpse',
+			'marker': 'kanji',
+			'obj': 'models/window2/window.obj',
+			'mtl': 'models/window2/window.mtl',
+			'posString': '0 0.2 1.4',
+			'rotationString': '90 180 0',
+			'scaleFactor': 0.05,
+			'img': 'window.png',
+			'function' : 'addClue'
+		},
+		{
 			'id': 'window',
 			'marker': 'kanji',
 			'obj': 'models/window2/window.obj',
@@ -97,20 +108,70 @@ var gameData = {
 			'number': '1',
 			'title': 'The Robbery',
 			'intro': [
-				'Second chapter'
+				'When we first saw the corpse, we noticed that the victim was robbed of his wallet and documents...',
+				'So our first hypothesis is that this is a case of a robbery gone wrong.',
+				'Look into the room to see if you find clues able to validate this hypothesis.'
 			],
 			'outro': [
-				'Second chapter end'
+				'Great catch!',
+				'There is no sign of break in so it’s unlikely that the crime is robbery-related.'
 			],
 			'id': 'robbery-rev',
 			'activeClues': 
 				[
-					'key',
+					'corpse',
 					'lock'
 				],
 			'clueList': 
 				[
-					'key',
+					'lock'
+				]
+		},
+		{
+			'number': '2',
+			'title': 'Restart',
+			'intro': [
+				'Well, it looks like we are back to the start. I’ll need you to find more clues to make another hypothesis.'
+			],
+			'outro': [
+				'Oh I see, female hair, female underwear, bottle of champagne, a message...',
+				'It appears that the killer might be a secret lover of the victim.',
+				'But all these clues, aren’t they a little bit too obvious?',
+				'Let’s just take another look to be sure that there’s no other possible explanation'
+			],
+			'id': 'restart-rev',
+			'activeClues': 
+				[
+					'corpse',
+					'lock'
+				],
+			'clueList': 
+				[
+					'lock'
+				]
+		},
+		{
+			'number': '3',
+			'title': 'Is It All a Setup?',
+			'intro': [
+				'Too obvious is always suspicious, someone is trying to create a setup here...',
+				'The real culprit is smarter than we thought.',
+				'But no worries, there is no perfect crime, there must be more clues, let’s find them!'
+			],
+			'outro': [
+				'Poison? Very precise cut on the corpse? Involvement of his wife Linda?',
+				'This is getting too complicated, it’s time to talk with some of the protagonists of this story.',
+				'But when you start the questions don’t mention the message, we don’t want them to know everything we know.',
+				'After you finish this interrogation I’m sure you’ll be able to identify the killer!'
+			],
+			'id': 'setup-rev',
+			'activeClues': 
+				[
+					'corpse',
+					'lock'
+				],
+			'clueList': 
+				[
 					'lock'
 				]
 		}

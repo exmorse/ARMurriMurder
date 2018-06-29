@@ -42,12 +42,14 @@ a-scene {
 
 #btn-clues {
 	position: absolute;
+	visibility: hidden;
 	padding: 2%;
 	bottom: 2vh;
 	right: 5vw;
 }
 #btn-characters {
 	position: absolute;
+	visibility: hidden;
 	padding: 2%;
 	bottom: 2vh;
 	right: 21vw;

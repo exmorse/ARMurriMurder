@@ -634,13 +634,16 @@
 					modal.close();
 					modal.destroy();
 
-					/* Chapter index is incremented in the handleRevelation function */
+					chapterIndex++;					
 
 					if (chapterIndex == gameData.revelations.length) {
 						createGameEndModal();
 					}
 					else {
 						createNewChapterModal(0);
+						
+						/* Create new chapter revelation elements */
+						addChapterRevelation();
 					}
 				}
 
@@ -762,9 +765,7 @@
 		function handleRevelationCompleted(id) {
 
 			createChapterEndModal();
-
-			chapterIndex++;
-
+			
 			document.getElementById('clues').innerHTML = ""
 
 			/* Fix every clue used to solve this chapter */
@@ -785,9 +786,6 @@
 			for (var i = 0; i < oldClues.length; i++) {
 				addClue(oldClues[i]);
 			}
-
-			/* Create new chapter revelation elements */
-			addChapterRevelation();
 
 		}
 
@@ -901,6 +899,9 @@
 			if (tutorialClick) {
 
 				tutorialClick = false;
+
+				document.getElementById('btn-clues').style.visibility = "visible";
+				document.getElementById('btn-characters').style.visibility = "visible";
 
 				document.getElementById('cursorTutorial').removeAttribute('data-step');
 				document.getElementById('cursorTutorial').removeAttribute('data-intro');
