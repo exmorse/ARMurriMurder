@@ -63,12 +63,12 @@ a-scene {
 	left: 5vw;
 }
 
-.pngBtn {
+.pngBtn, .interrogationImg{
 	width:15vw;
 	height: 15vw;
 }
 
-.charImg {
+.charImg  {
 	width:30vw;
 	height: 30vh;
 	align:center;
@@ -162,6 +162,11 @@ a-scene {
 	height: 6vh;
 	left: 47vw;
 	top: 43vh;
+}
+
+#interrogation{
+	background-color: lightsteelblue !important;
+	color:white !important;
 }
 
 div#preload { display: none; }

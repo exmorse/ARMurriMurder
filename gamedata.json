@@ -174,6 +174,27 @@ var gameData = {
 				[
 					'lock'
 				]
-		}
+		},
+			{
+			'number': '4',
+			'title': 'The final interrogation',
+			'intro': [
+				'Don’t tell me you’ve never done an interrogation before…',
+				'Well, it’s very simple, just click on the characters tab and click on the character you want to talk with,',
+				'Then click on "Start Interrogation", you will see several questions you can ask to each character.',
+				'Remember, more will be added as you discover new information.',
+				'Once you think you have the culprit just click on the "Accusation" tab and select the person you think is the killer.'
+				],
+			'outro': [
+				'good job!'
+				],
+			'id': 'interrogation-rev',
+			'activeClues': [
+					
+				],
+			'clueList': [
+
+				]
+			}
 	] 
 }

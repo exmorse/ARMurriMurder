@@ -71,10 +71,30 @@
 						<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
 					</div>
 					<div id="characterModalFooter" class="modal-footer">
+						<div id = "description"></div>
 					</div>
 				</div>
 			</div>
 
+		</div>
+
+		<div id="interrogationModal" class="modal fade" role="dialog">
+			<div class="modal-dialog grayBg">
+		
+				<!-- Modal content-->
+				<div class="modal-content grayBg">
+					<div class="modal-header">
+						<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
+						<h2 class="modal-title" align="center">Interrogation</h2>
+					</div>
+					<div id="interrogationModalBody" class="modal-body">
+						<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
+					</div>
+					<div id="interrogationModalFooter" class="modal-footer">
+					</div>
+				</div>
+			</div>
+		
 		</div>
 	</div>
 
@@ -191,8 +211,11 @@
 			characters[i].description.forEach(function (el) {
 				cont += el + '</br>';
 			});
-			cont += '</h3><div align="center"><image class="charImg modalContens"  src="./img/Interrogatorio/' + characters[i].image + '"></div>'
-			$('#characterModalFooter').html(cont);
+			cont += '</h3><div align="center"><image class="charImg modalContens"  src="./img/Interrogatorio/' + characters[i].image + '">'
+			cont += '</br><hr><button id="interrogation" type ="button"  class="btn btn-default"'
+			if (chapterIndex <4) cont += 'disabled'
+			cont +=' onclick ="interrogate('+i+')"> Start interrogation </button></div>'
+			$('#description').html(cont);
 		}
 		/* Create next chapter revelation */
 		function addChapterRevelation() {
@@ -203,6 +226,7 @@
 			);
 			scrollToY += $('.revelation:last').height();
 			console.log('---' + scrollToY)
+			
 		}
 
 
@@ -634,7 +658,10 @@
 					modal.close();
 					modal.destroy();
 
-					chapterIndex++;					
+					chapterIndex++;
+					if (chapterIndex == 4){
+						$('#interrogation').prop('disabled', false);
+					}					
 
 					if (chapterIndex == gameData.revelations.length) {
 						createGameEndModal();
@@ -919,6 +946,17 @@
 
 				setTimeout(function(){ introJs().start(); }, 1200);
 			}
+		}
+
+		function interrogate(i){
+			console.log(characters[i].id)
+			$('#characterModal').modal("hide");
+			cont = '';
+			cont += '<h3 class="modalContents" align="left">' + characters[i].name + ' <image class="interrogationImg modalContens"  src="./img/StoriaIniziale/' + characters[i].image + '"></h3> '
+			// interrogazioni possibili
+			$('#interrogationModalBody').html(cont);
+			console.log($('#interrogationModal'))
+			$('#interrogationModal').modal("show");
 		}
 
 
