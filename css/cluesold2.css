@@ -1,0 +1,104 @@
+#clues {
+	border-style: solid;
+	border-radius: 2em;
+	border-width: 0.2em;
+	border-color: black;
+	
+	width: 94%;
+	height: 50%;
+	margin: auto;
+	overflow: visible;
+}
+
+.draggable-clue {
+	touch-action: none;
+
+	display: inline-block;
+	width: 14vh;
+	height: 6vh;
+	min-height: 2.5em;
+	margin: 1% 1%;
+
+	background-color: #29e;
+	color: white;
+
+	border-style: solid;
+	border-width: 0.3em;
+	border-color: black;
+       	border-radius: 1.5em;
+	padding: 1%;
+
+	-webkit-transform: translate(0px, 0px);
+	transform: translate(0px, 0px);
+}
+
+.revelation {
+	border-style: solid;
+	border-width: 0.2em;
+	border-color: black;
+       	border-radius: 1.5em;
+	padding: 1%;
+	margin: 1%;
+}
+
+.revelation * {
+	text-align: center;
+}
+
+.outer-dropzone {
+	height: 10vh;
+	width: 24vh;
+	/*float: left;*/
+	margin: 2% 2%;
+}
+
+/*.inner-dropzone {
+	height: 90%;
+	width: 90%;
+	margin: auto;
+	display: inherit;
+}*/
+
+#revelations {
+	border-style: solid;
+	border-radius: 2em;
+	border-width: 0.2em;
+	border-color: black;
+
+	width: 94%;
+	height: 40%;
+	overflow: auto;
+	margin: auto;
+}
+
+.dropzone {
+	display: inline-block;
+	background-color: #ccc;
+	border: dashed 4px transparent;
+	border-radius: 4px;
+	padding: 1.8%;
+	transition: background-color 0.3s;
+}
+
+.drop-active {
+	border-color: #aaa;
+}
+
+.drop-target {
+	background-color: #29e;
+	border-color: #fff;
+	border-style: solid;
+}
+
+.drop-content {
+	background-color: #29e;
+	border-color: #003366;
+	border-style: solid;
+	overflow: hidden;
+	
+}
+
+.can-drop {
+	color: #000;
+	background-color: #4e4;
+}

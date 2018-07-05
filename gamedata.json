@@ -3,11 +3,11 @@ var gameData = {
 		{
 			'id': 'letter-T',
 			'marker': 'markers/t/t.patt',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.mtl',
-			'posString': '0 0.4 0',
-			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
+			'obj': 'models/T/t.obj',
+			'mtl': 'models/T/t.mtl',
+			'posString': '0.4 0.2 0.5',
+			'rotationString': '180 -90 90',
+			'scaleFactor': 1.4,
 			'img': 'key.png',
 			'function': 'tutorialClicked'
 		},
@@ -45,8 +45,8 @@ var gameData = {
 			'function': 'addClue'
 		},
 		{
-			'id': 'lock',
-			'marker': 'kanji',
+			'id': 'doorlock',
+			'marker': 'markers/porta/porta.patt',
 			'obj': 'models/doorlock/doorlock.obj',
 			'mtl': 'models/doorlock/doorlock.mtl',
 			'posString': '0 0.2 0.8',
@@ -54,6 +54,17 @@ var gameData = {
 			'scaleFactor': 0.45,
 			'img': 'lock.png',
 			'function': 'addClue'
+		},
+		{
+			'id': 'chest',
+			'marker': 'markers/BAULEVERO/baule.patt',
+			'obj': 'models/Baulechiuso/Baulechiusocontexturefinal3.obj',
+			'mtl': 'models/Baulechiuso/Baulechiusocontexturefinal3.mtl',
+			'posString': '0 0.8 0.2',
+			'rotationString': '90 180 0',
+			'scaleFactor': 0.3,
+			'img': 'baule.png',
+			'function': 'triggerMobileSelect'
 		},
 		{
 			'id': 'extrakey',
@@ -120,11 +131,11 @@ var gameData = {
 			'activeClues': 
 				[
 					'corpse',
-					'lock'
+					'doorlock'
 				],
 			'clueList': 
 				[
-					'lock'
+					'doorlock'
 				]
 		},
 		{
@@ -142,12 +153,11 @@ var gameData = {
 			'id': 'restart-rev',
 			'activeClues': 
 				[
-					'corpse',
-					'lock'
+					'chest'
 				],
 			'clueList': 
 				[
-					'lock'
+					'chest'
 				]
 		},
 		{

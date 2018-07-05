@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs="debugUIEnabled: false;">
+    <!-- <a-scene embedded arjs="debugUIEnabled: false;">
   	<a-marker preset="hiro">
 		<a-entity
 			position='0 0.5 0'
@@ -44,7 +44,7 @@
                                 fill="backwards" from="0.01 0.01 0.01" to="0.005 0.005 0.005"></a-animation>
                </a-entity>
 
-    </a-scene>
+    </a-scene> -->
     
     <button id="btn-clues" class="overlay tingle-btn tingle-btn--primary" onclick="toggleClues()">Clues</button>
  
@@ -121,7 +121,17 @@
 				var rect = interact.getElementRect(event.target);
 				startPos.x = rect.left + rect.width / 2;
 				startPos.y = rect.top + + rect.height / 2;
-		
+
+				if (event.target.toTransform == false) {	
+					event.target.toTransform = true;
+					//var par = interact.getElementRect(event.target.parentNode);
+					event.target.parentNode.removeChild(event.target);
+				
+					document.getElementById('clues').appendChild(event.target);
+					//event.target.style.webkitTransform =
+					//	event.target.style.transform = 'translate' + rect.left + rect.width / 2; + 'px, ' + rect.top + rect.height + 2.375 + '0px)'; 
+				}
+
 				if (event.target.getAttribute('data-start-x') == null) {	
 					event.target.setAttribute('data-start-x', rect.left + rect.width  / 2);
 					event.target.setAttribute('data-start-y', rect.top  + rect.height / 2);
@@ -160,9 +170,10 @@
 	    	y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
 		// translate the element
-		target.style.webkitTransform =
-			target.style.transform =
-			'translate(' + x + 'px, ' + y + 'px)';
+		if (target.toTransform != false)
+			target.style.webkitTransform =
+				target.style.transform =
+				'translate(' + x + 'px, ' + y + 'px)';
 
 		// update the position attributes
 		target.setAttribute('data-x', x);
@@ -238,7 +249,15 @@
 			ondrop: function (event) {
 				//event.relatedTarget.textContent = 'Dropped';
 				event.target.classList.add('drop-content');
-				//event.target.appendChild(event.relatedTarget);
+				event.target.appendChild(event.relatedTarget);
+		
+				// translate the element
+				
+				console.log("Tolgo translate " + event.relatedTarget.id);
+				event.relatedTarget.toTransform = false;
+				event.relatedTarget.style.webkitTransform =
+					event.relatedTarget.style.transform = 'translate(0px, 0px)'; 
+			
 				console.log("Shouldcheck");
 				
 				/* TODO Get all childNodes of parent of event dropzone */
@@ -398,9 +417,9 @@
 	var startPos = {x: 0, y: 0};
 
 	/* Insert clues */
-	/*for (i = 0; i < gameData.clues.length; i++) {
+	for (i = 0; i < gameData.clues.length; i++) {
 		addClue(gameData.clues[i].id);
-	}*/
+	}
 
 	/* Insert revelations/dropzones */
 	for (i = 0; i < gameData.revelations.length; i++) {

@@ -908,13 +908,27 @@
 				cancelBtnText: 'Cancel',
 				callback:function(indexArr, data){
 					console.log(data); //Returns the selected json data
+					if (
+						data[0] == '0' &&
+						data[1] == '0' &&
+						data[2] == '0' &&
+						data[3] == '0'
+					) {
+						changeMarkerContent('marker-chest', 'marker-chest', '0 0.8 0.2', '90 180 0', 0.3, 'otherF', 
+							'models/Bauleaperto/Bauleapertocontexturefinal3.obj', 
+							'models/Bauleaperto/Bauleapertocontexturefinal3.mtl'
+						);
+						addClue('chest');
+					}
 				},
 				triggerDisplayData: false,
 				position:[0, 0, 0, 0] //Initialize positioning
 		});
 
-		function triggerMobileSelect() {
-			mobileSelect.show();
+		function triggerMobileSelect(id) {
+			setTimeout(function () {
+				mobileSelect.show();
+				}, 600);
 		}
 
 		function otherF(id) {
