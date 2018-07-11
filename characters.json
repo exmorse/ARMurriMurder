@@ -6,9 +6,10 @@ var characters =
 		'image': 'LindaMurri.png',
 		'description':
 			[
-				"The Count Francesco Bonmartini was found dead in his house on September 2, 1902.",
-				"Before his death, he tried to become an assistant of his father-in-law Augusto, clinician and professor.",
-				"Augusto refused. Bonmartini declared that he would leave Bologna to move to Padova with his children."
+				"Linda was an enigmatic woman: she was considered a \"modest little woman of the house\" with a strong material sensitivity.",
+				"But her great emotional control made her stand out.",
+				"She did not lead an excellent material life: perople said that she ha rented a small flat for her love conventions,",
+				"after coming back to her husband after a brief separation."
 			],
 		'intro':"Bonmartini's wife and Augusto's daughter",
 		'questions':[
@@ -135,8 +136,7 @@ var characters =
 			[
 			"Already a nurse at Istituto Rizzoli, where Carlo Secchi had known her, Tisa Borghi had become his assistant and servant, after being his lover.",
 			"She was a cold woman, used to keeping herself locked in her own secrets.",
-			"But she was not reluctant to declare her hatred towards Linda.",
-			"Without ever revealing the true reasons of the hatred. "	
+			"She was not reluctant to despise Linda Murri, although she never revealed the true reasons of her hatred."
 			],
 		'intro': "Carlo Secchi's nurse",
 		'questions': [
