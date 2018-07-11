@@ -91,6 +91,12 @@
 						<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
 					</div>
 					<div id="interrogationModalFooter" class="modal-footer">
+						<p>Question:</p>
+						<select class="form-control" id="questions">
+							
+						</select>
+					</br>
+						<button id="ask" type="button" class="btn btn-default" > Ask </button>
 					</div>
 				</div>
 			</div>
@@ -213,9 +219,13 @@
 			});
 			cont += '</h3><div align="center"><image class="charImg modalContens"  src="./img/Interrogatorio/' + characters[i].image + '">'
 			cont += '</br><hr><button id="interrogation" type ="button"  class="btn btn-default"'
-			if (chapterIndex <4) cont += 'disabled'
+			if (chapterIndex <4) cont += 'disabled' //TODO rimettere 4, mettere 1 per gli esperimenti
 			cont +=' onclick ="interrogate('+i+')"> Start interrogation </button></div>'
 			$('#description').html(cont);
+			if (characters[i].name == "Francesco Bonmartini")
+				$('#interrogation').hide();
+			else
+				$('#interrogation').show();
 		}
 		/* Create next chapter revelation */
 		function addChapterRevelation() {
@@ -659,7 +669,7 @@
 					modal.destroy();
 
 					chapterIndex++;
-					if (chapterIndex == 4){
+					if (chapterIndex ==4){ // TODO rimettere == 4, mettere > 0 per gli esperimenti
 						$('#interrogation').prop('disabled', false);
 					}					
 
@@ -743,6 +753,95 @@
 			return modal;
 		}
 
+		function createInterrogationAnswerModal(charId, questId) {
+
+			/* stepIndex is the dialog line number */
+			var stepIndex = 0;
+			var btnText = '';
+
+			// instanciate new modal
+			var modal = new tingle.modal({
+				footer: true,
+				stickyFooter: false,
+				closeMethods: ['button'],
+				//closeLabel: "Close",
+				cssClass: [],
+				onOpen: function () {
+				},
+				onClose: function () {
+				},
+				beforeClose: function () {
+					return true; // close the modal
+				}
+			});
+
+			// set content
+			var content = "";
+			//content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' + gameData.revelations[chapterIndex].title + '</h2>';
+			content += '<img class="detective-img" src="img/Interrogatorio/'+characters[charId].image+'"/>';
+			content += '<p id="typewriter-text" class="dialog-text"></p>'
+			modal.setContent(content);
+			
+			for (var i = 0; i < characters[charId].questions.length; i++) {
+				if (characters[charId].questions[i].qId == questId) {
+					break;
+				}
+			}
+
+			if (stepIndex == characters[charId].questions[i].answer.length - 1) {
+				btnText = 'Ok';
+			}
+			else {
+				btnText = 'Next';
+			}
+
+			// add a button
+			modal.addFooterBtn(btnText, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
+
+				/* Start the chapter */
+				if (stepIndex == characters[charId].questions[i].answer.length - 1) {
+					modal.close();
+					modal.destroy();
+					//$('#interrogationModal').modal("show");	
+					interrogate(charId)
+				}
+
+
+				/* Next dialog line */
+				else {
+					stepIndex++;
+
+					typewriter.deleteAll()
+						.pauseFor(500)
+						.typeString(characters[charId].questions[i].answer[stepIndex])
+						.pauseFor(500)
+						.start();
+
+					if (stepIndex == characters[charId].questions[i].answer.length - 1) {
+						document.getElementsByClassName('tingle-btn--pull-right')[0].innerHTML = 'Ok';
+					}
+				}
+			});
+
+			// open modal
+			modal.open();
+
+			// Typewriter text animation
+			var app = document.getElementById('typewriter-text');
+
+			var typewriter = new Typewriter(app, {
+				loop: false,
+				typingSpeed: 40,
+				deleteSpeed: 0.01
+			});
+
+			typewriter.pauseFor(500)
+				.typeString(characters[charId].questions[i].answer[stepIndex])
+				.pauseFor(500)
+				.start();
+
+			return modal;
+		}
 
 
 		function changeMarkerContent(currentId, newId, posString, rotationString, scaleFactor, onclick, objPath, mtlPath) {
@@ -969,8 +1068,36 @@
 			cont += '<h3 class="modalContents" align="left">' + characters[i].name + ' <image class="interrogationImg modalContens"  src="./img/StoriaIniziale/' + characters[i].image + '"></h3> '
 			// interrogazioni possibili
 			$('#interrogationModalBody').html(cont);
-			console.log($('#interrogationModal'))
+			var options="";
+			for (var j = 0; j<= questionStep && j< characters[i].questions.length; j++ ){
+				if (characters[i].questions[j].qId <= questionStep){
+					options += "<option value='"+ characters[i].questions[j].qId+"_"+i +"' class='questionOption'> " + characters[i].questions[j].question +"</option>"
+				}
+			}
+			$('#questions').html(options);
+			$("#ask").attr("onclick", "askQuestion("+i+",0)");
+			//$('#ask').click(function(){askQuestion(i, 0)}); //indice del personaggio e 0 come prima domanda di default
 			$('#interrogationModal').modal("show");
+		}
+
+		function askQuestion(charId, questId){ //char id = char index in the caracter json , quest id = qId
+			console.log("ask")
+			console.log(characters[charId].name);
+			console.log(questId);
+			for (var i= 0; i< characters[charId].questions.length; i++){
+				if (characters[charId].questions[i].qId == questId){
+					break;
+				}
+			}
+			if(characters[charId].questions[i].unlock.length > 0){
+				if (questionStep < characters[charId].questions[i].unlock[0].qId)
+					questionStep = characters[charId].questions[i].unlock[0].qId;
+				console.log(questionStep);
+			}
+			$('#interrogationModal').modal("hide");
+			//parte il dialogo con la risposta 
+			createInterrogationAnswerModal(charId,questId);
+			
 		}
 
 
@@ -982,7 +1109,7 @@
 		var discovered = {}
 		var tutorialClues = true;
 		var tutorialClick = true;
-
+		var questionStep = 0;
 		window.onload = function () {
 			modelsframe = document.getElementById('modelsframe').contentWindow.document;
 			initCharacters();
@@ -1021,6 +1148,15 @@
 	//addClue('window');
 	//addClue('key');
 	//addClue('lock');
+		$('#questions').change(function() {
+			val= $('#questions').val()
+			var q = val.substr(0, val.indexOf('_')); 
+			var c = val.substr(val.indexOf('_')+1, val.length);
+			console.log($('#questions').val())
+			//$('#ask').click(function(){askQuestion(c, q)})
+			$("#ask").attr("onclick", "askQuestion(" + c + ","+q+")");
+			
+		})
 	</script>
 
 </body>

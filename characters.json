@@ -1,7 +1,7 @@
 var characters = 
 [
 	{
-		'id':'lindamurri',
+		'id': 'lindamurri',
 		'name': 'Linda Murri',
 		'image': 'LindaMurri.png',
 		'description':
@@ -10,10 +10,33 @@ var characters =
 				"Before his death, he tried to become an assistant of his father-in-law Augusto, clinician and professor.",
 				"Augusto refused. Bonmartini declared that he would leave Bologna to move to Padova with his children."
 			],
-		'intro':"Bonmartini's wife and Augusto's daughter"
+		'intro':"Bonmartini's wife and Augusto's daughter",
+		'questions':[
+			{
+				'qId': 0,
+				'question': "What do you know about \"Curaro\"?",
+				'answer':[ "Cu..raro? What is that? Is it a place or something? I feel confused. " ],
+				'unlock': []
+			},
+			{
+				'qId': 2,
+				'question': "Did you ask Tisa to bring you this kind of poison recently?",
+				'answer':[ "I’m a busy woman and I have no business with Tisa Borghi. She’s crazy if she’s accusing me of anything, that stupid nurse." ],
+				'unlock': []
+			},
+			{
+				'qId': 3,
+				'question': "Does \"lamb experiment\" remind you of something?",
+				'answer':[ 
+					"Enough with the questions! I feel outraged!",
+					"I should be mourning my husband, and instead I find myself talking about poison and lambs, let me go, I’m done here." 
+				],
+				'unlock': []
+			}
+		]
 	},
 	{
-		'id':'carlosecchi',
+		'id' :'carlosecchi',
 		'name': 'Carlo Secchi',
 		'image': 'CarloSecchi.png',
 		'description': 
@@ -23,6 +46,33 @@ var characters =
 				" The accusation was grounded."
 			],
 		intro: "Augusto's pupil and Linda's lover",
+		'questions': [
+			{
+				'qId': 0,
+				'question': "What do you know about \"Curaro\"?",
+				'answer':[ "I believe it’s poison." ],
+				'unlock': []
+			},
+			{
+				'qId': 2,
+				'question': "Did you ask Tisa to bring you this kind of poison recently?",
+				'answer':[ "Oh, I see. Someone has talked then. Yes. I asked Tisa to get me this poison because we made an experiment with a lamb for a friend." ],
+				'unlock': [
+					{
+					'char':'lindamurri',
+					'qId': 3
+					},
+					{
+					'char':'augustomurri',
+					'qId': 3
+					},
+					{
+					'char':'TullioMurri',
+					'qId': 3
+					}
+				]
+			}
+		]
 	},
 	{
 		'id':'augustomurri',
@@ -36,6 +86,31 @@ var characters =
 				"In fact he did not tolerate that the relationship between Linda and Bonmartini had long since cracked."
 			],
 		'intro': "Linda and Tullio's Father",
+		'questions': [
+			{
+				'qId': 0,
+				'question': "What do you know about \"Curaro\"?",
+				'answer':[ "It’s a poison. Why did you ask me this question? I thought my son-in-law was killed by stabs not by poisoning."],
+				'unlock': []
+			},
+			{
+				'qId': 2,
+				'question': "Did you ask Tisa to bring you this kind of poison recently?",
+				'answer':[ "Are you accusing me? I’ve never met this woman that you talk about." ],
+				'unlock': []
+			},
+			{
+				'qId': 3,
+				'question': "Does \"lamb experiment\" remind you of something?",
+				'answer':[ 
+					"A lamb? What are these questions? And I would never test the poison on a lamb if I were to use it on a human, especially Francesco." ,
+					"Have you seen his size? You won’t be able to kill a guy of that size with the same poison used for a lamb. ",
+					"If the killer tried that, he or she’s not smart after all, I wonder what it’s taking you so long to find the culprit. ",
+					"At this point it’s obvious that the killer found another way that’s not poisoning."
+				],
+				'unlock': []
+			}
+		]
 	},
 	{
 		'id':'FrancescoBonmartini',
@@ -48,6 +123,9 @@ var characters =
 				"The accusation was grounded."
 			],
 		'intro' : "Linda's husband",
+		'questions': [
+			
+		]
 	},
 	{
 		'id':'TisaBorghi',
@@ -61,6 +139,42 @@ var characters =
 			"Without ever revealing the true reasons of the hatred. "	
 			],
 		'intro': "Carlo Secchi's nurse",
+		'questions': [
+			{
+				'qId': 0,
+				'question': "What do you know about \"Curaro\"?",
+				'answer':[ "It’s a type of poison, recently I’ve been asked to bring it to a certain... Nevermind. "],
+				'unlock':[
+					{
+					'char':'TisaBorghi',
+					'qId': 1
+					}
+				]
+			},
+			{
+				'qId': 1,
+				'question': "Who asked you to get him or her this poison?",
+				'answer':[ "…  <She doesn’t answer, staring blankly to the wall behind you, she probably realized she said too much.> " ],
+				'unlock': [
+					{
+					'char':'lindamurri',
+					'qId': 2
+					},
+					{
+					'char':'carlosecchi',
+					'qId': 2
+					},
+					{
+					'char':'augustomurri',
+					'qId': 2
+					},
+					{
+					'char':'TullioMurri',
+					'qId': 2
+					}
+				]
+			}
+		]
 	},
 	{
 		'id':'TullioMurri',
@@ -72,7 +186,31 @@ var characters =
 				"Smilar to a d'Annunzio character, his nature was impetuous.",
 				"He believed that Bonmarini was psychologically insensitive and for this reason his sister was threatened and had to be defended against everything.",
 			],
-		'intro': "Bonmartini's brother-in-law and Linda's brother"
+		'intro': "Bonmartini's brother-in-law and Linda's brother",
+		'questions': [
+			{
+				'qId': 0,
+				'question': "What do you know about \"Curaro\"?",
+				'answer':[ "I’m not sure, that name sounds familiar. What is it? Is it a poison? I don’t know." ],
+				'unlock': []
+			},
+			{
+				'qId': 2,
+				'question': "Did you ask Tisa to bring you this kind of poison recently?",
+				'answer':[ "I know Tisa, but I’ve never asked her to bring me this poison." ],
+				'unlock': []
+			},
+			{
+				'qId': 3,
+				'question': "Does \"lamb experiment\" remind you of something?",
+				'answer':[ 
+					"I thought I was asked about something that could help you solve this mystery, instead you keep asking these useless questions.",
+					"Can’t you see it’s all a setup? Everything is fake, that message in Linda’s box is probably another try to bring my family down. ",
+					"But we won’t go down, we’re innocent until proven guilty."
+				 ],
+				'unlock': []
+			}
+		]
 	},
 
 ]
