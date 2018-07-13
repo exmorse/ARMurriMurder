@@ -130,7 +130,7 @@ var gameData = {
 			'id': 'robbery-rev',
 			'activeClues': 
 				[
-					'corpse',
+					'champagne',
 					'doorlock',
 					'comodino',
 					'autopsy',
