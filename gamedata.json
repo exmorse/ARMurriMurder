@@ -60,7 +60,7 @@ var gameData = {
 			'marker': 'markers/mobileingresso/mobile.patt',
 			'obj': 'models/img/dhdtective.png',
 			'posString': '0 0.4 0',
-			'rotationString': '90 180 0',
+			'rotationString': '0 0 0',
 			'scaleFactor': 1.5,
 			'img': 'key.png',
 			'function': 'addClue'
@@ -118,7 +118,7 @@ var gameData = {
 			'id': 'robbery-rev',
 			'activeClues': 
 				[
-					'mabile',
+					'mobile',
 					'champagne',
 					'doorlock',
 					'comodino',
