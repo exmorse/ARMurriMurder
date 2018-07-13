@@ -65,7 +65,7 @@ var gameData = {
 			'scaleFactor': 1.5,
 			'img': 'key.png',
 			'function': 'addClue'
-        }
+        },
 		{
 			'id': 'mobile',
 			'marker': 'markers/mobileingresso/mobile_rev.patt',
