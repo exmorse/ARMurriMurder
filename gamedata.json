@@ -69,8 +69,8 @@ var gameData = {
 		{
 			'id': 'pitale',
 			'marker': 'markers/pitale/pitale.patt',
-			'obj': 'models/Capello/CAPELLOblend4.obj',
-			'mtl': 'models/Capello/CAPELLOblend4.mtl',
+			'obj': 'models/Baulechiuso/Baulechiusocontexturefinal3.obj',
+			'mtl': 'models/Baulechiuso/Baulechiusocontexturefinal3.mtl',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
 			'scaleFactor': 1.5,
