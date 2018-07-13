@@ -931,11 +931,17 @@
 			else {
 				text += '<a-image ';
 				text += 'src="' + objPath + '" ';
-				text += '><a-image>';
+				text += '>';
 			}
 
 			text += '<a-animation attribute="scale" begin="mousedown" dur="500" fill="backwards" to="' + scaleFactor / 2 + ' ' + scaleFactor / 2 + ' ' + scaleFactor / 2 + '"></a-animation>';
-			text += '</a-entity>';
+			
+			if (mtlPath != null) {
+				text += '</a-entity>';
+			}
+			else {
+				text += '</a-image>';
+			}
 			text += '</a-marker>';
 
 
