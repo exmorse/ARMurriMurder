@@ -25,8 +25,8 @@ var gameData = {
 		{
 			'id': 'doorlock',
 			'marker': 'markers/porta/porta.patt',
-			'obj': 'models/doorlock/doorlock.obj',
-			'mtl': 'models/doorlock/doorlock.mtl',
+			'obj': 'models/doorlock/newserratura.obj',
+			'mtl': 'models/doorlock/newserratura.mtl',
 			'posString': '0 0.2 0.8',
 			'rotationString': '90 180 0',
 			'scaleFactor': 0.45,
@@ -54,6 +54,28 @@ var gameData = {
 			'scaleFactor': 2.5,
 			'img': 'comodino.png',
 			'function': 'viewImage'
+		},
+		{
+			'id': 'autopsy',
+			'marker': 'markers/autopsy/autopsy.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
+			'function': 'addClue'
+		},
+		{
+			'id': 'cuscino',
+			'marker': 'markers/Cuscino/cuscino80.patt',
+			'obj': 'models/Mutande/underwearsenzapiano.obj',
+			'mtl': 'models/Mutande/underwearsenzapiano.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
+			'function': 'addClue'
 		}
 	],
 
@@ -110,7 +132,9 @@ var gameData = {
 				[
 					'corpse',
 					'doorlock',
-					'comodino'
+					'comodino',
+					'autopsy',
+					'cuscino'
 				],
 			'clueList': 
 				[
