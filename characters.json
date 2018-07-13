@@ -125,7 +125,15 @@ var characters =
 			],
 		'intro' : "Linda's husband",
 		'questions': [
-			
+			{
+				'qId': 4,
+				'question': "Does \"lamb experiment\" remind you of something?",
+				'answer': [
+					"No one want to answer anymore. Now it's time to accuse...",
+					"You can make your accusation using the \"accuse\" button in the \"character\" tab."
+				],
+				'unlock': []	
+			}
 		]
 	},
 	{
