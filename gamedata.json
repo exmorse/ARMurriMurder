@@ -118,6 +118,7 @@ var gameData = {
 			'id': 'robbery-rev',
 			'activeClues': 
 				[
+					'mabile',
 					'champagne',
 					'doorlock',
 					'comodino',
