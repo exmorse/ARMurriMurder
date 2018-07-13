@@ -69,8 +69,8 @@ var gameData = {
 		{
 			'id': 'cuscino',
 			'marker': 'markers/Cuscino/cuscino80.patt',
-			'obj': 'models/Mutande/underwearsenzapiano.obj',
-			'mtl': 'models/Mutande/underwearsenzapiano.mtl',
+			'obj': 'models/Mutande/mutandeAllineate.obj',
+			'mtl': 'models/Mutande/mutandeAllineate.mtl',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
