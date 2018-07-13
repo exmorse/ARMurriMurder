@@ -65,7 +65,7 @@ var gameData = {
 			'scaleFactor': 1.5,
 			'img': 'key.png',
 			'function': 'viewImage'
-		}
+		},
 		{
 			'id': 'pitale',
 			'marker': 'markers/pitale/pitale.patt',
