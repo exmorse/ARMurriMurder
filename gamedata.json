@@ -57,7 +57,7 @@ var gameData = {
 		},
 		{
 			'id': 'mobile',
-			'marker': 'markers/mobileingresso/mobile.patt',
+			'marker': 'markers/mobileingresso/mobile_rev.patt',
 			'obj': 'img/indizi/immaginetripla.png',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
