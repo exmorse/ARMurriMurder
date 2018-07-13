@@ -56,14 +56,14 @@ var gameData = {
 			'function': 'addClue'
 		},
 		{
-			'id': 'cuscino',
-			'marker': 'markers/Cuscino/cuscino80.patt',
-			'obj': 'models/Mutande/mutandeAllineate.obj',
-			'mtl': 'models/Mutande/mutandeAllineate.mtl',
+			'id': 'cestino',
+			'marker': 'markers/cestinomarker/cestino.patt',
+			'obj': 'models/Veleno/laverabottiglietta2.obj',
+			'mtl': 'models/Veleno/laverabottiglietta2.mtl',
 			'posString': '0 0.4 0',
-			'rotationString': '0 90 0',
-			'scaleFactor': 5.5,
-			'img': 'cuscino.png',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
 			'function': 'addClue'
 		},
 		{
@@ -134,7 +134,8 @@ var gameData = {
 					'doorlock',
 					'comodino',
 					'autopsy',
-					'cuscino'
+					'cuscino',
+					'cestino'
 				],
 			'clueList': 
 				[
