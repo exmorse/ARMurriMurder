@@ -23,28 +23,6 @@ var gameData = {
 			'function' : 'addClue'
 		},
 		{
-			'id': 'window',
-			'marker': 'kanji',
-			'obj': 'models/window2/window.obj',
-			'mtl': 'models/window2/window.mtl',
-			'posString': '0 0.2 1.4',
-			'rotationString': '90 180 0',
-			'scaleFactor': 0.05,
-			'img': 'window.png',
-			'function' : 'otherF'
-		},
-		{
-			'id': 'key',
-			'marker': 'hiro',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.mtl',
-			'posString': '0 0.4 0',
-			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
-			'img': 'key.png',
-			'function': 'addClue'
-		},
-		{
 			'id': 'doorlock',
 			'marker': 'markers/porta/porta.patt',
 			'obj': 'models/doorlock/doorlock.obj',
@@ -67,19 +45,8 @@ var gameData = {
 			'function': 'triggerMobileSelect'
 		},
 		{
-			'id': 'extrakey',
-			'marker': 'markers/arjs.patt',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.mtl',
-			'posString': '0 0.4 0',
-			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
-			'img': 'key.png',
-			'function': 'addClue'
-		},
-		{
 			'id': 'comodino',
-			'marker': 'markers/arjs.patt',
+			'marker': 'markers/comodino/comodino.patt',
 			'obj': 'models/key/key.obj',
 			'mtl': 'models/key/key.mtl',
 			'posString': '0 0.4 0',
@@ -142,7 +109,8 @@ var gameData = {
 			'activeClues': 
 				[
 					'corpse',
-					'doorlock'
+					'doorlock',
+					'comodino'
 				],
 			'clueList': 
 				[
