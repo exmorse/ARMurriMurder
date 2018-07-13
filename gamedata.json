@@ -76,6 +76,17 @@ var gameData = {
 			'scaleFactor': 2.5,
 			'img': 'key.png',
 			'function': 'addClue'
+		},
+		{
+			'id': 'comodino',
+			'marker': 'markers/arjs.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
+			'function': 'viewImage'
 		}
 	],
 
