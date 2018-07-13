@@ -67,7 +67,7 @@ var gameData = {
 			'function': 'addClue'
 		},
 		{
-			'id': 'champange',
+			'id': 'champagne',
 			'marker': 'markers/Champagne/champcol.patt',
 			'obj': 'models/Champagne/champagne2.obj',
 			'mtl': 'models/Champagne/champagne2.obj',
