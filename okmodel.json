@@ -1,0 +1,81 @@
+{
+	'clues' : [
+		{
+			'id': 'letter-T',
+			'marker': 'markers/t/t.patt',
+			'obj': 'models/T/t.obj',
+			'mtl': 'models/T/t.mtl',
+			'posString': '0.4 0.2 0.5',
+			'rotationString': '180 -90 90',
+			'scaleFactor': 1.4,
+			'img': 'letter-T.png',
+			'function': 'tutorialClicked'
+		},
+		{
+			'id': 'doorlock',
+			'marker': 'markers/porta/porta.patt',
+			'obj': 'models/doorlock/newserratura.obj',
+			'mtl': 'models/doorlock/newserratura.mtl',
+			'posString': '0 0.2 0.8',
+			'rotationString': '90 180 0',
+			'scaleFactor': 0.45,
+			'img': 'doorlock.png',
+			'function': 'addClue'
+		},
+		{
+			'id': 'chest',
+			'marker': 'markers/BAULEVERO/baule.patt',
+			'obj': 'models/Baulechiuso/Baulechiusocontexturefinal3.obj',
+			'mtl': 'models/Baulechiuso/Baulechiusocontexturefinal3.mtl',
+			'posString': '0 0.8 0.2',
+			'rotationString': '90 180 0',
+			'scaleFactor': 0.3,
+			'img': 'chest.png',
+			'function': 'triggerMobileSelect'
+		},
+		{
+			'id': 'comodino',
+			'marker': 'markers/comodino/comodino.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'comodino.png',
+			'function': 'viewImage'
+		},
+		{
+			'id': 'autopsy',
+			'marker': 'markers/autopsy/autopsy.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.obj',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'autopsy.png',
+			'function': 'addClue'
+		},
+		{
+			'id': 'cuscino',
+			'marker': 'markers/Cuscino/cuscino80.patt',
+			'obj': 'models/Mutande/mutandeAllineate.obj',
+			'mtl': 'models/Mutande/mutandeAllineate.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 90 0',
+			'scaleFactor': 5.5,
+			'img': 'cuscino.png',
+			'function': 'addClue'
+		},
+		{
+			'id': 'champagne',
+			'marker': 'markers/Champagne/champcol.patt',
+			'obj': 'models/Champagne/champagne2.obj',
+			'mtl': 'models/Champagne/champagne2.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '90 180 0',
+			'scaleFactor': 1.5,
+			'img': 'key.png',
+			'function': 'addClue'
+        }
+    ]
+}

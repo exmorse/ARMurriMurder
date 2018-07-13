@@ -56,39 +56,15 @@ var gameData = {
 			'function': 'addClue'
 		},
 		{
-			'id': 'cuscino',
-			'marker': 'markers/Cuscino/cuscino80.patt',
-			'obj': 'models/Mutande/mutandeAllineate.obj',
-			'mtl': 'models/Mutande/mutandeAllineate.mtl',
-			'posString': '0 0.4 0',
-			'rotationString': '0 90 0',
-			'scaleFactor': 5.5,
-			'img': 'cuscino.png',
-			'function': 'addClue'
-		},
-		{
-			'id': 'champagne',
-			'marker': 'markers/Champagne/champcol.patt',
-			'obj': 'models/Champagne/champagne2.obj',
-			'mtl': 'models/Champagne/champagne2.mtl',
-			'posString': '0 0.4 0',
-			'rotationString': '90 180 0',
-			'scaleFactor': 1.5,
-			'img': 'key.png',
-			'function': 'addClue'
-		},
-		{
 			'id': 'mobile',
 			'marker': 'markers/mobileingresso/mobile.patt',
-			'obj': 'models/Champagne/champagne2.obj',
-			'mtl': 'models/Champagne/champagne2.mtl',
+			'obj': 'models/img/dhdtective.png',
 			'posString': '0 0.4 0',
 			'rotationString': '90 180 0',
 			'scaleFactor': 1.5,
 			'img': 'key.png',
 			'function': 'addClue'
 		}
-
 	],
 
 	'initialDialog' : {
