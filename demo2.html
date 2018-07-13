@@ -950,15 +950,34 @@
 			else {
 				text += '<a-marker id="' + id + '" preset="custom" type="pattern" url="' + marker + '" markername="' + marker + '">';
 			}
-			text += '<a-entity ';
-			text += 'position="' + posString + '" ';
-			text += 'rotation="' + rotationString + '" ';
-			text += 'obj-model="obj: url(' + objPath + '); mtl: url(' + mtlPath + ')" ';
-			text += 'scale="' + scaleFactor + ' ' + scaleFactor + ' ' + scaleFactor + '" ';
-			text += 'onmousedown="' + onclick + '" ';
-			text += '>';
+
+			// 3d Object
+			if (mtlPath != null) {
+				text += '<a-entity ';
+				text += 'position="' + posString + '" ';
+				text += 'rotation="' + rotationString + '" ';
+				text += 'obj-model="obj: url(' + objPath + '); mtl: url(' + mtlPath + ')" ';
+				text += 'scale="' + scaleFactor + ' ' + scaleFactor + ' ' + scaleFactor + '" ';
+				text += 'onmousedown="' + onclick + '" ';
+				text += '>';
+			}
+
+			// 3d Object
+			else {
+				text += '<a-image ';
+				text += 'src="' + objPath + '" rotation="-90 0 0"';
+				text += '>';
+			}
+
 			text += '<a-animation attribute="scale" begin="mousedown" dur="500" fill="backwards" to="' + scaleFactor / 2 + ' ' + scaleFactor / 2 + ' ' + scaleFactor / 2 + '"></a-animation>';
-			text += '</a-entity>';
+			
+			if (mtlPath != null) {
+				text += '</a-entity>';
+			}
+			else {
+				text += '</a-image>';
+			}
+
 			text += '</a-marker>';
 
 
