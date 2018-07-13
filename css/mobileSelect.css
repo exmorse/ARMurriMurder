@@ -148,3 +148,7 @@
 .mobileSelect-show .content {
   bottom: 0;
 }
+
+.selectImage{
+  background-color: #ffffff !important;
+}

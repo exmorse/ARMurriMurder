@@ -276,11 +276,14 @@
 		}
 
 		function viewImage(id){
+			console.log('prima');
 			$('#imageModal').modal("show");
+			console.log('dopo');
 			this.populateImgModal(0,id);
 		}
 		
 		function populateImgModal(i,id){
+			console.log('dentro populate')
 			if(i < foundImages[id].length){
 				var cont =  '< img class="detective-img" src = "img/Interrogatorio/'+foundImages[id][i].img+'" />'
 				$('#imageModalBody').html(cont);
