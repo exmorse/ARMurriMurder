@@ -111,11 +111,6 @@
 	
 }
 
-.can-drop {
-	color: #000;
-	background-color: #4e4;
-	/*margin:auto;*/ /*dubbie*/
-}
 
 #pippo img, .selected-box{
   background-color: #ffffff !important;
