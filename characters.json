@@ -119,9 +119,9 @@ var characters =
 		'image': 'FrancescoBonmartini.png',
 		'description':
 			[
-				"Prominent otolaryngologist and Augusto's pupil, Secchi was the man who had been denied to Linda by her family because of his age,20 years older, before her marriage to Bonmartini.", 
-				"After the death of Bonmartini, he was accused of being  Linda's lover.",
-				"The accusation was grounded."
+				"The Count Francesco Bonmartini was found dead in his house on august 2, 1902.", 
+				"Before his death, he tired to become an assistant of his father-in-law Augusto, clinician and professor ",
+				"Augusto refused. Bonmartini declared that he would leave Bologna to move to Padova with his children."
 			],
 		'intro' : "Linda's husband",
 		'questions': [
