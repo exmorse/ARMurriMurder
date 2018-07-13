@@ -65,7 +65,7 @@ var gameData = {
 			'scaleFactor': 2.5,
 			'img': 'key.png',
 			'function': 'addClue'
-		}
+		},
 		{
 			'id': 'cuscino',
 			'marker': 'markers/Cuscino/cuscino80.patt',
