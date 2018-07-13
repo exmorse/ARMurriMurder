@@ -68,7 +68,7 @@ var gameData = {
 		},
 		{
 			'id': 'champange',
-			'marker': 'markers/Champagne/champ80.patt',
+			'marker': 'markers/Champagne/champcol.patt',
 			'obj': 'models/Champagne/champagne2.obj',
 			'mtl': 'models/Champagne/champagne2.obj',
 			'posString': '0 0.4 0',
