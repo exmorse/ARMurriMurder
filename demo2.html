@@ -35,7 +35,7 @@
 	<button id="btn-clues" class="overlay tingle-btn tingle-btn--primary tutorial-click" onclick="toggleClues()">Clues</button>
 	<button id="btn-models" class="overlay tingle-btn tingle-btn--primary tutorial-click" onclick="toggleModels()">Models</button>
 	<button id="btn-characters" class="overlay tingle-btn tingle-btn--primary tutorial-click" data-toggle="modal" data-target="#characterModal">Characters</button>
-	
+
 	<div id="app" class="grayBg">
 		<div id="clues" class="grayBg"></div>
 		<br>
@@ -53,77 +53,97 @@
 	</div>
 
 	<div id="preload">
-			<img src="img/dhdtective.png" width="1" height="1" alt="Image 01" />
-		 </div>
+		<img src="img/dhdtective.png" width="1" height="1" alt="Image 01" />
+	</div>
 
 
-		<!-- Modal -->
-		<div id="characterModal" class="modal fade" role="dialog">
-			<div class="modal-dialog grayBg">
-		
-				<!-- Modal content-->
-				<div class="modal-content grayBg">
-					<div class="modal-header">
-						<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
-						<h2 class="modal-title">The faces behind the story</h2>
-					</div>
-					<div id="characterModalBody" class="modal-body">
-						<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
-					</div>
-					<div id="characterModalFooter" class="modal-footer">
-						<div id = "description"></div>
-					</div>
+	<!-- Modal -->
+	<div id="characterModal" class="modal fade" role="dialog">
+		<div class="modal-dialog grayBg">
+
+			<!-- Modal content-->
+			<div class="modal-content grayBg">
+				<div class="modal-header">
+					<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title">The faces behind the story</h2>
+				</div>
+				<div id="characterModalBody" class="modal-body">
+					<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
+				</div>
+				<div id="characterModalFooter" class="modal-footer">
+					<div id="description"></div>
 				</div>
 			</div>
-
 		</div>
 
-		<div id="interrogationModal" class="modal fade" role="dialog">
-			<div class="modal-dialog grayBg">
-		
-				<!-- Modal content-->
-				<div class="modal-content grayBg">
-					<div class="modal-header">
-						<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
-						<h2 class="modal-title" align="center">Interrogation</h2>
-					</div>
-					<div id="interrogationModalBody" class="modal-body">
-						<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
-					</div>
-					<div id="interrogationModalFooter" class="modal-footer">
-						<p>Question:</p>
-						<select class="form-control" id="questions">
-							
-						</select>
-					</br>
-						<button id="ask" type="button" class="btn btn-default" > Ask </button>
-					</div>
-				</div>
-			</div>
+	</div>
 
-			<div id="imageModal" class="modal fade" role="dialog">
-				<div class="modal-dialog grayBg">
-			
-					<!-- Modal content-->
-					<div class="modal-content grayBg">
-						<div class="modal-header">
-							<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
-							<h2 class="modal-title">Object found..</h2>
-						</div>
-						<div id="imageModalBody" class="modal-body">
-							<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
-						</div>
-						<div id="imageModalFooter" class="modal-footer">
-							<div id='imgDescription>'</div>
-							<button id="nextImg" type="button" class="btn btn-default" > Next </button>
-						</div>
-					</div>
+	<div id="interrogationModal" class="modal fade" role="dialog">
+		<div class="modal-dialog grayBg">
+
+			<!-- Modal content-->
+			<div class="modal-content grayBg">
+				<div class="modal-header">
+					<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title" align="center">Interrogation</h2>
 				</div>
-			
+				<div id="interrogationModalBody" class="modal-body">
+					<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
+				</div>
+				<div id="interrogationModalFooter" class="modal-footer">
+					<p>Question:</p>
+					<select class="form-control" id="questions">
+
+					</select>
+					</br>
+					<button id="ask" type="button" class="btn btn-default"> Ask </button>
+				</div>
 			</div>
-		
 		</div>
 	</div>
+	<div id="imageModal" class="modal fade" role="dialog">
+		<div class="modal-dialog grayBg">
+
+			<!-- Modal content-->
+			<div class="modal-content grayBg">
+				<div class="modal-header">
+					<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title">Object found..</h2>
+				</div>
+				<div id="imageModalBody" class="modal-body">
+					<div id='imageModalImg'>
+
+					</div>
+					<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
+					<div id='imgDescription'> 
+					</div>
+				</div>
+				<div id="imageModalFooter" class="modal-footer">
+					<button id="nextImg" type="button" class="btn btn-default"> Next </button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="aysModal" class="modal fade" role="dialog">
+		<div class="modal-dialog grayBg">
+
+			<!-- Modal content-->
+			<div class="modal-content grayBg">
+				<div class="modal-header">
+					<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
+				</div>
+				<div id="aysModalBody" class="modal-body">
+					<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
+				</div>
+				<div id="aysModalFooter" class="modal-footer" align="center">
+					<button id="noBtn" type="button" class="btn btn-default" data-dismiss="modal"> <span class="glyphicon glyphicon-remove"></span> </button>
+					<button id="yesBtn" type="button" class="btn btn-default "> <span class="glyphicon glyphicon-ok"></span> </button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 
 	<script src="gamedata.json"></script>
 	<script src="characters.json"></script>
@@ -136,7 +156,7 @@
 		function initCharacters() {
 			for (i = 0; i < characters.length; i++) {
 				$('#characterModalBody').append("<input id='" + characters[i].id + "' class='pngBtn modalContents' type='image' src='./img/StoriaIniziale/" + characters[i].image + "' onclick='addCharacter(\"" + characters[i].id + "\")' />");
-				if(i==2)
+				if (i == 2)
 					$('#characterModalBody').append("</br>");
 			}
 			console.log("added")
@@ -153,7 +173,7 @@
 				document.getElementById('app').style.visibility = "visible";
 				$('#revelations').scrollTop(scrollToY);
 
-				if (tutorialClues) {	
+				if (tutorialClues) {
 					document.getElementById('clues').setAttribute('data-step', "1");
 					document.getElementById('clues').setAttribute('data-intro', "Here you can find all the discovered clues. Drag them to the revelation zone to go on with the investigation.");
 
@@ -162,7 +182,7 @@
 
 					document.getElementById('btn-clues').removeAttribute('data-step');
 					document.getElementById('btn-clues').removeAttribute('data-intro');
-					
+
 					document.getElementById('btn-models').removeAttribute('data-step');
 					document.getElementById('btn-models').removeAttribute('data-intro');
 
@@ -212,7 +232,7 @@
 				alreadyAddedClues.push(id);
 				cluePositions.size++;
 				activateDraggableClueById(id, cluePositions.size - 1);
-				
+
 				$('#btn-clues').addClass('active');
 				setTimeout(function () {
 					$('body, button').removeClass('active');
@@ -235,14 +255,18 @@
 			}
 			console.log(id);
 			cont = '';
-			cont += '<h2 class="modalContents">' + characters[i].name + '</h2><h4><i>'+characters[i].intro+'</i></h4> <h3 class="modalContents">';
+			cont += '<h2 class="modalContents">' + characters[i].name + '</h2><h4><i>' + characters[i].intro + '</i></h4> <h3 class="modalContents">';
 			characters[i].description.forEach(function (el) {
 				cont += el + '</br>';
 			});
 			cont += '</h3><div align="center"><image class="charImg modalContens"  src="./img/Interrogatorio/' + characters[i].image + '">'
 			cont += '</br><hr><button id="interrogation" type ="button"  class="btn btn-default"'
-			if (chapterIndex <4) cont += 'disabled' //TODO rimettere 4, mettere 1 per gli esperimenti
-			cont +=' onclick ="interrogate('+i+')"> Start interrogation </button></div>'
+			if (chapterIndex < 4) cont += 'disabled' //TODO rimettere 4, mettere 1 per gli esperimenti
+			cont += ' onclick ="interrogate(' + i + ')"> Start interrogation </button>'
+			if (questionStep >= 3 && characters[i].name != 'Francesco Bonmartini' && lastQuestions['lindamurri'] && lastQuestions['augustomurri'] && lastQuestions['TullioMurri']) {
+				cont += '<button id="accuse" type="button" class="btn btn-default" onclick ="accuse(' + i + ')"> Accuse </button>'
+			}
+			cont += '</div>'
 			$('#description').html(cont);
 			if (characters[i].name == "Francesco Bonmartini")
 				$('#interrogation').hide();
@@ -258,7 +282,7 @@
 			);
 			scrollToY += $('.revelation:last').height();
 			console.log('---' + scrollToY)
-			
+
 		}
 
 
@@ -275,24 +299,25 @@
 			document.getElementById('revelations').innerHTML += revCode;
 		}
 
-		function viewImage(id){
+		function viewImage(id) {
 			console.log('prima');
 			$('#imageModal').modal("show");
 			console.log('dopo');
-			this.populateImgModal(0,id);
+			this.populateImgModal(0, id);
 		}
-		
-		function populateImgModal(i,id){
+
+		function populateImgModal(i, id) {
 			console.log('dentro populate')
-			if(i < foundImages[id].length){
-				var cont =  '< img class="detective-img" src = "img/Interrogatorio/'+foundImages[id][i].img+'" />'
-				$('#imageModalBody').html(cont);
-				var cont = '<h3>' + foundImages[id][i].subtitle + '</h3></br>'
-				cont += '<h4>'+ foundImages[id][i].description +'</h4>'
+			if (i < foundImages[id].length) {
+				var cont = '<img class="detective-img" src = "' + foundImages[id][i].img + '" />'
+				$('#imageModalImg').html(cont);
+				var cont = '<h3>' + foundImages[id][i].subtitle + '</h3></hr>';
+				cont += '<h4>' + foundImages[id][i].description + '</h4>';
 				$('#imgDescription').html(cont);
-				$("#nextImg").attr("onclick", "populateImgModal(" + i+1 + ","+id+")");
+				j= i+1;
+				$("#nextImg").attr("onclick", "populateImgModal(" + j + ", \"" + id + "\")");
 			}
-			else{
+			else {
 				$('#imageModal').modal("hide");
 			}
 		}
@@ -577,7 +602,7 @@
 		}
 
 
-		
+
 		function createNewChapterModal() {
 
 			/* stepIndex is the dialog line number */
@@ -616,7 +641,7 @@
 
 			// add a button
 			modal.addFooterBtn(btnText, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
-				
+
 				/* Start the chapter */
 				if (stepIndex == gameData.revelations[chapterIndex].intro.length - 1) {
 					modal.close();
@@ -630,7 +655,7 @@
 
 
 				/* Next dialog line */
-				else{
+				else {
 					stepIndex++;
 
 					typewriter.deleteAll()
@@ -713,16 +738,16 @@
 					modal.destroy();
 
 					chapterIndex++;
-					if (chapterIndex ==4){ // TODO rimettere == 4, mettere > 0 per gli esperimenti
+					if (chapterIndex == 4) { // TODO rimettere == 4, mettere > 0 per gli esperimenti
 						$('#interrogation').prop('disabled', false);
-					}					
+					}
 
 					if (chapterIndex == gameData.revelations.length) {
 						createGameEndModal();
 					}
 					else {
 						createNewChapterModal(0);
-						
+
 						/* Create new chapter revelation elements */
 						addChapterRevelation();
 					}
@@ -730,7 +755,7 @@
 
 
 				/* Next dialog line */
-				else{
+				else {
 					stepIndex++;
 
 					typewriter.deleteAll()
@@ -822,10 +847,16 @@
 			// set content
 			var content = "";
 			//content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' + gameData.revelations[chapterIndex].title + '</h2>';
-			content += '<img class="detective-img" src="img/Interrogatorio/'+characters[charId].image+'"/>';
+			if (charId == 3) {
+				content += '<img class="detective-img" src="img/dhdtective.png"/>'
+				questionStep = 4
+			}
+			else {
+				content += '<img class="detective-img" src="img/Interrogatorio/' + characters[charId].image + '"/>';
+			}
 			content += '<p id="typewriter-text" class="dialog-text"></p>'
 			modal.setContent(content);
-			
+
 			for (var i = 0; i < characters[charId].questions.length; i++) {
 				if (characters[charId].questions[i].qId == questId) {
 					break;
@@ -847,7 +878,11 @@
 					modal.close();
 					modal.destroy();
 					//$('#interrogationModal').modal("show");	
-					interrogate(charId)
+					if (questionStep == 3 && characters[i].name != 'Francesco Bonmartini' && lastQuestions['lindamurri'] && lastQuestions['augustomurri'] && lastQuestions['TullioMurri']) {
+						createInterrogationAnswerModal(3, 4)
+					}
+					else if (questionStep < 4)
+						interrogate(charId)
 				}
 
 
@@ -935,7 +970,7 @@
 		function handleRevelationCompleted(id) {
 
 			createChapterEndModal();
-			
+
 			document.getElementById('clues').innerHTML = ""
 
 			/* Fix every clue used to solve this chapter */
@@ -1026,7 +1061,7 @@
 			if (Object.keys(discovered).length == 1) {
 				forceSelectModel(id);
 			}
-			document.getElementById("modelsframe").contentWindow.addIcon({ 'iconFilePath': 'iconselect/images/icons/'+id+'.png', 'iconValue': id })
+			document.getElementById("modelsframe").contentWindow.addIcon({ 'iconFilePath': 'iconselect/images/icons/' + id + '.png', 'iconValue': id })
 		}
 
 		function forceSelectModel(model) {
@@ -1039,43 +1074,58 @@
 
 		/* Spinner Picker Functions */
 		var mobileSelect = new MobileSelect({
-				trigger: '#mobileTrig',
-				title: 'Lock',  
-				wheels: [
-					{data:['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']},
-					{data:['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']},
-					{data:['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']},
-					{data:['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']}
-				],
-				ensureBtnText: 'Confirm',
-				cancelBtnText: 'Cancel',
-				callback:function(indexArr, data){
-					console.log(data); //Returns the selected json data
-					if (
-						data[0] == '0' &&
-						data[1] == '0' &&
-						data[2] == '0' &&
-						data[3] == '0'
-					) {
-						changeMarkerContent('marker-chest', 'marker-chest', '0 0.8 0.2', '90 180 0', 0.3, 'otherF', 
-							'models/Bauleaperto/Bauleapertocontexturefinal3.obj', 
-							'models/Bauleaperto/Bauleapertocontexturefinal3.mtl'
-						);
-						addClue('chest');
-					}
-				},
-				triggerDisplayData: false,
-				position:[0, 0, 0, 0] //Initialize positioning
+			trigger: '#mobileTrig',
+			title: 'Lock',
+			wheels: [
+				{ data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] },
+				{ data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] },
+				{ data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] },
+				{ data: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] }
+			],
+			ensureBtnText: 'Confirm',
+			cancelBtnText: 'Cancel',
+			callback: function (indexArr, data) {
+				console.log(data); //Returns the selected json data
+				if (
+					data[0] == '0' &&
+					data[1] == '0' &&
+					data[2] == '0' &&
+					data[3] == '0'
+				) {
+					changeMarkerContent('marker-chest', 'marker-chest', '0 0.8 0.2', '90 180 0', 0.3, 'otherF',
+						'models/Bauleaperto/Bauleapertocontexturefinal3.obj',
+						'models/Bauleaperto/Bauleapertocontexturefinal3.mtl'
+					);
+					addClue('chest');
+				}
+			},
+			triggerDisplayData: false,
+			position: [0, 0, 0, 0] //Initialize positioning
 		});
 
 		function triggerMobileSelect(id) {
 			setTimeout(function () {
 				mobileSelect.show();
-				}, 600);
+			}, 600);
 		}
 
 		function otherF(id) {
 			console.log("aAAAAAAAAAA " + id);
+		}
+
+		function accuse(id) {
+			cont = '<h3> Are you sure you want to accuse ' + characters[id].name + ' ? </h3></br>'
+			cont += '<image class="charImg modalContens" src="./img/Interrogatorio/' + characters[id].image + '">'
+			$("#yesBtn").attr("onclick", "yesAccuse(" + id + ")");
+			$('#aysModalBody').html(cont);
+			$('#characterModal').modal("hide");
+			$('#aysModal').modal("show");
+			
+
+		}
+
+		function yesAccuse(id) {
+			console.log("accuso " + characters[id].name);
 		}
 
 		function tutorialClicked(id) {
@@ -1101,47 +1151,50 @@
 
 				addClue(id);
 
-				setTimeout(function(){ introJs().start(); }, 1200);
+				setTimeout(function () { introJs().start(); }, 1200);
 			}
 		}
 
-		function interrogate(i){
+		function interrogate(i) {
 			console.log(characters[i].id)
 			$('#characterModal').modal("hide");
 			cont = '';
 			cont += '<h3 class="modalContents" align="left">' + characters[i].name + ' <image class="interrogationImg modalContens"  src="./img/StoriaIniziale/' + characters[i].image + '"></h3> '
 			// interrogazioni possibili
 			$('#interrogationModalBody').html(cont);
-			var options="";
-			for (var j = 0; j<= questionStep && j< characters[i].questions.length; j++ ){
-				if (characters[i].questions[j].qId <= questionStep){
-					options += "<option value='"+ characters[i].questions[j].qId+"_"+i +"' class='questionOption'> " + characters[i].questions[j].question +"</option>"
+			var options = "";
+			for (var j = 0; j <= questionStep && j < characters[i].questions.length; j++) {
+				if (characters[i].questions[j].qId <= questionStep) {
+					options += "<option value='" + characters[i].questions[j].qId + "_" + i + "' class='questionOption'> " + characters[i].questions[j].question + "</option>"
 				}
 			}
 			$('#questions').html(options);
-			$("#ask").attr("onclick", "askQuestion("+i+",0)");
+			$("#ask").attr("onclick", "askQuestion(" + i + ",0)");
 			//$('#ask').click(function(){askQuestion(i, 0)}); //indice del personaggio e 0 come prima domanda di default
 			$('#interrogationModal').modal("show");
 		}
 
-		function askQuestion(charId, questId){ //char id = char index in the caracter json , quest id = qId
+		function askQuestion(charId, questId) { //char id = char index in the caracter json , quest id = qId
 			console.log("ask")
 			console.log(characters[charId].name);
 			console.log(questId);
-			for (var i= 0; i< characters[charId].questions.length; i++){
-				if (characters[charId].questions[i].qId == questId){
+			for (var i = 0; i < characters[charId].questions.length; i++) {
+				if (characters[charId].questions[i].qId == questId) {
 					break;
 				}
 			}
-			if(characters[charId].questions[i].unlock.length > 0){
+			if (characters[charId].questions[i].unlock.length > 0) {
 				if (questionStep < characters[charId].questions[i].unlock[0].qId)
 					questionStep = characters[charId].questions[i].unlock[0].qId;
 				console.log(questionStep);
 			}
+			if (questId == 3 && (characters[charId].id == 'lindamurri' || characters[charId].id == 'augustomurri' || characters[charId].id == 'TullioMurri')) {
+				lastQuestions[characters[charId].id] = 1;
+			}
 			$('#interrogationModal').modal("hide");
 			//parte il dialogo con la risposta 
-			createInterrogationAnswerModal(charId,questId);
-			
+			createInterrogationAnswerModal(charId, questId);
+
 		}
 
 
@@ -1162,6 +1215,11 @@
 		var cluePositions = {};
 		cluePositions.size = 0;
 		cluePositions.list = [];
+		var lastQuestions = {
+			'lindamurri': 0,
+			'augustomurri': 0,
+			'TullioMurri': 0,
+		}
 
 		/* Insert clues to fill cluePosition struct */
 		for (i = 0; i < gameData.clues.length; i++) {
@@ -1189,17 +1247,17 @@
 			modal.destroy();
 			createNewChapterModal(0);
 		})*/
-	//addClue('window');
-	//addClue('key');
-	//addClue('lock');
-		$('#questions').change(function() {
-			val= $('#questions').val()
-			var q = val.substr(0, val.indexOf('_')); 
-			var c = val.substr(val.indexOf('_')+1, val.length);
+		//addClue('window');
+		//addClue('key');
+		//addClue('lock');
+		$('#questions').change(function () {
+			val = $('#questions').val()
+			var q = val.substr(0, val.indexOf('_'));
+			var c = val.substr(val.indexOf('_') + 1, val.length);
 			console.log($('#questions').val())
 			//$('#ask').click(function(){askQuestion(c, q)})
-			$("#ask").attr("onclick", "askQuestion(" + c + ","+q+")");
-			
+			$("#ask").attr("onclick", "askQuestion(" + c + "," + q + ")");
+
 		})
 	</script>
 
