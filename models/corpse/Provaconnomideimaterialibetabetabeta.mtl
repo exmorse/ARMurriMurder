@@ -1,0 +1,111 @@
+# Blender MTL File: 'CurveBevelatecontextureehoancherimossoiparticlescambiatelefuckingtextures.blend'
+# Material Count: 10
+
+newmtl Colletto
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.113910 0.113910 0.113910
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Bruno\Desktop\Blender\textures\male_elegantsuit01_diffuse.png
+
+newmtl Cravatta
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.640000 0.640000 0.640000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Bruno\Desktop\Blender\textures\male_elegantsuit01_diffuse.png
+
+newmtl Material.001
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.014668 0.009946 0.001754
+Ks 0.005010 0.005010 0.005010
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+
+newmtl Pelle
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.592759 0.480356
+Ks 0.874269 0.622266 0.561268
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Bruno\Desktop\Blender\textures\young_lightskinned_male_diffuse.png
+
+newmtl Sangue_Rosso
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.015837 0.020925
+Ks 0.473684 0.026537 0.017437
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Bruno\Desktop\Blender\textures\young_lightskinned_male_diffuse.png
+
+newmtl Sangue_Rosso_male_elegantsuit01_diffuse.png
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.015837 0.020925
+Ks 0.473684 0.026537 0.017437
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Bruno\Desktop\Blender\textures\male_elegantsuit01_diffuse.png
+
+newmtl Sangue_Rosso_texturevestiti.jpg
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.015837 0.020925
+Ks 0.473684 0.026537 0.017437
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Bruno\Desktop\Blender\texturevestiti.jpg
+
+newmtl Shoes
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.219052 0.086337 0.005000
+Ks 0.181646 0.072298 0.004747
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Bruno\Desktop\Blender\textures\shoes01_diffuse.png
+
+newmtl Suit
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.011733 0.011733 0.011733
+Ks 0.131579 0.131579 0.131579
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Bruno\Desktop\Blender\textures\male_elegantsuit01_diffuse.png
+
+newmtl Suit_texturevestiti.jpg
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.011733 0.011733 0.011733
+Ks 0.131579 0.131579 0.131579
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Bruno\Desktop\Blender\texturevestiti.jpg

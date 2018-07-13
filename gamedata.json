@@ -58,8 +58,8 @@ var gameData = {
 		{
 			'id': 'autopsy',
 			'marker': 'markers/autopsy/autopsy.patt',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.mtl',
+			'obj': 'models/corpse/Provaconnomideimaterialibetabetabeta.obj',
+			'mtl': 'models/corpse/Provaconnomideimaterialibetabetabeta.mtl',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
@@ -72,8 +72,8 @@ var gameData = {
 			'obj': 'models/Mutande/mutandeAllineate.obj',
 			'mtl': 'models/Mutande/mutandeAllineate.mtl',
 			'posString': '0 0.4 0',
-			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
+			'rotationString': '0 90 0',
+			'scaleFactor': 5.5,
 			'img': 'key.png',
 			'function': 'addClue'
 		}
