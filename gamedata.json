@@ -25,8 +25,8 @@ var gameData = {
 		{
 			'id': 'doorlock',
 			'marker': 'markers/porta/porta.patt',
-			'obj': 'models/doorlock/doorlock.obj',
-			'mtl': 'models/doorlock/doorlock.mtl',
+			'obj': 'models/doorlock/newserratura.obj',
+			'mtl': 'models/doorlock/newserratura.mtl',
 			'posString': '0 0.2 0.8',
 			'rotationString': '90 180 0',
 			'scaleFactor': 0.45,
