@@ -78,28 +78,6 @@ var gameData = {
 			'function': 'addClue'
 		},
 		{
-			'id': 'pitale',
-			'marker': 'markers/pitale/pitale.patt',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.mtl',
-			'posString': '0 0.4 0',
-			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
-			'img': 'key.png',
-			'function': 'addClue'
-		},
-		{
-			'id': 'champagne',
-			'marker': 'markers/Champagne/champ80.patt',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.mtl',
-			'posString': '0 0.4 0',
-			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
-			'img': 'key.png',
-			'function': 'addClue'
-		},
-		{
 			'id': 'comodino',
 			'marker': 'markers/comodino/comodino.patt',
 			'obj': 'models/key/key.obj',
@@ -108,19 +86,8 @@ var gameData = {
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
 			'img': 'key.png',
-			'function': 'addClue'
-		},
-		{
-			'id': 'cuscino',
-			'marker': 'markers/cuscino/cuscino.patt',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.mtl',
-			'posString': '0 0.4 0',
-			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
-			'img': 'key.png',
-			'function': 'addClue'
-		},
+			'function': 'viewImage'
+		}
 	],
 
 	'initialDialog' : {
