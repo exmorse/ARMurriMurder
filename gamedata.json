@@ -25,8 +25,8 @@ var gameData = {
 		{
 			'id': 'chest',
 			'marker': 'markers/BAULEVERO/baule.patt',
-			'obj': 'models/Baulechiuso/Baulechiusocontexturefinal3.obj',
-			'mtl': 'models/Baulechiuso/Baulechiusocontexturefinal3.mtl',
+			'obj': 'models/Champagne/champagne2.obj',
+			'mtl': 'models/Champagne/champagne2.mtl',
 			'posString': '0 0.8 0.2',
 			'rotationString': '90 180 0',
 			'scaleFactor': 0.3,
