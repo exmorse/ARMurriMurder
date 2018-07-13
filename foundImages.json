@@ -5,7 +5,7 @@ var foundImages =
         {
         'img':'./img/indizi/LetteraAugusto.png',
         'subtitle':'This letter was sent from Augusto to Linda. In here, Augusto addresses some problems both with Linda and Tullio, without revealing the reasons for his concerns.',
-        'description':'Translation:</br>Dear Linda,I’d like to send you some words from here, but they won’t give me a break and I don’t know if they’ll ever give me enough time to tell you that in Rimini I knew things better compared to Palermo. The thing that I want to tell you the most is that I know for sure that the albumin has disappeared. Anyways I still think about it with undominable pain and rage, but I wish to know if you’ll be happy in the future. You blame me for my job: I’m really tired: I left Palermo tired and I never went to bed, until this night. But how can I live if I have to see your condition? I’m looking into other tragedies and in mine not to think about you, because you’re the only one that my soul wants to know about. Please get better, because not even the scoundrels have infinite luck, for god’s sake! I won’t tell you about mom’s discourses: they kept going for a few hours; it was truly the “first” millionth disappointment for me, as it was for Nino the millionth confirmation of his thesis. But there are some fools, like me, to whom life is a series of infinite disappointments. I didn’t see Nino, but I think he’s playing the victim a little bit with some resignation. You’ve seen him, so you’ll know more than me. I can’t write anymore. Mrs. Sacerdoti sends her regards and wants you to send her kisses to Maria and Ninetto.</br>Augusto.',
+        'description':'Translation:</br></br>Dear Linda,I’d like to send you some words from here, but they won’t give me a break and I don’t know if they’ll ever give me enough time to tell you that in Rimini I knew things better compared to Palermo. The thing that I want to tell you the most is that I know for sure that the albumin has disappeared. Anyways I still think about it with undominable pain and rage, but I wish to know if you’ll be happy in the future. You blame me for my job: I’m really tired: I left Palermo tired and I never went to bed, until this night. But how can I live if I have to see your condition? I’m looking into other tragedies and in mine not to think about you, because you’re the only one that my soul wants to know about. Please get better, because not even the scoundrels have infinite luck, for god’s sake! I won’t tell you about mom’s discourses: they kept going for a few hours; it was truly the “first” millionth disappointment for me, as it was for Nino the millionth confirmation of his thesis. But there are some fools, like me, to whom life is a series of infinite disappointments. I didn’t see Nino, but I think he’s playing the victim a little bit with some resignation. You’ve seen him, so you’ll know more than me. I can’t write anymore. Mrs. Sacerdoti sends her regards and wants you to send her kisses to Maria and Ninetto.</br>Augusto.',
         },
         {
         'img':'./img/indizi/francobollo.png',
@@ -14,9 +14,24 @@ var foundImages =
         },
         {
         'img':'./img/indizi/foto.jpg',
-        'subtitle':'Carlo Secchi Photo',
+        'subtitle':"Carlo Secchi's Photo",
         'description':'Why does Linda still have a picture of Carlo Secchi in her room?',
         },
+    ],
+    'bauleAperto':[
+        {
+        'img':'./img/indizi/Linda.jpg',
+        'subtitle':'Suspicious message from Linda, that implies the use of some kind of poison.',
+        'description':'<i>Dear Nino,</br></br>I almost imagine what you have told me about the extraordinary event, I bet A. is involved and the other actor is you. I had guessed a terno! I am too curious to know from you.</br></br>Linda</br></br><hr>Dead Nino,</br></br>I do not know anything about S. anymore: did the medicine work? Write me a note and have many kisses.</br></br>Linda</i>',
+        }
+            
+    ],
+    'mobile': [
+        {
+        'img':'./img/indizi/bigliettoamante.jpg',
+        'subtitle':'A note probably left by a secret lover to organize a date.',
+        'description':'<i>Dear Count, </br></br>It’s fine for Thursday 27th, even the hour. However, I would like you to be at the door of Via Pusterla because in that place you are seen so much better by the tenants that are in front of you. Meanwhile, I just have to kiss you a lot.</br></br>Distinctly yours, B.</i>',
+        }
     ]
 		
 }

@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="./css/clues.css">
 <link rel="stylesheet" type="text/css" href="./css/scene.css">
 <link rel="stylesheet" type="text/css" href="./css/tingle.css">
+<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 
 <script src="js/typewriter.js"></script>
 <script src="js/intro.js"> </script>
@@ -311,7 +312,7 @@
 			if (i < foundImages[id].length) {
 				var cont = '<img class="detective-img" src = "' + foundImages[id][i].img + '" />'
 				$('#imageModalImg').html(cont);
-				var cont = '<h3>' + foundImages[id][i].subtitle + '</h3></hr>';
+				var cont = '<h3>' + foundImages[id][i].subtitle + '</h3><hr>';
 				cont += '<h4>' + foundImages[id][i].description + '</h4>';
 				$('#imgDescription').html(cont);
 				j= i+1;
