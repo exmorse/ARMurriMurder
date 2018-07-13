@@ -54,6 +54,17 @@ var gameData = {
 			'scaleFactor': 2.5,
 			'img': 'key.png',
 			'function': 'viewImage'
+		},
+		{
+			'id': 'autopsy',
+			'marker': 'markers/autopsy/autopsy.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
+			'function': 'addClue'
 		}
 	],
 
@@ -110,7 +121,8 @@ var gameData = {
 				[
 					'corpse',
 					'doorlock',
-					'comodino'
+					'comodino',
+					'autopsy'
 				],
 			'clueList': 
 				[
