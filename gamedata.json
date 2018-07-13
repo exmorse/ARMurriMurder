@@ -58,7 +58,7 @@ var gameData = {
 		{
 			'id': 'mobile',
 			'marker': 'markers/mobileingresso/mobile.patt',
-			'obj': ':img/dhdtective.png',
+			'obj': 'img/dhdtective.png',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
 			'scaleFactor': 1.5,
