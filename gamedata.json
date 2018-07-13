@@ -133,7 +133,8 @@ var gameData = {
 					'corpse',
 					'doorlock',
 					'comodino',
-					'autopsy'
+					'autopsy',
+					'cuscino'
 				],
 			'clueList': 
 				[
