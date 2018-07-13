@@ -47,8 +47,8 @@ var gameData = {
 		{
 			'id': 'autopsy',
 			'marker': 'markers/autopsy/autopsy.patt',
-			'obj': 'models/corpse/Provaconnomideimaterialibetabetabeta.obj',
-			'mtl': 'models/corpse/Provaconnomideimaterialibetabetabeta.mtl',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.obj',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
@@ -64,6 +64,17 @@ var gameData = {
 			'rotationString': '0 90 0',
 			'scaleFactor': 5.5,
 			'img': 'cuscino.png',
+			'function': 'addClue'
+		},
+		{
+			'id': 'champange',
+			'marker': 'markers/Champagne/champ80.patt',
+			'obj': 'models/Champagne/champagne2.obj',
+			'mtl': 'models/Champagne/champagne2.obj',
+			'posString': '0 0.4 0',
+			'rotationString': '0 0 0',
+			'scaleFactor': 2.5,
+			'img': 'key.png',
 			'function': 'addClue'
 		}
 	],
