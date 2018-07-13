@@ -12,17 +12,6 @@ var gameData = {
 			'function': 'tutorialClicked'
 		},
 		{
-			'id': 'corpse',
-			'marker': 'kanji',
-			'obj': 'models/window2/window.obj',
-			'mtl': 'models/window2/window.mtl',
-			'posString': '0 0.2 1.4',
-			'rotationString': '90 180 0',
-			'scaleFactor': 0.05,
-			'img': 'corpse.png',
-			'function' : 'addClue'
-		},
-		{
 			'id': 'doorlock',
 			'marker': 'markers/porta/porta.patt',
 			'obj': 'models/doorlock/newserratura.obj',
@@ -63,7 +52,7 @@ var gameData = {
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
-			'img': 'key.png',
+			'img': 'autopsy.png',
 			'function': 'addClue'
 		},
 		{
@@ -74,7 +63,7 @@ var gameData = {
 			'posString': '0 0.4 0',
 			'rotationString': '0 90 0',
 			'scaleFactor': 5.5,
-			'img': 'key.png',
+			'img': 'cuscino.png',
 			'function': 'addClue'
 		}
 	],
