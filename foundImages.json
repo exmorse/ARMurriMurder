@@ -1,0 +1,13 @@
+var foundImages = 
+{
+	'comodino':
+    [
+        {
+        'img':'./img/indizi/francobollo.png',
+        'subtitle':'Old French Gustav Flaubert Stamp',
+        'description':'Gustav Flaubert was one of the favorites authors of Linda. Although she was not an expert in literature or a writer like her brother, Linda owned a lot of books displayed in her library. Is it just a case that this author was so much loved by the woman that she put his books on her library? Does she recognize herself as one of women that came out from that author’s pen?',
+        },
+    ]
+		
+}
+

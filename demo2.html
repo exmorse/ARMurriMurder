@@ -100,12 +100,34 @@
 					</div>
 				</div>
 			</div>
+
+			<div id="imageModal" class="modal fade" role="dialog">
+				<div class="modal-dialog grayBg">
+			
+					<!-- Modal content-->
+					<div class="modal-content grayBg">
+						<div class="modal-header">
+							<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
+							<h2 class="modal-title">Object found..</h2>
+						</div>
+						<div id="imageModalBody" class="modal-body">
+							<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
+						</div>
+						<div id="imageModalFooter" class="modal-footer">
+							<div id='imgDescription>'</div>
+							<button id="nextImg" type="button" class="btn btn-default" > Next </button>
+						</div>
+					</div>
+				</div>
+			
+			</div>
 		
 		</div>
 	</div>
 
 	<script src="gamedata.json"></script>
 	<script src="characters.json"></script>
+	<script src="foundImages.json"></script>
 	<script>
 
 		var alreadyAddedClues = [];
@@ -176,7 +198,7 @@
 
 		/* Add the HTML code related to a clue */
 		function addClueSetup(id) {
-			document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false">' + id + '</div>';
+			document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false"> <image class="clueImg"  src = "./iconselect/images/icons/' + id + '.png" ></image> </div>';
 			var coords = interact.getElementRect(document.getElementById(id));
 			cluePositions.list.push({ x: coords.left + coords.width / 2, y: coords.top + coords.height / 2 })
 		}
@@ -186,7 +208,7 @@
 		function addClue(id) {
 			if (alreadyAddedClues.indexOf(id) == -1) {
 				//document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false"> <span class="glyphicon glyphicon-'+id+'"></span> </div>';  
-				document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable draggable-clue" align="center" dropped="false">' + id + '</div>';
+				document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable draggable-clue" align="center" dropped="false"><image class="clueImg"  src = "./iconselect/images/icons/' + id + '.png" ></image></div>';
 				alreadyAddedClues.push(id);
 				cluePositions.size++;
 				activateDraggableClueById(id, cluePositions.size - 1);
@@ -251,6 +273,25 @@
 			revCode += '</div>';
 			revCode += '</div>';
 			document.getElementById('revelations').innerHTML += revCode;
+		}
+
+		function viewImage(id){
+			$('#imageModal').modal("show");
+			populateImgModal(0,id);
+		}
+		
+		function populateImgModal(i,id){
+			if(i < foundImages[id].length){
+				var cont =  '< img class="detective-img" src = "img/Interrogatorio/'+foundImages[id][i].img+'" />'
+				$('#imageModalBody').html(cont);
+				var cont = '<h3>' + foundImages[id][i].subtitle + '</h3></br>'
+				cont += '<h4>'+ foundImages[id][i].description +'</h4>'
+				$('#imgDescription').html(cont);
+				$("#nextImg").attr("onclick", "populateImgModal(" + i+1 + ","+id+")");
+			}
+			else{
+				$('#imageModal').modal("hide");
+			}
 		}
 
 
