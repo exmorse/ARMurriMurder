@@ -82,7 +82,7 @@ var gameData = {
 			'img': 'key.png',
 			'function': 'addClue',
 			'showModel': true
-        },
+        	},
 		{
 			'id': 'pitale',
 			'marker': 'markers/pitale/pitale.patt',
@@ -137,7 +137,7 @@ var gameData = {
 			'intro': [
 				'Hello there. Sorry, who are you...?',
 				'Oh, I see... You\'re the new detective assistant for this case. Well, welcome to your first crime scene then.',
-				'Oh… Who am I? I am your boss, Detective Mr. Dino Hans Detroit, but you can call me Mr. DHDetective.',
+				'Oh... Who am I? I am your boss, Detective Mr. Dino Hans Detroit, but you can call me Mr. DHDetective.',
 				'I\'m not going to let you get into the crime scene immediately though, you\'ll need to learn some tricks first.',
 				'Can you see that T in front of you? Point your camera to it and click on it! Than follow the instructions...'
 			],
@@ -166,7 +166,7 @@ var gameData = {
 			],
 			'outro': [
 				'Great catch!',
-				'There is no sign of break in so it’s unlikely that the crime is robbery-related.'
+				'There is no sign of break in so it\'s unlikely that the crime is robbery-related.'
 			],
 			'id': 'robbery-rev',
 			'activeClues': 
@@ -183,13 +183,13 @@ var gameData = {
 			'number': '2',
 			'title': 'Restart',
 			'intro': [
-				'Well, it looks like we are back to the start. I’ll need you to find more clues to make another hypothesis.'
+				'Well, it looks like we are back to the start. I\'ll need you to find more clues to make another hypothesis.'
 			],
 			'outro': [
 				'Oh I see, female hair, female underwear, bottle of champagne, a message...',
 				'It appears that the killer might be a secret lover of the victim.',
-				'But all these clues, aren’t they a little bit too obvious?',
-				'Let’s just take another look to be sure that there’s no other possible explanation'
+				'But all these clues, aren\'t they a little bit too obvious?',
+				'Let\'s just take another look to be sure that there’s no other possible explanation'
 			],
 			'id': 'restart-rev',
 			'activeClues': 
@@ -212,13 +212,13 @@ var gameData = {
 			'intro': [
 				'Too obvious is always suspicious, someone is trying to create a setup here...',
 				'The real culprit is smarter than we thought.',
-				'But no worries, there is no perfect crime, there must be more clues, let’s find them!'
+				'But no worries, there is no perfect crime, there must be more clues, let\'s find them!'
 			],
 			'outro': [
 				'Poison? Very precise cut on the corpse? Involvement of his wife Linda?',
-				'This is getting too complicated, it’s time to talk with some of the protagonists of this story.',
-				'But when you start the questions don’t mention the message, we don’t want them to know everything we know.',
-				'After you finish this interrogation I’m sure you’ll be able to identify the killer!'
+				'This is getting too complicated, it\'s time to talk with some of the protagonists of this story.',
+				'But when you start the questions don\'t mention the message, we don\'t want them to know everything we know.',
+				'After you finish this interrogation I\'m sure you\'ll be able to identify the killer!'
 			],
 			'id': 'setup-rev',
 			'activeClues': 
@@ -237,8 +237,8 @@ var gameData = {
 			'number': '4',
 			'title': 'The final interrogation',
 			'intro': [
-				'Don’t tell me you’ve never done an interrogation before…',
-				'Well, it’s very simple, just click on the characters tab and click on the character you want to talk with,',
+				'Don\'t tell me you\'ve never done an interrogation before...',
+				'Well, it\'s very simple, just click on the characters tab and click on the character you want to talk with,',
 				'Then click on "Start Interrogation", you will see several questions you can ask to each character.',
 				'Remember, more will be added as you discover new information.',
 				'Once you think you have the culprit just click on the "Accusation" tab and select the person you think is the killer.'
