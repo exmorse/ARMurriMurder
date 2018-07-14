@@ -227,6 +227,7 @@
 
 		/* Add the HTML code related to a clue */
 		function addClue(id) {
+			console.log("Adding clue: " + id);
 			if (alreadyAddedClues.indexOf(id) == -1) {
 				//document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable-clue" align="center" dropped="false"> <span class="glyphicon glyphicon-'+id+'"></span> </div>';  
 				document.getElementById('clues').innerHTML += '<div id="' + id + '" class="draggable draggable-clue" align="center" dropped="false"><image class="clueImg"  src = "./iconselect/images/icons/' + id + '.png" ></image></div>';
@@ -246,6 +247,7 @@
 						if (gameData.clues[i].id == id) {
 							if (gameData.clues[i].showModel)
 								addModel(id);
+								return;
 						}
 					}
 				}
@@ -1096,9 +1098,17 @@
 			modelsframe.getElementById('model-' + model).style.visibility = "visible";
 			document.getElementById("modelsframe").contentWindow.currentModel = model;
 
+			document.getElementById('clues').removeAttribute('data-step');
+			document.getElementById('clues').removeAttribute('data-intro');
+
+			document.getElementById('revelations').removeAttribute('data-step');
+			document.getElementById('revelations').removeAttribute('data-intro');
+
 			document.getElementById('btn-models').setAttribute('data-step', "1");
 			document.getElementById('btn-models').setAttribute('data-intro', "This button opens the models section, where you can analyize discovered models.");
-			introJs().start();
+			setTimeout(function () {
+				introJs().start();
+			}, 300);
 		}
 
 
@@ -1136,7 +1146,7 @@
 		function triggerMobileSelect(id) {
 			setTimeout(function () {
 				mobileSelect.show();
-			}, 600);
+			}, 200);
 		}
 
 		function otherF(id) {
@@ -1181,7 +1191,7 @@
 
 				addClue(id);
 
-				setTimeout(function () { introJs().start(); }, 1200);
+				setTimeout(function () { introJs().start(); }, 800);
 			}
 		}
 

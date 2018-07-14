@@ -27,14 +27,14 @@ var gameData = {
 		{
 			'id': 'chest',
 			'marker': 'markers/BAULEVERO/baule.patt',
-			'obj': 'models/Champagne/champagne2.obj',
-			'mtl': 'models/Champagne/champagne2.mtl',
+			'obj': 'models/Baulechiuso/Baulechiusocontexturefinal3.obj',
+			'mtl': 'models/Baulechiuso/Baulechiusocontexturefinal3.mtl',
 			'posString': '0 0.8 0.2',
 			'rotationString': '90 180 0',
 			'scaleFactor': 0.3,
 			'img': 'chest.png',
 			'function': 'triggerMobileSelect',
-			'showModel': false
+			showModel: false
 		},
 		{
 			'id': 'autopsy',
@@ -72,13 +72,25 @@ var gameData = {
 			'showModel': false
 		},
 		{
+			'id': 'champagne',
+			'marker': 'markers/Champagne/champcol.patt',
+			'obj': 'models/key/key.obj',
+			'mtl': 'models/key/key.mtl',
+			'posString': '0 0.4 0',
+			'rotationString': '90 180 0',
+			'scaleFactor': 1.5,
+			'img': 'key.png',
+			'function': 'addClue',
+			'showModel': true
+        },
+		{
 			'id': 'pitale',
 			'marker': 'markers/pitale/pitale.patt',
-			'obj': 'models/Baulechiuso/Baulechiusocontexturefinal3.obj',
-			'mtl': 'models/Baulechiuso/Baulechiusocontexturefinal3.mtl',
+			'obj': 'models/Capello/CAPELLOblend4.obj',
+			'mtl': 'models/Capello/CAPELLOblend4.mtl',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
-			'scaleFactor': 1.5,
+			'scaleFactor': 3.5,
 			'img': 'pitale.png',
 			'function': 'addClue',
 			'showModel': true
@@ -106,19 +118,7 @@ var gameData = {
 			'img': 'cuscino.png',
 			'function': 'addClue',
 			'showModel': true
-		},
-		{
-			'id': 'champagne',
-			'marker': 'markers/Champagne/champcol.patt',
-			'obj': 'models/Champagne/champagne2.obj',
-			'mtl': 'models/Champagne/champagne2.mtl',
-			'posString': '0 0.4 0',
-			'rotationString': '90 180 0',
-			'scaleFactor': 1.5,
-			'img': 'key.png',
-			'function': 'addClue',
-			'showModel': true
-        }
+		}
 	],
 
 	'initialDialog' : {
@@ -172,12 +172,8 @@ var gameData = {
 			'id': 'robbery-rev',
 			'activeClues': 
 				[
-					'mobile',
-					'champagne',
-					'doorlock',
-					'comodino',
-					'pitale',
-					'chest'
+					'autopsy',
+					'doorlock'
 				],
 			'clueList': 
 				[
@@ -199,11 +195,18 @@ var gameData = {
 			'id': 'restart-rev',
 			'activeClues': 
 				[
+					'pitale',
+					'cuscino',
+					'champagne',
+					'comodino',
 					'chest'
 				],
 			'clueList': 
 				[
-					'chest'
+					'cuscino',
+					'champagne',
+					'chest',
+					'pitale'
 				]
 		},
 		{
@@ -223,12 +226,14 @@ var gameData = {
 			'id': 'setup-rev',
 			'activeClues': 
 				[
-					'corpse',
-					'lock'
+					'chest',
+					'cestino',
+					'comodino'
 				],
 			'clueList': 
 				[
-					'lock'
+					'cestino',
+					'comodino'
 				]
 		},
 			{
