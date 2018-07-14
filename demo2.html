@@ -309,9 +309,16 @@
 
 		function viewImage(id) {
 			console.log('prima');
-			$('#imageModal').modal("show");
-			console.log('dopo');
-			this.populateImgModal(0, id);
+			setTimeout(function () {
+				$('#imageModal').modal("show");
+				console.log('dopo');
+				this.populateImgModal(0, id);
+			}, 300);
+
+			if (id == 'mobile') {
+				addClue(id);
+			}
+			
 		}
 
 		function populateImgModal(i, id) {
@@ -974,6 +981,7 @@
 			else {
 				text += '<a-image ';
 				text += 'src="' + objPath + '" rotation="-90 0 0"';
+				text += 'onmousedown="' + onclick + '" ';
 				text += '>';
 			}
 
@@ -1137,6 +1145,7 @@
 						'models/Bauleaperto/Bauleapertocontexturefinal3.mtl'
 					);
 					addClue('chest');
+					viewImage('bauleAperto');
 				}
 			},
 			triggerDisplayData: false,

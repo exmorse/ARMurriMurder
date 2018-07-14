@@ -54,8 +54,8 @@ var gameData = {
 			'obj': 'models/Veleno/laverabottiglietta2.obj',
 			'mtl': 'models/Veleno/laverabottiglietta2.mtl',
 			'posString': '0 0.4 0',
-			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
+			'rotationString': '-90 0 0',
+			'scaleFactor': 0.3,
 			'img': 'cestino.png',
 			'function': 'addClue',
 			'showModel': true
@@ -63,10 +63,10 @@ var gameData = {
 		{
 			'id': 'mobile',
 			'marker': 'markers/mobileingresso/dafoto.patt',
-			'obj': 'img/indizi/immaginetripla.png',
+			'obj': 'img/indizi/bigliettoamante.jpg',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
-			'scaleFactor': 1.5,
+			'scaleFactor': 0.5,
 			'img': 'key.png',
 			'function': 'viewImage',
 			'showModel': false
@@ -74,11 +74,11 @@ var gameData = {
 		{
 			'id': 'champagne',
 			'marker': 'markers/Champagne/champcol.patt',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.mtl',
+			'obj': 'models/Champagne/champagne2.obj',
+			'mtl': 'models/Champagne/champagne2.mtl',
 			'posString': '0 0.4 0',
 			'rotationString': '90 180 0',
-			'scaleFactor': 1.5,
+			'scaleFactor': 0.8,
 			'img': 'key.png',
 			'function': 'addClue',
 			'showModel': true
@@ -88,9 +88,9 @@ var gameData = {
 			'marker': 'markers/pitale/pitale.patt',
 			'obj': 'models/Capello/CAPELLOblend4.obj',
 			'mtl': 'models/Capello/CAPELLOblend4.mtl',
-			'posString': '0 0.4 0',
+			'posString': '-0.4 0 0.2',
 			'rotationString': '0 0 0',
-			'scaleFactor': 3.5,
+			'scaleFactor': 1.3,
 			'img': 'pitale.png',
 			'function': 'addClue',
 			'showModel': true
@@ -98,11 +98,10 @@ var gameData = {
 		{
 			'id': 'comodino',
 			'marker': 'markers/comodino/comodino.patt',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.mtl',
+			'obj': 'img/indizi/immaginetripla.png',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
+			'scaleFactor': 0.5,
 			'img': 'comodino.png',
 			'function': 'viewImage',
 			'showModel': false
@@ -198,14 +197,12 @@ var gameData = {
 					'pitale',
 					'cuscino',
 					'champagne',
-					'comodino',
-					'chest'
+					'comodino'
 				],
 			'clueList': 
 				[
 					'cuscino',
 					'champagne',
-					'chest',
 					'pitale'
 				]
 		},
