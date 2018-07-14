@@ -12,14 +12,17 @@
             var app = document.getElementById('app');
 
             var typewriter = new Typewriter(app, {
-                loop: false
+                loop: false,
+                typingSpeed: 10,
+                deleteSpeed: 1
             });
 
-            typewriter.typeString('Hello World!')
+            typewriter.s
+            typewriter.typeString('Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!Hello World!')
                 .pauseFor(2500)
-                //.deleteAll()
-                //.typeString('Strings can be removed')
-                //.pauseFor(2500)
+                .deleteAll()
+                .typeString('Strings can be removedStrings can be removedStrings can be removedStrings can be removedStrings can be removed')
+                .pauseFor(2500)
                 //.deleteChars(7)
                 //.typeString('altered!')
                 .start();
