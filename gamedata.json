@@ -9,7 +9,8 @@ var gameData = {
 			'rotationString': '180 -90 90',
 			'scaleFactor': 1.4,
 			'img': 'letter-T.png',
-			'function': 'tutorialClicked'
+			'function': 'tutorialClicked',
+			'showModel': false
 		},
 		{
 			'id': 'doorlock',
@@ -20,7 +21,8 @@ var gameData = {
 			'rotationString': '90 180 0',
 			'scaleFactor': 0.45,
 			'img': 'doorlock.png',
-			'function': 'addClue'
+			'function': 'addClue',
+			'showModel': true
 		},
 		{
 			'id': 'chest',
@@ -31,7 +33,8 @@ var gameData = {
 			'rotationString': '90 180 0',
 			'scaleFactor': 0.3,
 			'img': 'chest.png',
-			'function': 'triggerMobileSelect'
+			'function': 'triggerMobileSelect',
+			'showModel': false
 		},
 		{
 			'id': 'autopsy',
@@ -42,7 +45,8 @@ var gameData = {
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
 			'img': 'autopsy.png',
-			'function': 'addClue'
+			'function': 'addClue',
+			'showModel': false
 		},
 		{
 			'id': 'cestino',
@@ -53,7 +57,8 @@ var gameData = {
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
 			'img': 'cestino.png',
-			'function': 'addClue'
+			'function': 'addClue',
+			'showModel': true
 		},
 		{
 			'id': 'mobile',
@@ -63,7 +68,8 @@ var gameData = {
 			'rotationString': '0 0 0',
 			'scaleFactor': 1.5,
 			'img': 'key.png',
-			'function': 'viewImage'
+			'function': 'viewImage',
+			'showModel': false
 		},
 		{
 			'id': 'pitale',
@@ -74,7 +80,8 @@ var gameData = {
 			'rotationString': '0 0 0',
 			'scaleFactor': 1.5,
 			'img': 'pitale.png',
-			'function': 'viewImage'
+			'function': 'addClue',
+			'showModel': true
 		},
 		{
 			'id': 'comodino',
@@ -85,7 +92,8 @@ var gameData = {
 			'rotationString': '0 0 0',
 			'scaleFactor': 2.5,
 			'img': 'comodino.png',
-			'function': 'viewImage'
+			'function': 'viewImage',
+			'showModel': false
 		},
 		{
 			'id': 'cuscino',
@@ -96,7 +104,8 @@ var gameData = {
 			'rotationString': '0 90 0',
 			'scaleFactor': 5.5,
 			'img': 'cuscino.png',
-			'function': 'addClue'
+			'function': 'addClue',
+			'showModel': true
 		},
 		{
 			'id': 'champagne',
@@ -107,7 +116,8 @@ var gameData = {
 			'rotationString': '90 180 0',
 			'scaleFactor': 1.5,
 			'img': 'key.png',
-			'function': 'addClue'
+			'function': 'addClue',
+			'showModel': true
         }
 	],
 

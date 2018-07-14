@@ -184,8 +184,8 @@
 					document.getElementById('btn-clues').removeAttribute('data-step');
 					document.getElementById('btn-clues').removeAttribute('data-intro');
 
-					document.getElementById('btn-models').removeAttribute('data-step');
-					document.getElementById('btn-models').removeAttribute('data-intro');
+					//document.getElementById('btn-models').removeAttribute('data-step');
+					//document.getElementById('btn-models').removeAttribute('data-intro');
 
 					document.getElementById('btn-characters').removeAttribute('data-step');
 					document.getElementById('btn-characters').removeAttribute('data-intro');
@@ -242,7 +242,12 @@
 				/* Models */
 				if (discovered[id] == null) {
 					discovered[id] = true;
-					addModel(id);
+					for (var i = 0; i < gameData.clues.length; i++) {
+						if (gameData.clues[i].id == id) {
+							if (gameData.clues[i].showModel)
+								addModel(id);
+						}
+					}
 				}
 			}
 
@@ -1075,10 +1080,11 @@
 
 
 		/* Models Functions */
-
+		var isAddModelCalled = false;
 		function addModel(id) {
 			/* Add option to select element */
-			if (Object.keys(discovered).length == 1) {
+			if (!isAddModelCalled) {
+				isAddModelCalled = true;
 				forceSelectModel(id);
 			}
 			document.getElementById("modelsframe").contentWindow.addIcon({ 'iconFilePath': 'iconselect/images/icons/' + id + '.png', 'iconValue': id })
@@ -1089,6 +1095,10 @@
 			document.getElementById('btn-models').style.visibility = "visible";
 			modelsframe.getElementById('model-' + model).style.visibility = "visible";
 			document.getElementById("modelsframe").contentWindow.currentModel = model;
+
+			document.getElementById('btn-models').setAttribute('data-step', "1");
+			document.getElementById('btn-models').setAttribute('data-intro', "This button opens the models section, where you can analyize discovered models.");
+			introJs().start();
 		}
 
 
@@ -1163,10 +1173,10 @@
 				document.getElementById('btn-clues').setAttribute('data-step', "1");
 				document.getElementById('btn-clues').setAttribute('data-intro', "This button opens the clues section, where you can make your hypothesis.");
 
-				document.getElementById('btn-models').setAttribute('data-step', "2");
-				document.getElementById('btn-models').setAttribute('data-intro', "This button opens the models section, where you can analyize discovered models.");
+				//document.getElementById('btn-models').setAttribute('data-step', "2");
+				//document.getElementById('btn-models').setAttribute('data-intro', "This button opens the models section, where you can analyize discovered models.");
 
-				document.getElementById('btn-characters').setAttribute('data-step', "3");
+				document.getElementById('btn-characters').setAttribute('data-step', "2");
 				document.getElementById('btn-characters').setAttribute('data-intro', "This button opens the characters section, where you can read info on the suspects.");
 
 				addClue(id);

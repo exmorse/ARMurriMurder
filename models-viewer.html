@@ -121,13 +121,13 @@
 
 
 		/* Variables */
-		 
 		for (var i = 0; i < gameData.clues.length; i++) {
-			/*addModel(
-				gameData.clues[i].id,
-				gameData.clues[i].obj,
-				gameData.clues[i].mtl
-			);*/
+			if (gameData.clues[i].showModel)
+				addModel(
+					gameData.clues[i].id,
+					gameData.clues[i].obj,
+					gameData.clues[i].mtl
+				);
 		}
 
 
@@ -150,7 +150,8 @@
 			
 			iconSelect.refresh(icons);
 			for (var i = 0; i < gameData.clues.length; i++) {
-				startVue('model-' + gameData.clues[i].id);
+				if (gameData.clues[i].showModel)
+					startVue('model-' + gameData.clues[i].id);
 			}
 
 		};
