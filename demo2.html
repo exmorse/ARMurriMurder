@@ -322,7 +322,7 @@
 				this.populateImgModal(0, id);
 			}, 300);
 
-			if (id == 'mobile') {
+			if (id == 'comodino') {
 				addClue(id);
 			}
 			
@@ -664,6 +664,9 @@
 			// add a button
 			modal.addFooterBtn(btnText, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
 
+				// Only if text is complete
+				if (typewriter._settings.eventRunning && !debugText) return;
+
 				/* Start the chapter */
 				if (stepIndex == gameData.revelations[chapterIndex].intro.length - 1) {
 					modal.close();
@@ -763,6 +766,8 @@
 			// add a button
 			modal.addFooterBtn(btnText, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
 
+				// Only if text is complete
+				if (typewriter._settings.eventRunning && !debugText) return;
 
 				/* Start the chapter */
 				if (stepIndex == gameData.revelations[chapterIndex].outro.length - 1) {
@@ -915,6 +920,9 @@
 
 			// add a button
 			modal.addFooterBtn(btnText, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
+
+				// Only if text is complete
+				if (typewriter._settings.eventRunning && !debugText) return;
 
 				/* Start the chapter */
 				if (stepIndex == characters[charId].questions[i].answer.length - 1) {
@@ -1295,6 +1303,7 @@
 		var tutorialClues = true;
 		var tutorialClick = true;
 		var questionStep = 0;
+		var debugText = true;
 		window.onload = function () {
 			modelsframe = document.getElementById('modelsframe').contentWindow.document;
 			initCharacters();

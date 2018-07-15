@@ -1,6 +1,6 @@
 var foundImages = 
 {
-	'comodino':
+	'mobile':
     [
         {
         'img':'./img/indizi/LetteraAugusto.png',
@@ -26,7 +26,7 @@ var foundImages =
         }
             
     ],
-    'mobile': [
+    'comodino': [
         {
         'img':'./img/indizi/bigliettoamante.jpg',
         'subtitle':'A note probably left by a secret lover to organize a date.',

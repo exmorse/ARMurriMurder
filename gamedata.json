@@ -39,11 +39,10 @@ var gameData = {
 		{
 			'id': 'autopsy',
 			'marker': 'markers/autopsy/autopsy.patt',
-			'obj': 'models/key/key.obj',
-			'mtl': 'models/key/key.obj',
+			'obj': 'img/indizi/Cadavere.png',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
-			'scaleFactor': 2.5,
+			'scaleFactor': 1,
 			'img': 'autopsy.png',
 			'function': 'addClue',
 			'showModel': false
@@ -63,7 +62,7 @@ var gameData = {
 		{
 			'id': 'mobile',
 			'marker': 'markers/mobileingresso/dafoto.patt',
-			'obj': 'img/indizi/bigliettoamante.jpg',
+			'obj': 'img/indizi/immaginetripla.png',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
 			'scaleFactor': 0.5,
@@ -98,7 +97,7 @@ var gameData = {
 		{
 			'id': 'comodino',
 			'marker': 'markers/comodino/comodino.patt',
-			'obj': 'img/indizi/immaginetripla.png',
+			'obj': 'img/indizi/bigliettoamante.jpg',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
 			'scaleFactor': 0.5,
@@ -194,8 +193,10 @@ var gameData = {
 			'id': 'restart-rev',
 			'activeClues': 
 				[
+					'autopsy',
 					'pitale',
 					'cuscino',
+					'chest',
 					'champagne',
 					'comodino'
 				],
@@ -203,7 +204,8 @@ var gameData = {
 				[
 					'cuscino',
 					'champagne',
-					'pitale'
+					'pitale',
+					'comodino'
 				]
 		},
 		{
@@ -223,14 +225,16 @@ var gameData = {
 			'id': 'setup-rev',
 			'activeClues': 
 				[
+					'autopsy',
 					'chest',
 					'cestino',
-					'comodino'
+					'mobile'
 				],
 			'clueList': 
 				[
 					'cestino',
-					'comodino'
+					'chest',
+					'autopsy'
 				]
 		},
 			{
