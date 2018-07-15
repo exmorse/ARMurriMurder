@@ -1,3 +1,25 @@
+#preload {
+	content: url(../img/dhdtective.png)
+			 url(../img/indizi/bigliettoamante.jpg)
+			 url(../img/indizi/Cadavere.png)
+			 url(../img/indizi/immaginetripla.png)
+			 url(../img/StoriaIniziale/AugustoMurri.png)
+			 url(../img/StoriaIniziale/CarloSecchi.png)
+			 url(../img/StoriaIniziale/FrancescoBonmartini.png)
+			 url(../img/StoriaIniziale/LindaMurri.png)
+			 url(../img/StoriaIniziale/TisaBorghi.png)
+			 url(../img/StoriaIniziale/TullioMurri.png)
+			 url(../img/Interrogatorio/AugustoMurri.png)
+			 url(../img/Interrogatorio/CarloSecchi.png)
+			 url(../img/Interrogatorio/FrancescoBonmartini.png)
+			 url(../img/Interrogatorio/LindaMurri.png)
+			 url(../img/Interrogatorio/TisaBorghi.png)
+			 url(../img/Interrogatorio/TullioMurri.png)
+			 ;
+	visibility: hidden
+  }
+
+
 body {
 	font-family: 'Merriweather';
 }
