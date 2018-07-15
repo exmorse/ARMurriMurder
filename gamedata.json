@@ -65,7 +65,7 @@ var gameData = {
 			'obj': 'img/indizi/immaginetripla.png',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
-			'scaleFactor': 0.5,
+			'scaleFactor': 1,
 			'img': 'key.png',
 			'function': 'viewImage',
 			'showModel': false
@@ -100,7 +100,7 @@ var gameData = {
 			'obj': 'img/indizi/bigliettoamante.jpg',
 			'posString': '0 0.4 0',
 			'rotationString': '0 0 0',
-			'scaleFactor': 0.5,
+			'scaleFactor': 1,
 			'img': 'comodino.png',
 			'function': 'viewImage',
 			'showModel': false
