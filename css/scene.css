@@ -80,6 +80,13 @@ a-scene {
 	bottom: 2vh;
 	right: 21vw;
 }
+#btn-objects{
+	position: absolute;
+	visibility: hidden;
+	padding: 2%;
+	bottom: 2vh;
+	left: 21vw;
+}
 
 #btn-models {
 	position: absolute;
@@ -100,6 +107,14 @@ a-scene {
 	align:center;
 	opacity: 1 !important;
 }
+
+.objImg  {
+	width:50vw;
+	height: 50vh;
+	align:center;
+	opacity: 1 !important;
+}
+
 #app, #models {
 	border-style: solid;
 	border-radius: 2em;

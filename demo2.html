@@ -40,6 +40,7 @@
 
 	<button id="btn-clues" class="overlay tingle-btn tingle-btn--primary tutorial-click" onclick="toggleClues()">Clues</button>
 	<button id="btn-models" class="overlay tingle-btn tingle-btn--primary tutorial-click" onclick="toggleModels()">Models</button>
+	<button id="btn-objects" class="overlay tingle-btn tingle-btn--primary tutorial-click" data-toggle="modal" data-target="#objectModal">Objects</button>
 	<button id="btn-characters" class="overlay tingle-btn tingle-btn--primary tutorial-click" data-toggle="modal" data-target="#characterModal">Characters</button>
 
 	<div id="app" class="grayBg">
@@ -64,6 +65,26 @@
 
 
 	<!-- Modal -->
+	<div id="objectModal" class="modal fade" role="dialog">
+		<div class="modal-dialog grayBg">
+	
+			<!-- Modal content-->
+			<div class="modal-content grayBg">
+				<div class="modal-header">
+					<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
+					<h2 class="modal-title">Found Objects</h2>
+				</div>
+				<div id="objectModalBody" class="modal-body">
+					<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
+				</div>
+				<div id="objectModalFooter" class="modal-footer">
+					<div id="objectDescription"></div>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+
 	<div id="characterModal" class="modal fade" role="dialog">
 		<div class="modal-dialog grayBg">
 
@@ -191,6 +212,28 @@
 			}
 			console.log("added")
 		}
+
+		function addObj(obj) { 	 
+			$('#objectModal').modal("hide");
+			console.log(obj);
+			console.log(foundImages[obj].length)
+			for( var i= 0; i< foundImages[obj].length; i++){
+				$('#objectModalBody').append("<input id='" + obj+i + "' class='pngBtn modalContents' type='image' src='" + foundImages[obj][i].img + "' onclick='addObjectDescription(\"" + obj + "\","+i+")' />");
+				/*if (i == 2)
+					$('#characterModalBody').append("</br>");*/
+			}
+			console.log("added")
+		}
+
+		function addObjectDescription(obj,i) {
+				
+				cont = '';
+				cont += '<h4><i>' + foundImages[obj][i].subtitle + '</i></h4> <h3 class="modalContents">';
+				cont += foundImages[obj][i].description;
+				cont += '</h3></br><div align="center"><image class="objImg modalContens"  src="' + foundImages[obj][i].img+ '">'
+				cont += '</div>'
+				$('#objectDescription').html(cont);
+			}
 
 		/* Toggles the Clues/Revelation interface visibility */
 		function toggleClues() {
@@ -340,10 +383,13 @@
 		}
 
 		function viewImage(id) {
-			console.log('prima');
+			if (foundObjects.indexOf(id) == -1){
+				foundObjects.push(id);
+				addObj(id);
+			}
+			document.getElementById('btn-objects').style.visibility = "visible";
 			setTimeout(function () {
 				$('#imageModal').modal("show");
-				console.log('dopo');
 				this.populateImgModal(0, id);
 			}, 300);
 
@@ -1391,7 +1437,6 @@
 
 				document.getElementById('btn-clues').style.visibility = "visible";
 				document.getElementById('btn-characters').style.visibility = "visible";
-
 				document.getElementById('cursorTutorial').removeAttribute('data-step');
 				document.getElementById('cursorTutorial').removeAttribute('data-intro');
 
@@ -1488,6 +1533,7 @@
 			'augustomurri': 0,
 			'TullioMurri': 0,
 		}
+		var foundObjects = [];
 
 		/* Insert clues to fill cluePosition struct */
 		for (i = 0; i < gameData.clues.length; i++) {
