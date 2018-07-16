@@ -200,3 +200,25 @@ div#preload { display: none; }
 #aysModalFooter{
 	text-align: center!important;
 }
+
+button{
+	font-weight: bold!important;
+}
+
+.modal-btn{
+	color:white !important;
+	background-color: black!important;
+	border-color:#ccc;
+}
+
+#endModalFooter{
+	text-align: center!important;
+}
+
+.end{
+	color : white;
+	background-color: black;
+	text-align: center;
+	height:100vh;
+	vertical-align: middle;
+}

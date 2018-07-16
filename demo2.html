@@ -101,11 +101,12 @@
 
 					</select>
 					</br>
-					<button id="ask" type="button" class="btn btn-default"> Ask </button>
+					<button id="ask" type="button" class="btn btn-default modal-btn"> Ask </button>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<div id="imageModal" class="modal fade" role="dialog">
 		<div class="modal-dialog grayBg">
 
@@ -124,11 +125,12 @@
 					</div>
 				</div>
 				<div id="imageModalFooter" class="modal-footer">
-					<button id="nextImg" type="button" class="btn btn-default"> Next </button>
+					<button id="nextImg" type="button" class="btn btn-default modal-btn"> Next </button>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<div id="aysModal" class="modal fade" role="dialog">
 		<div class="modal-dialog grayBg">
 
@@ -136,23 +138,44 @@
 			<div class="modal-content grayBg">
 				<div class="modal-header">
 					<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
+					<h2>The Accusation..</h2>
 				</div>
 				<div id="aysModalBody" class="modal-body">
 					<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
 				</div>
 				<div id="aysModalFooter" class="modal-footer" align="center">
-					<button id="noBtn" type="button" class="btn btn-default" data-dismiss="modal"> <span class="glyphicon glyphicon-remove"></span> </button>
-					<button id="yesBtn" type="button" class="btn btn-default "> <span class="glyphicon glyphicon-ok"></span> </button>
+					<button id="noBtn" type="button" class="btn btn-default modal-btn" data-dismiss="modal"> <span class="glyphicon glyphicon-remove"></span> </button>
+					<button id="yesBtn" type="button" class="btn btn-default modal-btn"> <span class="glyphicon glyphicon-ok"></span> </button>
 				</div>
 			</div>
 
 		</div>
 	</div>
-
+	
+	<div id="endModal" class="modal fade" role="dialog">
+		<div class="modal-dialog grayBg">
+	
+			<!-- Modal content-->
+			<div class="modal-content grayBg">
+				<div class="modal-header">
+					<button type="button" class="close modalContents" data-dismiss="modal">&times;</button>
+					<h2>The truth..</h2>
+				</div>
+				<div id="endModalBody" class="modal-body">
+					<!--<input id='lindamurri' class='pngBtn' type='image' src = './img/lm.svg' onclick="addCharacter('lindamurri')"/>-->
+				</div>
+				<div id="endModalFooter" class="modal-footer" align="center">
+					<button id="endBtn" type="button" class="btn btn-default modal-btn" onclick="createCharStory(0)"> ok </button>
+				</div>
+			</div>
+	
+		</div>
+	</div>
 
 	<script src="gamedata.json"></script>
 	<script src="characters.json"></script>
 	<script src="foundImages.json"></script>
+	<script src="end.json"></script>
 	<script>
 
 		var alreadyAddedClues = [];
@@ -275,11 +298,11 @@
 				cont += el + '</br>';
 			});
 			cont += '</h3><div align="center"><image class="charImg modalContens"  src="./img/Interrogatorio/' + characters[i].image + '">'
-			cont += '</br><hr><button id="interrogation" type ="button"  class="btn btn-default"'
+			cont += '</br><hr><button id="interrogation" type ="button"  class="btn btn-default modal-btn"'
 			if (chapterIndex < 4) cont += 'disabled' //TODO rimettere 4, mettere 1 per gli esperimenti
 			cont += ' onclick ="interrogate(' + i + ')"> Start interrogation </button>'
 			if (questionStep >= 3 && characters[i].name != 'Francesco Bonmartini' && lastQuestions['lindamurri'] && lastQuestions['augustomurri'] && lastQuestions['TullioMurri']) {
-				cont += '<button id="accuse" type="button" class="btn btn-default" onclick ="accuse(' + i + ')"> Accuse </button>'
+				cont += '<button id="accuse" type="button" class="btn btn-default modal-btn" onclick ="accuse(' + i + ')"> Accuse </button>'
 			}
 			cont += '</div>'
 			$('#description').html(cont);
@@ -981,6 +1004,111 @@
 			return modal;
 		}
 
+		function createCharStory(charId) {
+
+				if (charId == 0 )
+					$('#endModal').modal("hide");
+
+				/* stepIndex is the dialog line number */
+				var stepIndex = 0;
+				var btnText = '';
+
+				// instanciate new modal
+				var modal = new tingle.modal({
+					footer: true,
+					stickyFooter: false,
+					closeMethods: ['button'],
+					//closeLabel: "Close",
+					cssClass: [],
+					onOpen: function () {
+					},
+					onClose: function () {
+					},
+					beforeClose: function () {
+						return true; // close the modal
+					}
+				});
+
+				// set content
+				var content = "";
+				//content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' + gameData.revelations[chapterIndex].title + '</h2>';
+				content += '<h2>' + end.char_stories[charId].name + '</h2>';
+				content += '<img class="detective-img" src="' + end.char_stories[charId].image + '"/>';
+				
+				content += '<p id="typewriter-text" class="dialog-text"></p>'
+				modal.setContent(content);
+
+				
+
+				if (stepIndex == end.char_stories[charId].story.length - 1) {
+					btnText = 'Ok';
+				}
+				else {
+					btnText = 'Next';
+				}
+
+				// add a button
+				modal.addFooterBtn(btnText, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
+
+					// Only if text is complete
+					if (typewriter._settings.eventRunning && !debugText) return;
+
+					/* Start the chapter */
+					if (stepIndex == end.char_stories[charId].story.length - 1) {
+						modal.close();
+						modal.destroy();
+						if(charId < 4)
+							createCharStory(charId + 1);
+						else{
+							$('body').html("<h1 class='end'>The End</h1>");
+						}						
+					}
+
+
+					/* Next dialog line */
+					else {
+						stepIndex++;
+
+						/*
+						typewriter.deleteAll()
+							.pauseFor(500)
+							.typeString(end.char_stories[charId].questions[i][stepIndex])
+							.pauseFor(500)
+							.start();
+						*/
+
+						document.getElementsByClassName('typewriter-wrapper')[0].innerHTML = "";
+						typewriter._settings.currentTypedCharacters = [];
+						typewriter.typeString(end.char_stories[charId].story[stepIndex])
+							.pauseFor(500)
+							.start();
+
+						if (stepIndex == end.char_stories[charId].story.length - 1) {
+							document.getElementsByClassName('tingle-btn--pull-right')[0].innerHTML = 'Ok';
+						}
+					}
+				});
+
+				// open modal
+				modal.open();
+
+				// Typewriter text animation
+				var app = document.getElementById('typewriter-text');
+
+				var typewriter = new Typewriter(app, {
+					loop: false,
+					typingSpeed: typingSpeed,
+					deleteSpeed: deleteSpeed
+				});
+
+				typewriter.pauseFor(500)
+					.typeString(end.char_stories[charId].story[stepIndex])
+					.pauseFor(500)
+					.start();
+
+				return modal;
+			}
+
 
 		function changeMarkerContent(currentId, newId, posString, rotationString, scaleFactor, onclick, objPath, mtlPath) {
 			var el = document.getElementById(currentId);
@@ -1239,6 +1367,14 @@
 
 		function yesAccuse(id) {
 			console.log("accuso " + characters[id].name);
+			if (characters[id].name == 'Tullio Murri'){
+				var cont = "<h4>"+ end.accusation.correct; + "</h4>";
+			}
+			else 
+				var cont = "<h4>"+ end.accusation.wrong; + "</h4>";
+			$('#aysModal').modal("hide");
+			$("#endModalBody").html(cont);
+			$('#endModal').modal("show");
 		}
 
 		function tutorialClicked(id) {
@@ -1309,6 +1445,7 @@
 			createInterrogationAnswerModal(charId, questId);
 
 		}
+		
 
 
 		/* Init variables */

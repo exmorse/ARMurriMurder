@@ -1,0 +1,58 @@
+var end = {
+    'accusation' : {
+        'correct' : "Congratulations! Your guess was right. Tullio couldn’t know about the note because during the interrogation you never asked question about it and that confirms the veracity of the note itself. Linda asked him to kill her husband and he presumably did it.",
+        'wrong' : "I’m sorry, you guessed it wrong! The real culprit of the crime was Tullio! He couldn’t know about the note because during the interrogation you never asked question about it and that confirms the veracity of the note itself. Linda asked him to kill her husband and he presumably did it."
+    },
+    'char_stories': [
+        {
+        'id': 'lindamurri',
+		'name': 'Linda Murri',
+		'image': './img/Interrogatorio/LindaMurri.png',
+		'story': [
+                "Linda Murri was involved in the plan of the murder and was arrested.",
+                "She was released after 1 year for a concession of King Vittorio Emanuele III.",
+                "He wanted to reward Augusto, who had cured the King’s daughter, Mafalda."
+                ],
+        },
+        {
+		'id' :'carlosecchi',
+		'name': 'Carlo Secchi',
+		'image': './img/Interrogatorio/CarloSecchi.png',
+		'story': [
+                "Carlo Secchi was arrested on charges of being an accessory to the crime. ",
+                "Tisa Borghi accused him to have provided Tullio Murri with the poison to kill Bonmartini.",
+                "After a period in prison, he committed suicide."
+            ],
+        },
+        {
+		'id':'augustomurri',
+		'name': 'Augusto Murri',
+		'image': './img/Interrogatorio/AugustoMurri.png',
+		'story': [
+                "Augusto Murri accused his son to be the killer of Francesco Bonmartini after reading the Bonmartini’s letter of confession, but said to have destroyed it.",
+                "He did not want his wife to find it out.",
+                " After two years of legal process, he came back to the University of Bologna."
+            ],
+        },
+        {
+		'id':'TisaBorghi',
+		'name': 'Tisa Borghi',
+		'image': './img/Interrogatorio/TisaBorghi.png',
+		'story': [
+                "Tisa Borghi had the possibility of confessing everything in order not to be imprisoned.",
+                "She told the police that Carlo Secchi prepared a phial of curare to be used to kill Bonmartini.",
+                "She avoided the jail."
+            ],
+        },
+        {
+		'id':'TullioMurri',
+		'name': 'Tullio Murri',
+		'image': './img/Interrogatorio/TullioMurri.png',
+		'story': [
+                "Tullio Murri was arrested on charges of murder.",
+                "He was reported by his father Augusto, who read a letter of confession written by his son before giving himself up to the police. ",
+                "He said: “I killed to defend me. This is the pure truth.”",
+            ],
+        },
+    ]
+}
