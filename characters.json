@@ -127,9 +127,11 @@ var characters =
 		'questions': [
 			{
 				'qId': 4,
-				'question': "Does \"lamb experiment\" remind you of something?",
+				'question': "",
 				'answer': [
-					"No one want to answer anymore. Now it's time to accuse...",
+					"No one want to answer anymore... ",
+					"Now you should have enough information for your final hyphotesis ",
+					"Go on the character page and accuse the one that, in your opinion, committed the murder.",
 					"You can make your accusation using the \"accuse\" button in the \"character\" tab."
 				],
 				'unlock': []	
