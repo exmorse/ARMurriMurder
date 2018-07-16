@@ -1367,11 +1367,15 @@
 
 		function yesAccuse(id) {
 			console.log("accuso " + characters[id].name);
+			var cont= "";
 			if (characters[id].name == 'Tullio Murri'){
-				var cont = "<h4>"+ end.accusation.correct; + "</h4>";
+				cont += '<image class="charImg modalContens" src="./img/end/correct.png">';
+				cont += "<h4>"+ end.accusation.correct; + "</h4>";
 			}
-			else 
-				var cont = "<h4>"+ end.accusation.wrong; + "</h4>";
+			else{ 
+				cont += '<image class="charImg modalContens" src="./img/end/error.png">';
+				cont += "<h4>"+ end.accusation.wrong; + "</h4>";
+			}
 			$('#aysModal').modal("hide");
 			$("#endModalBody").html(cont);
 			$('#endModal').modal("show");
