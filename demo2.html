@@ -29,6 +29,7 @@
 
 
 <body style='margin : 0px; overflow: hidden;'>
+	<div id = "poesia"> </div>
 	<a-scene id="ascene" embedded arjs="debugUIEnabled: false; patternRatio: 0.8">
 
 		<a-entity camera></a-entity>
@@ -176,6 +177,7 @@
 	<script src="characters.json"></script>
 	<script src="foundImages.json"></script>
 	<script src="end.json"></script>
+	<script src="poetry.json"></script>
 	<script>
 
 		var alreadyAddedClues = [];
@@ -1450,6 +1452,11 @@
 
 		}
 		
+		function startGame(){
+			console.log("aaaaaaa")
+			$('#poesia').hide();
+			modal = createInitialModal();
+		}
 
 
 		/* Init variables */
@@ -1499,7 +1506,7 @@
 		activateDraggableClues();
 
 
-		modal = createInitialModal();
+		//modal = createInitialModal();
 		/*$('.clickableModal').click(function (){
 			modal.close();
 			modal.destroy();
@@ -1521,6 +1528,16 @@
 		window.onbeforeunload = function(){
 			return 'Are you sure you want to leave?';
 		};
+
+		var cont = "<div class = 'begin-poetry' >"+ poetry.page1+ "</div></br>";
+		cont += '<button id="poetryBtn" type="button" class="btn btn-default modal-btn"> Next </button>'
+		$('#poesia').html(cont);
+		$('#poetryBtn').click(function(){
+			var cont = "<div class = 'begin-poetry' >" + poetry.page2 + "</div></br>";
+			cont += '<button id="poetryBtn2" type="button" class="btn btn-default modal-btn" onclick="startGame()"> Start </button>'
+			$('#poesia').html(cont);
+		});
+		
 	</script>
 
 </body>

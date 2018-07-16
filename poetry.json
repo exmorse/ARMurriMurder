@@ -1,0 +1,4 @@
+var poetry = {
+    'page1' : "<em><h2>LA POLITICA EUROPEA </br> E LA TRAGEDIA </br>DI BOLOGNA</h2></br><p class='poetry-body'>La politica dorme della grossa</br>nella sua veste gialla, verde e rossa </br>e da guancial le servono i giornali</br>rendendo i suoi pensier vi è più letali;</br></br>Stan dormendo con essa i burattini </br>che dall’Europa muovono i destini.</br>A risvegliarla gran curiosità</br>sol la tragedia di Bologna appar…</p></em>",
+    'page2'  : "<em><p class='poetry-body'>Ognuno vuol sapere la verità,</br>ognuno il gran mister vuol scrutar.</br>Non più ministri rossi, neri, azzurri</br>Risvegliano la pubblica opinion</br></br>Ma il conte Bonmartini, la Linda, il Murri,</br>Il Naldi e la Bonetti, adesso son</br>Nella mente d’ognun, e a ognun agogna </br>A svelar la tragedia di Bologna.</p></em></br></br><h5>(From the satyrical journal “La Rana”,</br>of 3rd/4th October 1902.</br>The illustrator is by M. Cetto)</h5>"
+}

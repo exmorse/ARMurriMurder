@@ -215,10 +215,15 @@ button{
 	text-align: center!important;
 }
 
-.end{
+.end, #poesia{
 	color : white;
 	background-color: black;
 	text-align: center;
-	height:100vh;
-	vertical-align: middle;
+	height:110vh;
+	margin-top: -3vh;
+	padding-top: 8vh;
+}
+
+.poetry-body{
+	font-size: 1.5em;
 }
