@@ -244,7 +244,7 @@
 				}
 
 				document.getElementById('app').style.visibility = "visible";
-				$('#revelations').scrollTop(scrollToY);
+				$('#revelations').scrollTop(0);
 
 				if (tutorialClues) {
 					document.getElementById('clues').setAttribute('data-step', "1");
@@ -379,22 +379,22 @@
 			}
 			revCode += '</div>';
 			revCode += '</div>';
-			document.getElementById('revelations').innerHTML += revCode;
+			$('#revelations').prepend(revCode);
 		}
 
 		function viewImage(id) {
 			if (foundObjects.indexOf(id) == -1){
 				foundObjects.push(id);
 				addObj(id);
-			}
-			document.getElementById('btn-objects').style.visibility = "visible";
-			setTimeout(function () {
-				$('#imageModal').modal("show");
-				this.populateImgModal(0, id);
-			}, 300);
+				document.getElementById('btn-objects').style.visibility = "visible";
+				setTimeout(function () {
+					$('#imageModal').modal("show");
+					this.populateImgModal(0, id);
+				}, 300);
 
-			if (id == 'comodino') {
-				addClue(id);
+				if (id == 'comodino') {
+					addClue(id);
+				}
 			}
 			
 		}
@@ -530,7 +530,7 @@
 					var draggableElement = event.relatedTarget,
 						dropzoneElement = event.target;
 
-
+					console.log(dropzoneElement.getAttribute('content'));
 					if (dropzoneElement.getAttribute('content') == null) {
 
 						cluePositions.size--;
