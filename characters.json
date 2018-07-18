@@ -16,13 +16,13 @@ var characters =
 			{
 				'qId': 0,
 				'question': "What do you know about \"Curaro\"?",
-				'answer':[ "Cu..raro? What is that? Is it a place or something? I feel confused. " ],
+				'answer':[ "Cu..raro? What is that? Is it a place or something? I feel confused." ],
 				'unlock': []
 			},
 			{
 				'qId': 2,
 				'question': "Did you ask Tisa to bring you this kind of poison recently?",
-				'answer':[ "I’m a busy woman and I have no business with Tisa Borghi. She’s crazy if she’s accusing me of anything, that stupid nurse." ],
+				'answer':[ "I'm a busy woman and I have no business with Tisa Borghi. She's crazy if she's accusing me of anything, that stupid nurse." ],
 				'unlock': []
 			},
 			{
@@ -30,7 +30,7 @@ var characters =
 				'question': "Does \"lamb experiment\" remind you of something?",
 				'answer':[ 
 					"Enough with the questions! I feel outraged!",
-					"I should be mourning my husband, and instead I find myself talking about poison and lambs, let me go, I’m done here." 
+					"I should be mourning my husband, and instead I find myself talking about poison and lambs, let me go, I'm done here." 
 				],
 				'unlock': []
 			}
@@ -51,7 +51,7 @@ var characters =
 			{
 				'qId': 0,
 				'question': "What do you know about \"Curaro\"?",
-				'answer':[ "I believe it’s poison." ],
+				'answer':[ "I believe it's poison." ],
 				'unlock': []
 			},
 			{
@@ -91,13 +91,13 @@ var characters =
 			{
 				'qId': 0,
 				'question': "What do you know about \"Curaro\"?",
-				'answer':[ "It’s a poison. Why did you ask me this question? I thought my son-in-law was killed by stabs not by poisoning."],
+				'answer':[ "It's a poison. Why did you ask me this question? I thought my son-in-law was killed by stabs not by poisoning."],
 				'unlock': []
 			},
 			{
 				'qId': 2,
 				'question': "Did you ask Tisa to bring you this kind of poison recently?",
-				'answer':[ "Are you accusing me? I’ve never met this woman that you talk about." ],
+				'answer':[ "Are you accusing me? I've never met this woman that you talk about." ],
 				'unlock': []
 			},
 			{
@@ -105,9 +105,9 @@ var characters =
 				'question': "Does \"lamb experiment\" remind you of something?",
 				'answer':[ 
 					"A lamb? What are these questions? And I would never test the poison on a lamb if I were to use it on a human, especially Francesco." ,
-					"Have you seen his size? You won’t be able to kill a guy of that size with the same poison used for a lamb. ",
-					"If the killer tried that, he or she’s not smart after all, I wonder what it’s taking you so long to find the culprit. ",
-					"At this point it’s obvious that the killer found another way that’s not poisoning."
+					"Have you seen his size? You won't be able to kill a guy of that size with the same poison used for a lamb.",
+					"If the killer tried that, he or she's not smart after all, I wonder what it's taking you so long to find the culprit.",
+					"At this point it's obvious that the killer found another way that's not poisoning."
 				],
 				'unlock': []
 			}
@@ -153,7 +153,7 @@ var characters =
 			{
 				'qId': 0,
 				'question': "What do you know about \"Curaro\"?",
-				'answer':[ "It’s a type of poison, recently I’ve been asked to bring it to a certain... Nevermind. "],
+				'answer':[ "It's a type of poison, recently I’ve been asked to bring it to a certain... Nevermind. "],
 				'unlock':[
 					{
 					'char':'TisaBorghi',
@@ -201,13 +201,13 @@ var characters =
 			{
 				'qId': 0,
 				'question': "What do you know about \"Curaro\"?",
-				'answer':[ "I’m not sure, that name sounds familiar. What is it? Is it a poison? I don’t know." ],
+				'answer':[ "I'm not sure, that name sounds familiar. What is it? Is it a poison? I don't know." ],
 				'unlock': []
 			},
 			{
 				'qId': 2,
 				'question': "Did you ask Tisa to bring you this kind of poison recently?",
-				'answer':[ "I know Tisa, but I’ve never asked her to bring me this poison." ],
+				'answer':[ "I know Tisa, but I've never asked her to bring me this poison." ],
 				'unlock': []
 			},
 			{
@@ -215,8 +215,8 @@ var characters =
 				'question': "Does \"lamb experiment\" remind you of something?",
 				'answer':[ 
 					"I thought I was asked about something that could help you solve this mystery, instead you keep asking these useless questions.",
-					"Can’t you see it’s all a setup? Everything is fake, that message in Linda’s box is probably another try to bring my family down. ",
-					"But we won’t go down, we’re innocent until proven guilty."
+					"Can't you see it's all a setup? Everything is fake, that message in Linda's box is probably another try to bring my family down.",
+					"But we won't go down, we're innocent until proven guilty."
 				 ],
 				'unlock': []
 			}

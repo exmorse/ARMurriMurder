@@ -1380,10 +1380,10 @@
 			callback: function (indexArr, data) {
 				console.log(data); //Returns the selected json data
 				if (
-					data[0] == '0' &&
+					data[0] == '2' &&
 					data[1] == '0' &&
-					data[2] == '0' &&
-					data[3] == '0'
+					data[2] == '9' &&
+					data[3] == '1'
 				) {
 					changeMarkerContent('marker-chest', 'marker-chest', '0 0.8 0.2', '90 180 0', 0.3, 'otherF',
 						'models/Bauleaperto/Bauleapertocontexturefinal3.obj',
@@ -1524,7 +1524,7 @@
 		var tutorialClues = true;
 		var tutorialClick = true;
 		var questionStep = 0;
-		var debugText = true;
+		var debugText = false;
 		window.onload = function () {
 			modelsframe = document.getElementById('modelsframe').contentWindow.document;
 			initCharacters();

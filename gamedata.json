@@ -188,7 +188,7 @@ var gameData = {
 				'Oh I see, female hair, female underwear, bottle of champagne, a message...',
 				'It appears that the killer might be a secret lover of the victim.',
 				'But all these clues, aren\'t they a little bit too obvious?',
-				'Let\'s just take another look to be sure that there’s no other possible explanation'
+				'Let\'s just take another look to be sure that there\'s no other possible explanation!'
 			],
 			'id': 'restart-rev',
 			'activeClues': 
