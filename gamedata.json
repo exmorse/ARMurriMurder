@@ -120,12 +120,12 @@ var gameData = {
 	],
 
 	'initialDialog' : {
-		'title': 'DEMO: Augmented Murri Murder',
+		'title': 'Augmented Murri Murder',
 		'text': 'Initial text is here'
 	},
 	
 	'endDialog' : {
-		'title': 'DEMO: Augmented Murri Murder - Completed',
+		'title': 'Augmented Murri Murder - Completed',
 		'text': 'Thanks'
 	},
 	
