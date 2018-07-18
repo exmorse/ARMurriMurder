@@ -43,7 +43,8 @@ a-scene {
 .grayBg{
 	background-color: black !important;
 	color:white;
-	opacity: 0.90;
+	/* opacity: 0.90; */
+	opacity: 1;
 }
 
 .modalContents{
