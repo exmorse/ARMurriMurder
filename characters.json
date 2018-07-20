@@ -153,7 +153,7 @@ var characters =
 			{
 				'qId': 0,
 				'question': "What do you know about \"Curaro\"?",
-				'answer':[ "It's a type of poison, recently I’ve been asked to bring it to a certain... Nevermind. "],
+				'answer':[ "It's a type of poison, recently I've been asked to bring it to a certain... Nevermind. "],
 				'unlock':[
 					{
 					'char':'TisaBorghi',
@@ -164,7 +164,7 @@ var characters =
 			{
 				'qId': 1,
 				'question': "Who asked you to get him or her this poison?",
-				'answer':[ "…  <She doesn’t answer, staring blankly to the wall behind you, she probably realized she said too much.> " ],
+				'answer':[ "... <She doesn't answer, staring blankly to the wall behind you, she probably realized she said too much.> " ],
 				'unlock': [
 					{
 					'char':'lindamurri',
