@@ -1424,6 +1424,9 @@
 					addClue('chest');
 					viewImage('bauleAperto');
 				}
+				else {
+					toastr.error('', 'Wrong code...', { positionClass: 'toast-bottom-center' })
+				}
 			},
 			triggerDisplayData: false,
 			position: [0, 0, 0, 0] //Initialize positioning
@@ -1556,7 +1559,7 @@
 		var tutorialClues = true;
 		var tutorialClick = true;
 		var questionStep = 0;
-		var debugText = false;
+		var debugText = true;
 		window.onload = function () {
 			modelsframe = document.getElementById('modelsframe').contentWindow.document;
 			initCharacters();
