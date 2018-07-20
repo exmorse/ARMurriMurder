@@ -707,7 +707,7 @@
 		function createNewChapterModal() {
 
 			/* stepIndex is the dialog line number */
-			var stepIndex = 0;
+			var stepIndex = -1;
 			var btnText = '';
 
 			// instanciate new modal
@@ -728,13 +728,16 @@
 
 			// set content
 			var content = "";
-			//content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' + gameData.revelations[chapterIndex].title + '</h2>';
-			content += '<img class="detective-img" src="img/dhdtective.png"/>';
-			content += '<p id="typewriter-text" class="dialog-text"></p>'
+			content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' + gameData.revelations[chapterIndex].title + '</h2>';
+			//content += '<img class="detective-img" src="img/dhdtective.png"/>';
+			//content += '<p id="typewriter-text" class="dialog-text"></p>'
 			modal.setContent(content);
 
 			if (stepIndex == gameData.revelations[chapterIndex].intro.length - 1) {
 				btnText = 'Ok';
+			}
+			else if (stepIndex == -1) {
+				btnText = 'Start Chapter';
 			}
 			else {
 				btnText = 'Next';
@@ -742,6 +745,31 @@
 
 			// add a button
 			modal.addFooterBtn(btnText, 'tingle-btn tingle-btn--primary tingle-btn--pull-right', function () {
+
+				if (stepIndex == -1) {
+					stepIndex++;
+					content = "";
+					//content += '<h2>Chapter ' + gameData.revelations[chapterIndex].number + ' - ' + gameData.revelations[chapterIndex].title + '</h2>';
+					content += '<img class="detective-img" src="img/dhdtective.png"/>';
+					content += '<p id="typewriter-text" class="dialog-text"></p>'
+					modal.setContent(content);
+
+					app = document.getElementById('typewriter-text');
+			
+					typewriter = new Typewriter(app, {
+						loop: false,
+						typingSpeed: typingSpeed,
+						deleteSpeed: deleteSpeed
+					});
+
+					document.getElementsByClassName('tingle-btn--pull-right')[0].innerHTML = 'Next';
+
+					typewriter.pauseFor(500)
+						.typeString(gameData.revelations[chapterIndex].intro[stepIndex])
+						.pauseFor(500)
+						.start();
+					return;
+				}
 
 				// Only if text is complete
 				if (typewriter._settings.eventRunning && !debugText) return;
@@ -786,21 +814,22 @@
 			modal.open();
 
 			// Typewriter text animation
-			var app = document.getElementById('typewriter-text');
-
+			var app;  
 			
-			typewriter = new Typewriter(app, {
+			//app = document.getElementById('typewriter-text');
+			
+			/*typewriter = new Typewriter(app, {
 				loop: false,
 				typingSpeed: typingSpeed,
 				deleteSpeed: deleteSpeed
-			});
+			});*/
 
 			//typewriter.changeSettings({typingSpeed: 30, deleteSpeed: 1});
 
-			typewriter.pauseFor(500)
+			/*typewriter.pauseFor(500)
 				.typeString(gameData.revelations[chapterIndex].intro[stepIndex])
 				.pauseFor(500)
-				.start();
+				.start();*/
 
 			return modal;
 		}
