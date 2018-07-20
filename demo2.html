@@ -315,8 +315,18 @@
 				cluePositions.size++;
 				activateDraggableClueById(id, cluePositions.size - 1);
 
+				var i;
+				var obj = null
+				for (i = 0; i < gameData.clues.length; i++) {
+					if (id == gameData.clues[i].id) {
+						obj = gameData.clues[i];
+					}
+				}
+
+				if (obj == null) return;
+
 				if (showToast)
-					toastr.success('', 'New Clue Discovered', {positionClass: 'toast-bottom-center'})
+					toastr.success('New Clue Discovered', obj.description, {positionClass: 'toast-bottom-center'})
 
 				$('#btn-clues').addClass('active');
 				setTimeout(function () {
